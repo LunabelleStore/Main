@@ -4,41 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>لونابيل - متجر عطور ومستحضرات تجميل فاخرة</title>
-  <meta name="description" content="تجربة تسوق فاخرة للعطور ومستحضرات التجميل مع فلسفة جرّبي، قرري، ثم اشتري. عطور نسائية ورجالية، مكياج، عناية بالبشرة مع توصيل داخل مصر." />
-  <meta name="keywords" content="عطور, عطور نسائية, عطور رجالية, مكياج, عناية بالبشرة, مستحضرات تجميل, مصر, تسوق أونلاين" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "لونابيل - متجر العطور الفاخرة",
-    "description": "متجر إلكتروني للعطور ومستحضرات التجميل في مصر",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "EG"
-    },
-    "url": "https://example.com",
-    "telephone": "+20-100-000-0000"
-  }
-  </script>
-
-  <!-- Tailwind via CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <!-- Google Fonts -->
+  <meta name="description" content="تجربة تسوق فاخرة للعطور ومستحضرات التجميل مع فلسفة جرّبي، قرري، ثم اشتري." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-[#f7f7f8] text-slate-900">
+<body class="bg-[#f7f7f8] text-slate-900 font-sans">
   <div id="app" class="min-h-screen flex flex-col">
-    <!-- Header / Navigation -->
     <header class="bg-white/80 backdrop-blur border-b border-slate-200 sticky top-0 z-40">
       <div class="container mx-auto px-4 lg:px-8">
         <div class="flex items-center justify-between py-3 lg:py-4">
-          <!-- Right: Logo -->
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 via-amber-400 to-yellow-700 flex items-center justify-center shadow-md">
               <span class="text-xs font-bold tracking-widest text-slate-900">EL</span>
@@ -49,7 +27,6 @@
             </div>
           </div>
 
-          <!-- Center: Nav (desktop) -->
           <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
             <button data-nav="home" class="nav-link text-slate-700 hover:text-amber-600 transition">الرئيسية</button>
             <button data-nav="shop" class="nav-link text-slate-700 hover:text-amber-600 transition">المتجر</button>
@@ -57,59 +34,50 @@
             <button data-nav="contact" class="nav-link text-slate-700 hover:text-amber-600 transition">تواصل معنا</button>
           </nav>
 
-          <!-- Left: Search + Cart + Mobile menu -->
           <div class="flex items-center gap-3">
             <div class="hidden lg:flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5 text-xs w-64">
-              <input id="searchInput" type="text" placeholder="ابحثي عن عطر، مكياج، أو منتج عناية..." class="bg-transparent outline-none flex-1 text-[11px]" />
+              <input id="searchInput" type="text" placeholder="ابحثي عن عطر، مكياج..." class="bg-transparent outline-none flex-1 text-[11px]" />
               <span class="material-symbols-outlined text-slate-400 text-base">search</span>
             </div>
 
-            <!-- Cart Preview Trigger -->
             <button id="cartToggle" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-amber-200 hover:bg-slate-800 transition">
               <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
               <span id="cartCount" class="absolute -top-1 -left-1 min-w-[18px] h-[18px] rounded-full bg-amber-400 text-[10px] text-slate-900 flex items-center justify-center font-bold shadow-sm">0</span>
             </button>
 
-            <!-- Mobile search -->
             <button id="mobileSearchToggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-slate-300 text-slate-600">
               <span class="material-symbols-outlined text-[20px]">search</span>
             </button>
 
-            <!-- Mobile menu -->
             <button id="mobileMenuToggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-slate-300 text-slate-600">
               <span class="material-symbols-outlined text-[22px]">menu</span>
             </button>
           </div>
         </div>
 
-        <!-- Mobile search bar -->
-        <div id="mobileSearchBar" class="md:hidden hidden pb-3">
+        <div id="mobileSearchBar" class="md:hidden hidden pb-3 px-4">
           <div class="flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-2 text-xs">
             <input id="mobileSearchInput" type="text" placeholder="ابحثي عن منتج..." class="bg-transparent outline-none flex-1 text-[12px]" />
             <span class="material-symbols-outlined text-slate-400 text-base">search</span>
           </div>
         </div>
 
-        <!-- Mobile nav -->
-        <nav id="mobileNav" class="md:hidden hidden pb-3 border-t border-slate-100 mt-2 pt-2 text-sm">
+        <nav id="mobileNav" class="md:hidden hidden pb-3 px-4 border-t border-slate-100 mt-2 pt-2 text-sm">
           <div class="flex flex-col gap-2">
-            <button data-nav="home" class="nav-link text-right py-1 text-slate-700">الرئيسية</button>
-            <button data-nav="shop" class="nav-link text-right py-1 text-slate-700">المتجر</button>
-            <button data-nav="about" class="nav-link text-right py-1 text-slate-700">من نحن</button>
-            <button data-nav="contact" class="nav-link text-right py-1 text-slate-700">تواصل معنا</button>
+            <button data-nav="home" class="nav-link w-full text-right py-2 text-slate-700">الرئيسية</button>
+            <button data-nav="shop" class="nav-link w-full text-right py-2 text-slate-700">المتجر</button>
+            <button data-nav="about" class="nav-link w-full text-right py-2 text-slate-700">من نحن</button>
+            <button data-nav="contact" class="nav-link w-full text-right py-2 text-slate-700">تواصل معنا</button>
           </div>
         </nav>
       </div>
     </header>
 
-    <!-- Main Content -->
     <main class="flex-1">
-      <!-- Hero Section -->
       <section id="section-home" class="border-b border-slate-200 bg-gradient-to-b from-white via-[#fdf7f2] to-[#f7f7f8]">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-16">
           <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <!-- Text -->
-            <div class="space-y-6">
+            <div class="space-y-6 text-center lg:text-right">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-100 text-[11px] font-medium text-amber-800">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 فلسفة العناية الحديثة: جرّبي، قرري، ثم اشتري
@@ -117,35 +85,20 @@
               <h1 class="text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-relaxed text-slate-900">
                 اكتشفي <span class="text-amber-500">عطرِك</span> الذي يحكي قصتك
               </h1>
-              <p class="text-sm lg:text-base text-slate-600 leading-relaxed max-w-xl">
+              <p class="text-sm lg:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 في <strong>لونابيل</strong> نؤمن أن كل تجربة تبدأ بالتجربة الهادئة. اختاري عينات بحجم صغير، جرّبيها براحتك في المنزل، ثم قرري شراء الحجم الكامل بثقة تامة.
               </p>
-              <div class="flex flex-wrap items-center gap-3 mt-4">
+              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-4">
                 <button data-nav="shop" class="primary-btn inline-flex items-center gap-2">
                   تسوّقي الآن
                   <span class="material-symbols-outlined text-[18px]">chevron_left</span>
                 </button>
                 <button data-scroll-target="#trySection" class="ghost-btn text-sm">
-                  تعرّفي على فلسفة "جرّبي، قرري، ثم اشتري"
+                  تعرّفي على الفلسفة
                 </button>
-              </div>
-              <div class="flex flex-wrap gap-4 pt-4 text-[11px] text-slate-500">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-amber-400 text-base">local_shipping</span>
-                  توصيل سريع داخل مصر
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-amber-400 text-base">verified</span>
-                  منتجات أصلية 100%
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-amber-400 text-base">autorenew</span>
-                  سياسة استبدال مرنة
-                </div>
               </div>
             </div>
 
-            <!-- Hero Image / Gallery -->
             <div class="relative">
               <div class="absolute -top-6 -left-6 w-32 h-32 bg-amber-100/80 rounded-full blur-2xl"></div>
               <div class="absolute -bottom-8 -right-10 w-40 h-40 bg-rose-100/70 rounded-full blur-3xl"></div>
@@ -163,30 +116,19 @@
                     </figure>
                   </div>
                 </div>
-                <div class="px-4 py-3 lg:px-6 lg:py-4 flex items-center justify-between border-t border-slate-100 bg-white/90">
-                  <div class="text-xs text-slate-500">
-                    <div class="font-semibold text-slate-800">مجموعة العينات الفاخرة</div>
-                    <div>ابدئي بحجم ٥ مل أو ١٠ مل قبل شراء الحجم الكامل</div>
-                  </div>
-                  <div class="text-right text-xs">
-                    <div class="font-extrabold text-amber-600">ابتداءً من ١٢٠ جنيه</div>
-                    <div class="text-[10px] text-slate-400">جرّبي أولاً، ثم اشتري بثقة</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Try, Decide, Buy Philosophy Section -->
       <section id="trySection" class="bg-white border-b border-slate-200">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div class="grid lg:grid-cols-3 gap-6 lg:gap-10 items-start">
             <div class="lg:col-span-1 space-y-3">
               <h2 class="section-title">فلسفة "جرّبي، قرري، ثم اشتري"</h2>
               <p class="text-sm text-slate-600 leading-relaxed">
-                لأن العطر يشبه التفاصيل الصغيرة في حياتك، ولأن روتين العناية بالبشرة يحتاج وقتًا ليُثبت فعاليته، نقدم لكِ نظامًا مرنًا يضع التجربة في المركز.
+                لأن العطر يشبه التفاصيل الصغيرة في حياتك، ولأن روتين العناية بالبشرة يحتاج وقتًا ليُثبت فعاليته.
               </p>
             </div>
             <div class="lg:col-span-2 grid sm:grid-cols-3 gap-4 lg:gap-6">
@@ -195,34 +137,32 @@
                   <span class="material-symbols-outlined">science</span>
                 </div>
                 <h3 class="feature-title">جرّبي بأمان</h3>
-                <p class="feature-text">اختاري حجم العينة من ٢ مل إلى ٢٠ مل في العناية والمكياج، ومن ٥ مل في العطور قبل اتخاذ قرارك.</p>
+                <p class="feature-text">اختاري حجم العينة الصغير قبل اتخاذ قرارك.</p>
               </div>
               <div class="feature-card">
                 <div class="feature-icon bg-rose-50 text-rose-500">
                   <span class="material-symbols-outlined">favorite</span>
                 </div>
                 <h3 class="feature-title">قرري براحة</h3>
-                <p class="feature-text">خذي وقتك في تجربة العطر أو روتين العناية في أجوائك اليومية، واكتشفي ما يناسبك فعلاً.</p>
+                <p class="feature-text">خذي وقتك في تجربة المنتج في أجوائك اليومية.</p>
               </div>
               <div class="feature-card">
                 <div class="feature-icon bg-slate-900 text-amber-300">
                   <span class="material-symbols-outlined">workspace_premium</span>
                 </div>
                 <h3 class="feature-title">ثم اشتري بثقة</h3>
-                <p class="feature-text">بمجرد أن تجدي ما تحبيه، عودي لطلب الحجم الكامل مع عروض خاصة لعملاء العينات.</p>
+                <p class="feature-text">عودي لطلب الحجم الكامل مع عروض خاصة.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Categories Section -->
       <section class="bg-[#f9fafb] border-b border-slate-200">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
             <div>
               <h2 class="section-title mb-1">تصفحي حسب الفئة</h2>
-              <p class="text-xs text-slate-500 max-w-md">ابدئي بالعطور، أو كوني جاهزة بإطلالة متكاملة مع أحدث منتجات المكياج والعناية بالبشرة.</p>
             </div>
             <div class="flex flex-wrap gap-2 text-xs font-medium">
               <button class="category-chip active" data-filter-category="all">كل المنتجات</button>
@@ -233,51 +173,30 @@
           </div>
 
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <article class="category-card" data-nav="shop" data-category-target="perfume">
+            <article class="category-card" data-category-target="perfume">
               <div class="relative overflow-hidden rounded-2xl">
-                <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم العطور" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/10 to-transparent"></div>
-                <div class="absolute bottom-0 inset-x-0 p-4 flex items-end justify-between">
-                  <div>
-                    <div class="text-sm text-amber-200 font-semibold">عطور نسائية ورجالية</div>
-                    <h3 class="text-lg font-extrabold text-white">العطور</h3>
-                  </div>
-                  <span class="inline-flex items-center gap-1 text-[11px] text-amber-100 bg-white/10 border border-white/20 rounded-full px-2 py-1 backdrop-blur">
-                    اكتشفي الآن
-                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
-                  </span>
+                <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم العطور" class="w-full h-48 object-cover" loading="lazy" />
+                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
+                  <h3 class="text-lg font-extrabold text-white">العطور</h3>
+                  <div class="text-sm text-amber-200">نسائي ورجالي</div>
                 </div>
               </div>
             </article>
-            <article class="category-card" data-nav="shop" data-category-target="makeup">
+            <article class="category-card" data-category-target="makeup">
               <div class="relative overflow-hidden rounded-2xl">
-                <img src="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم المكياج" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/10 to-transparent"></div>
-                <div class="absolute bottom-0 inset-x-0 p-4 flex items-end justify-between">
-                  <div>
-                    <div class="text-sm text-rose-100 font-semibold">إطلالات كاملة</div>
-                    <h3 class="text-lg font-extrabold text-white">المكياج</h3>
-                  </div>
-                  <span class="inline-flex items-center gap-1 text-[11px] text-rose-50 bg-white/10 border border-white/20 rounded-full px-2 py-1 backdrop-blur">
-                    تسوّقي الألوان
-                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
-                  </span>
+                <img src="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم المكياج" class="w-full h-48 object-cover" loading="lazy" />
+                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
+                  <h3 class="text-lg font-extrabold text-white">المكياج</h3>
+                  <div class="text-sm text-rose-200">إطلالات كاملة</div>
                 </div>
               </div>
             </article>
-            <article class="category-card" data-nav="shop" data-category-target="skincare">
+            <article class="category-card" data-category-target="skincare">
               <div class="relative overflow-hidden rounded-2xl">
-                <img src="https://images.pexels.com/photos/3735383/pexels-photo-3735383.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم العناية بالبشرة" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/10 to-transparent"></div>
-                <div class="absolute bottom-0 inset-x-0 p-4 flex items-end justify-between">
-                  <div>
-                    <div class="text-sm text-emerald-100 font-semibold">روتين متكامل</div>
-                    <h3 class="text-lg font-extrabold text-white">العناية بالبشرة</h3>
-                  </div>
-                  <span class="inline-flex items-center gap-1 text-[11px] text-emerald-50 bg-white/10 border border-white/20 rounded-full px-2 py-1 backdrop-blur">
-                    ابدئي رحلتك
-                    <span class="material-symbols-outlined text-[16px]">chevron_left</span>
-                  </span>
+                <img src="https://images.pexels.com/photos/3735383/pexels-photo-3735383.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم العناية بالبشرة" class="w-full h-48 object-cover" loading="lazy" />
+                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
+                  <h3 class="text-lg font-extrabold text-white">العناية بالبشرة</h3>
+                  <div class="text-sm text-emerald-200">روتين متكامل</div>
                 </div>
               </div>
             </article>
@@ -285,13 +204,12 @@
         </div>
       </section>
 
-      <!-- Featured Products & Shop Section -->
       <section id="section-shop" class="bg-white border-b border-slate-200">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
             <div>
               <h2 class="section-title mb-1">تسوّقي المجموعات المختارة</h2>
-              <p class="text-xs text-slate-500 max-w-lg">اكتشفي مجموعة مختارة من أفضل العطور، أحدث إصدارات المكياج، وروتينات العناية بالبشرة المصممة خصيصًا للمسة من الفخامة اليومية.</p>
+              <p class="text-xs text-slate-500 max-w-lg">اكتشفي مجموعة مختارة من أفضل منتجاتنا.</p>
             </div>
             <div class="flex flex-wrap gap-2 text-xs font-medium">
               <button class="shop-tab active" data-shop-tab="perfume">العطور</button>
@@ -300,17 +218,15 @@
             </div>
           </div>
 
-          <!-- Shop Controls -->
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-5 text-xs">
             <div class="flex flex-wrap items-center gap-2">
               <label class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1">
-                <span class="text-slate-500">تصنيف حسب السعر</span>
+                <span class="text-slate-500">السعر</span>
                 <select id="priceFilter" class="bg-transparent outline-none text-[11px]">
-                  <option value="all">كل الأسعار</option>
+                  <option value="all">الكل</option>
                   <option value="0-500">حتى ٥٠٠ جنيه</option>
                   <option value="500-1000">من ٥٠٠ إلى ١٠٠٠ جنيه</option>
-                  <option value="1000-2000">من ١٠٠٠ إلى ٢٠٠٠ جنيه</option>
-                  <option value="2000+">أكثر من ٢٠٠٠ جنيه</option>
+                  <option value="1000+">أكثر من ١٠٠٠ جنيه</option>
                 </select>
               </label>
               <label class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1">
@@ -323,7 +239,7 @@
                 </select>
               </label>
             </div>
-            <div class="flex flex-wrap items-center gap-2 justify-between lg:justify-end">
+            <div class="flex flex-wrap items-center gap-2">
               <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1">
                 <span class="text-slate-500">ترتيب</span>
                 <select id="sortSelect" class="bg-transparent outline-none text-[11px]">
@@ -337,13 +253,12 @@
             </div>
           </div>
 
-          <!-- Products Grid -->
-          <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5"></div>
+          <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5 min-h-[300px]">
+            </div>
         </div>
       </section>
 
-      <!-- Product Detail Drawer -->
-      <section id="productDrawer" class="fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-[0_0_50px_rgba(15,23,42,0.45)] transform translate-x-[-100%] transition-transform duration-300 z-50 flex flex-col">
+      <section id="productDrawer" class="fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col">
         <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white/95">
           <div class="flex items-center gap-2">
             <button id="productDrawerBack" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
@@ -359,163 +274,17 @@
           <div id="productDetailContent" class="p-4"></div>
         </div>
       </section>
+      
+      <section id="section-contact" class="bg-white py-10">
+           <div class="container mx-auto px-4 text-center">
+               <h2 class="section-title mb-4">تواصل معنا</h2>
+               <p class="text-sm text-slate-600">support@elitebeauty.eg</p>
+           </div>
+       </section>
 
-      <!-- About Section -->
-      <section id="section-about" class="bg-[#fdf7f2] border-b border-slate-200">
-        <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
-          <div class="grid lg:grid-cols-2 gap-8 items-center">
-            <div class="space-y-4">
-              <h2 class="section-title">عن لونابيل</h2>
-              <p class="text-sm text-slate-700 leading-relaxed">
-                وُلدت <strong>لونابيل</strong> من فكرة بسيطة: أن تكون تجربة اختيار العطر وروتين العناية لحظة متعة، لا حيرة. نجمع بين علامات عالمية مختارة بعناية ومنتجات محلية مميزة لنقدّم لكِ مزيجًا من الفخامة والعملية.
-              </p>
-              <p class="text-sm text-slate-600 leading-relaxed">
-                من العطور النسائية الناعمة، إلى العطور الرجالية القوية، وصولاً إلى المكياج اليومي والعناية بالبشرة المتخصصة، نصمم مجموعات تناسب أسلوب حياتك، وتمنحك مساحة للتجربة قبل الالتزام بالحجم الكامل.
-              </p>
-              <ul class="text-xs text-slate-600 space-y-2">
-                <li class="flex items-start gap-2">
-                  <span class="material-symbols-outlined text-amber-400 text-[18px] mt-[2px]">sparkles</span>
-                  <span>اختيارات محدودة بعناية لضمان الجودة والتميز.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="material-symbols-outlined text-amber-400 text-[18px] mt-[2px]">inventory_2</span>
-                  <span>درجات أحجام مرنة من ٢ مل وحتى ١٠٠ مل للعطور وبعض منتجات العناية.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="material-symbols-outlined text-amber-400 text-[18px] mt-[2px]">support_agent</span>
-                  <span>فريق دعم لمساعدتك في اختيار الروائح والروتين المناسب لنوع بشرتك.</span>
-                </li>
-              </ul>
-            </div>
-            <div class="relative">
-              <div class="absolute -top-6 -right-6 w-32 h-32 bg-amber-100/70 rounded-full blur-2xl"></div>
-              <div class="relative bg-white border border-amber-100/70 rounded-3xl p-5 shadow-[0_14px_45px_rgba(148,87,0,0.18)]">
-                <div class="flex items-center justify-between mb-4">
-                  <div>
-                    <div class="text-xs text-amber-600 font-semibold">تجربة موثوقة</div>
-                    <div class="text-sm font-bold text-slate-900">آراء عميلاتنا</div>
-                  </div>
-                  <div class="flex items-center gap-1 text-xs text-amber-500">
-                    <span class="material-symbols-outlined text-[18px]">star</span>
-                    <span class="font-semibold">4.9</span>
-                    <span class="text-slate-400">/ 5</span>
-                  </div>
-                </div>
-                <div class="space-y-4 text-xs text-slate-700">
-                  <div class="border border-slate-100 rounded-2xl p-3 bg-slate-50/50">
-                    <div class="flex items-center justify-between mb-1.5">
-                      <span class="font-semibold">مريم – القاهرة</span>
-                      <div class="flex items-center gap-0.5 text-amber-400 text-[16px]">
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star_half</span>
-                      </div>
-                    </div>
-                    <p>فكرة العينات قبل شراء الحجم الكبير فرّقت جدًا معايا، قدرت أجرب أكتر من عطر في البيت واختار اللي حبيته فعلًا.</p>
-                  </div>
-                  <div class="border border-slate-100 rounded-2xl p-3 bg-slate-50/50">
-                    <div class="flex items-center justify-between mb-1.5">
-                      <span class="font-semibold">سارة – الإسكندرية</span>
-                      <div class="flex items-center gap-0.5 text-amber-400 text-[16px]">
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                        <span class="material-symbols-outlined text-[16px]">star</span>
-                      </div>
-                    </div>
-                    <p>منتجات العناية بالبشرة عندهم لطيفة جدًا للبشرة الحساسة، وحبيت إنهم موضحين الأحجام وأسعار العينات بوضوح.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="section-contact" class="bg-white">
-        <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div class="space-y-4">
-              <h2 class="section-title">تواصلي معنا</h2>
-              <p class="text-sm text-slate-600">للاستفسارات عن الطلبات، المساعدة في اختيار الروائح أو روتين العناية، فريق خدمة العملاء جاهز لمساعدتك.</p>
-              <div class="space-y-3 text-xs text-slate-700">
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-amber-500">call</span>
-                  <div>
-                    <div class="font-semibold">هاتف خدمة العملاء</div>
-                    <div class="text-slate-500">+20 100 000 0000</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-amber-500">mail</span>
-                  <div>
-                    <div class="font-semibold">البريد الإلكتروني</div>
-                    <div class="text-slate-500">support@elitebeauty.eg</div>
-                  </div>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-amber-500">location_on</span>
-                  <div>
-                    <div class="font-semibold">المقر الرئيسي</div>
-                    <div class="text-slate-500">القاهرة، مصر</div>
-                  </div>
-                </div>
-              </div>
-              <div class="flex gap-3 pt-2">
-                <a href="#" class="social-btn">
-                  <span class="material-symbols-outlined text-[18px]">camera</span>
-                  انستجرام
-                </a>
-                <a href="#" class="social-btn">
-                  <span class="material-symbols-outlined text-[18px]">chat</span>
-                  واتساب
-                </a>
-              </div>
-            </div>
-            <div class="bg-[#f9fafb] border border-slate-200 rounded-3xl p-5 lg:p-6">
-              <h3 class="text-sm font-semibold text-slate-800 mb-3">أرسلي لنا رسالة</h3>
-              <form class="space-y-3 text-xs">
-                <div>
-                  <label class="block mb-1 text-slate-600">الاسم الكامل</label>
-                  <input type="text" class="form-input" placeholder="اكتبي اسمك" />
-                </div>
-                <div class="grid sm:grid-cols-2 gap-3">
-                  <div>
-                    <label class="block mb-1 text-slate-600">البريد الإلكتروني</label>
-                    <input type="email" class="form-input" placeholder="example@mail.com" />
-                  </div>
-                  <div>
-                    <label class="block mb-1 text-slate-600">رقم الهاتف</label>
-                    <input type="tel" class="form-input" placeholder="01XXXXXXXXX" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block mb-1 text-slate-600">نوع الاستفسار</label>
-                  <select class="form-input">
-                    <option>استفسار عن طلب</option>
-                    <option>مساعدة في اختيار عطر</option>
-                    <option>مساعدة في روتين العناية بالبشرة</option>
-                    <option>أخرى</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block mb-1 text-slate-600">رسالتك</label>
-                  <textarea rows="4" class="form-input resize-none" placeholder="اكتبي تفاصيل استفسارك..."></textarea>
-                </div>
-                <button type="button" class="primary-btn w-full justify-center">إرسال الرسالة</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <!-- Cart Sidebar -->
-    <aside id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-[0_0_50px_rgba(15,23,42,0.45)] transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+    <aside id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
       <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white/95">
         <div class="flex items-center gap-2">
           <button id="cartSidebarClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
@@ -533,65 +302,19 @@
           <span class="text-slate-600">إجمالي المنتجات</span>
           <span id="cartSubtotal" class="font-bold text-slate-900">٠ جنيه</span>
         </div>
-        <div class="flex items-center justify-between text-[11px] text-slate-500">
-          <span>الشحن</span>
-          <span>يتم حسابه عند إتمام الطلب</span>
-        </div>
         <button id="checkoutButton" class="primary-btn w-full justify-center">إتمام الطلب</button>
-        <p class="text-[10px] text-slate-400">بالضغط على "إتمام الطلب" سيتم تأكيد رغبتك في إكمال الطلب وسيتواصل معك فريق خدمة العملاء لإتمام بيانات الشحن والدفع.</p>
       </div>
     </aside>
 
-    <!-- Backdrop for Drawers -->
     <div id="backdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 z-40"></div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-100 mt-8">
-      <div class="container mx-auto px-4 lg:px-8 py-8 lg:py-10 text-xs">
-        <div class="grid md:grid-cols-4 gap-6 md:gap-8">
-          <div class="space-y-2 md:col-span-2">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-300 via-amber-400 to-yellow-700 flex items-center justify-center">
-                <span class="text-[10px] font-bold tracking-widest text-slate-900">EL</span>
-              </div>
-              <div>
-                <div class="text-sm font-extrabold tracking-tight">لونابيل</div>
-                <div class="text-[11px] text-slate-400">جرّبي. قرري. ثم اشتري بثقة.</div>
-              </div>
-            </div>
-            <p class="text-[11px] text-slate-400 max-w-md">
-              متجر إلكتروني مصري يقدم تجربة تسوق فاخرة للعطور، المكياج، والعناية بالبشرة مع خيارات عينات وأحجام مختلفة لتجربة مريحة وآمنة.
-            </p>
-          </div>
-          <div>
-            <h3 class="text-[12px] font-semibold mb-2">روابط سريعة</h3>
-            <ul class="space-y-1 text-[11px] text-slate-400">
-              <li><button data-nav="home" class="hover:text-amber-300">الرئيسية</button></li>
-              <li><button data-nav="shop" class="hover:text-amber-300">المتجر</button></li>
-              <li><button data-nav="about" class="hover:text-amber-300">من نحن</button></li>
-              <li><button data-nav="contact" class="hover:text-amber-300">تواصل معنا</button></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-[12px] font-semibold mb-2">تواصلي معنا</h3>
-            <ul class="space-y-1 text-[11px] text-slate-400">
-              <li>واتساب: +20 100 000 0000</li>
-              <li>البريد: support@elitebeauty.eg</li>
-              <li>القاهرة - مصر</li>
-            </ul>
-          </div>
-        </div>
-        <div class="border-t border-slate-800 mt-6 pt-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-[10px] text-slate-500">
-          <p>جميع الحقوق محفوظة © <span id="currentYear"></span> لونابيل – مصر.</p>
-          <p>الأسعار بالجنيه المصري (EGP) وقد تتغير بناءً على العروض والتخفيضات.</p>
-        </div>
-      </div>
+    <footer class="bg-slate-900 text-slate-100 mt-auto py-6 text-center text-xs">
+        <p>&copy; <span id="currentYear"></span> لونابيل. جميع الحقوق محفوظة.</p>
     </footer>
   </div>
 
-  <!-- Icons font (Material Symbols Outlined) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500&display=swap" />
-
+  
   <script src="script.js"></script>
 </body>
 </html>
