@@ -47,6 +47,12 @@
     button {
       cursor: pointer;
     }
+    
+    /* Added disabled styles for buttons */
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
 
     .section-title {
       font-size: 1.125rem;
@@ -414,9 +420,9 @@
           <p class="text-lg text-slate-600">تسوقي من مجموعاتنا الفاخرة من العطور، المكياج، والعناية بالبشرة.</p>
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div class="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 lg:gap-8 lg:overflow-visible">
           <!-- Card 1: Perfumes -->
-          <a href="#" data-navigate-shop="perfume" class="home-category-card group aspect-[3/4]">
+          <a href="#" data-navigate-shop="perfume" class="home-category-card group aspect-[3/4] w-5/6 flex-shrink-0 snap-center lg:w-full">
             <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" alt="عطور" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -429,7 +435,7 @@
             </div>
           </a>
           <!-- Card 2: Makeup -->
-          <a href="#" data-navigate-shop="makeup" class="home-category-card group aspect-[3/4]">
+          <a href="#" data-navigate-shop="makeup" class="home-category-card group aspect-[3/4] w-5/6 flex-shrink-0 snap-center lg:w-full">
             <img src="https://images.pexels.com/photos/3738371/pexels-photo-3738371.jpeg?auto=compress&cs=tinysrgb&w=800" alt="مكياج" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -442,7 +448,7 @@
             </div>
           </a>
           <!-- Card 3: Skin Care -->
-          <a href="#" data-navigate-shop="skincare" class="home-category-card group aspect-[3/4]">
+          <a href="#" data-navigate-shop="skincare" class="home-category-card group aspect-[3/4] w-5/6 flex-shrink-0 snap-center lg:w-full">
             <img src="https://images.pexels.com/photos/3738341/pexels-photo-3738341.jpeg?auto=compress&cs=tinysrgb&w=800" alt="عناية بالبشرة" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -509,7 +515,7 @@
           </div>
 
           <!-- Products Grid -->
-          <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5 min-h-[300px]">
+          <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5 min-h-[300px]">
             <!-- Products will be injected here -->
           </div>
         </div>
@@ -802,6 +808,76 @@
     const backdropEl = document.getElementById('backdrop');
     const currentYearEl = document.getElementById('currentYear');
 
+
+    // --- NEW: Gemini API Call Logic ---
+    const wait = (ms) => new Promise(res => setTimeout(res, ms));
+
+    /**
+     * Generates text using the Gemini API with exponential backoff.
+     * @param {string} systemPrompt - The system instruction for the model.
+     * @param {string} userQuery - The user's query.
+     * @returns {Promise<string>} - The generated text or an error message.
+     */
+    async function generateGeminiText(systemPrompt, userQuery) {
+      const apiKey = ""; // Provided by the environment
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+      const payload = {
+        contents: [{
+          parts: [{
+            text: userQuery
+          }]
+        }],
+        systemInstruction: {
+          parts: [{
+            text: systemPrompt
+          }]
+        },
+      };
+
+      let retries = 3;
+      let delay = 1000;
+
+      while (retries > 0) {
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          const candidate = result.candidates?.[0];
+
+          if (candidate && candidate.content?.parts?.[0]?.text) {
+            // Return the text, let the caller handle formatting
+            return candidate.content.parts[0].text;
+          } else {
+            console.warn("Gemini response structure unexpected:", result);
+            throw new Error("No valid text response from API.");
+          }
+
+        } catch (error) {
+          // Don't log retries as errors, just the final failure
+          retries--;
+          if (retries === 0) {
+            console.error(`Gemini API call failed after multiple retries: ${error.message}`);
+            return "عذرًا، حدث خطأ أثناء محاولة الاتصال. يرجى المحاولة مرة أخرى.";
+          }
+          await wait(delay);
+          delay *= 2; // Exponential backoff
+        }
+      }
+    }
+    // --- END: Gemini API Call Logic ---
+
+
     // --- NEW Page Navigation Logic ---
     function navigateTo(pageId) {
       state.activePage = pageId;
@@ -1064,7 +1140,7 @@
       closeDrawer(productDrawerEl);
     });
 
-    // --- Product Drawer ---
+    // --- Product Drawer (MODIFIED for Gemini) ---
     function openProductDrawer(product) {
       if (!productDetailContentEl) return;
       productDetailContentEl.innerHTML = `
@@ -1073,14 +1149,61 @@
         <p class="text-sm text-slate-600 mb-4">${product.description}</p>
         <div class="font-bold text-xl text-amber-600 mb-4">${formatPrice(product.basePrice)}</div>
         <button id="drawerAddToCart" class="primary-btn w-full justify-center">إضافة إلى السلة</button>
+        
+        <!-- NEW Gemini Feature -->
+        <button id="drawerAskAI" class="ghost-btn w-full justify-center text-xs mt-3 gap-2">
+          ✨ اسأل مساعدنا الذكي
+        </button>
+        <div id="aiResponseContainer" class="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-700 leading-relaxed hidden"></div>
+        <!-- END Gemini Feature -->
       `;
+
+      // Add to cart listener
       document.getElementById('drawerAddToCart').addEventListener('click', () => {
         addToCart(product);
         closeDrawer(productDrawerEl);
       });
+
+      // NEW: Gemini button listener
+      document.getElementById('drawerAskAI').addEventListener('click', () => handleAIQuery(product));
+
       productDrawerEl.style.transform = 'translateX(0)';
       backdropEl.classList.add('is-visible');
     }
+
+    /**
+     * NEW: Handles the AI query when the button is clicked.
+     * @param {object} product - The product object to ask about.
+     */
+    async function handleAIQuery(product) {
+      const aiButton = document.getElementById('drawerAskAI');
+      const responseEl = document.getElementById('aiResponseContainer');
+
+      if (!responseEl || !aiButton) return;
+
+      // Show loading state
+      aiButton.disabled = true;
+      responseEl.classList.remove('hidden');
+      responseEl.innerHTML = `
+        <p class="text-center text-slate-500 animate-pulse">مساعدنا الذكي يكتب لك...</p>
+      `;
+
+      const systemPrompt = "أنت مساعد تجميل خبير ومتسوق شخصي في متجر 'لونابيل'. كن مبدعًا وودودًا وقدم نصائح مفيدة وملهمة. أجب دائمًا باللغة العربية الفصحى بأسلوب جذاب. اجعل ردك في فقرة واحدة أو فقرتين قصيرتين.";
+      const userQuery = `اكتب لي وصفًا إبداعيًا وملهمًا لمنتج: '${product.name}'. صف للعميلة كيف سيجعلها هذا المنتج تشعر أو كيف يمكنها استخدامه لأفضل تأثير. (معلومات المنتج: ${product.description}, الفئة: ${product.category})`;
+
+      try {
+        const aiText = await generateGeminiText(systemPrompt, userQuery);
+        // Format response (replace newlines with breaks for HTML)
+        responseEl.innerHTML = aiText.replace(/\n/g, '<br>');
+      } catch (error) {
+        console.error("Error in handleAIQuery:", error);
+        responseEl.innerHTML = `<p class="text-red-500">عذرًا، حدث خطأ. يرجى المحاولة مرة أخرى.</p>`;
+      } finally {
+        // Re-enable button
+        aiButton.disabled = false;
+      }
+    }
+
 
     function closeDrawer(el) {
       if (el) el.style.transform = 'translateX(-100%)'; // left side drawer
