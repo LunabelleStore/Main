@@ -1,23 +1,351 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>لونابيل - متجر عطور ومستحضرات تجميل فاخرة</title>
-  <meta name="description" content="تجربة تسوق فاخرة للعطور ومستحضرات التجميل مع فلسفة جرّبي، قرري، ثم اشتري." />
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css" />
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لونابيل - متجر عطور ومستحضرات تجميل فاخرة</title>
+  <meta name="description" content="تجربة تسوق فاخرة للعطور ومستحضرات التجميل.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <style>
+    /* --- Custom Styles (from styles.css) --- */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      /* Added for smooth page navigation */
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', system-ui, -apple-system, sans-serif;
+      direction: rtl;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .section-title {
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, #facc6b, #fbbf24, #b45309);
+      color: #020617;
+      padding: 0.55rem 1.35rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: none;
+      box-shadow: 0 12px 35px rgba(180, 83, 9, 0.3);
+      transition: all 0.15s ease-out;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .ghost-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(255, 255, 255, 0.75);
+      color: #475569;
+      padding: 0.45rem 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.15s ease-out;
+    }
+
+    .ghost-btn:hover {
+      background: #0f172a;
+      border-color: #0f172a;
+      color: #fff;
+    }
+
+    .category-chip,
+    .shop-tab {
+      border-radius: 999px;
+      border: 1px solid #e2e8f0;
+      padding: 0.35rem 0.85rem;
+      background: #f9fafb;
+      color: #64748b;
+      transition: all 0.15s ease-out;
+    }
+
+    .category-chip:hover,
+    .shop-tab:hover {
+      border-color: #facc6b;
+      color: #b45309;
+      background: #fffbeb;
+    }
+
+    .category-chip.active,
+    .shop-tab.active {
+      background: #0f172a;
+      color: #facc6b;
+      border-color: #0f172a;
+    }
+
+    .feature-card {
+      border-radius: 1.25rem;
+      border: 1px solid #e2e8f0;
+      padding: 1rem;
+      background: linear-gradient(135deg, #ffffff, #fdf7f2);
+    }
+
+    .feature-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .feature-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.35rem;
+    }
+
+    .feature-text {
+      font-size: 0.78rem;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    /* Input Styles */
+    .form-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #cbd5f5;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.78rem;
+      outline: none;
+      background: #f9fafb;
+    }
+
+    .form-input:focus {
+      border-color: #fbbf24;
+      background: #ffffff;
+    }
+
+    /* Navigation */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -0.25rem;
+      width: 0;
+      height: 2px;
+      background: #facc6b;
+      border-radius: 999px;
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Drawers */
+    #cartSidebar,
+    #productDrawer {
+      will-change: transform;
+    }
+
+    #backdrop.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Product Card */
+    .product-card {
+      position: relative;
+      border-radius: 1.25rem;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 45px rgba(15, 23, 42, 0.18);
+      border-color: #eab308;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform 0.3s ease-out;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-quick-add {
+      position: absolute;
+      left: 0.75rem;
+      bottom: 0.75rem;
+      right: 0.75rem;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: all 0.2s ease-out;
+    }
+
+    .product-card:hover .product-quick-add {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+
+    .badge-new {
+      background: rgba(251, 191, 36, 0.1);
+      color: #92400e;
+    }
+
+    .badge-bestseller {
+      background: rgba(34, 197, 94, 0.1);
+      color: #166534;
+    }
+
+    .badge-tag {
+      background: rgba(148, 163, 184, 0.12);
+      color: #475569;
+    }
+
+    /* Cart Item */
+    .cart-item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 0.6rem;
+      padding: 0.6rem 1rem; /* Added horizontal padding */
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .cart-item-img {
+      width: 72px;
+      height: 72px;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+
+    .cart-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* --- New Styles for Homepage & Animations --- */
+
+    /* New styles for home category cards */
+    .home-category-card {
+      position: relative;
+      border-radius: 1.5rem; /* rounded-3xl */
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .home-category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-category-card img {
+      transition: transform 0.4s ease;
+    }
+
+    .home-category-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Animation for page transitions */
+    .page-section {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Ensure Material Icons display correctly */
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
 </head>
+
 <body class="bg-[#f7f7f8] text-slate-900 font-sans">
   <div id="app" class="min-h-screen flex flex-col">
     <header class="bg-white/80 backdrop-blur border-b border-slate-200 sticky top-0 z-40">
       <div class="container mx-auto px-4 lg:px-8">
         <div class="flex items-center justify-between py-3 lg:py-4">
-          <div class="flex items-center gap-3">
+          <!-- Logo -->
+          <a href="#" data-nav="home" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 via-amber-400 to-yellow-700 flex items-center justify-center shadow-md">
               <span class="text-xs font-bold tracking-widest text-slate-900">EL</span>
             </div>
@@ -25,8 +353,9 @@
               <div class="text-lg lg:text-xl font-extrabold tracking-tight text-slate-900">لونابيل</div>
               <div class="text-xs text-slate-500">عطور ومستحضرات تجميل فاخرة</div>
             </div>
-          </div>
+          </a>
 
+          <!-- Desktop Nav -->
           <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
             <button data-nav="home" class="nav-link text-slate-700 hover:text-amber-600 transition">الرئيسية</button>
             <button data-nav="shop" class="nav-link text-slate-700 hover:text-amber-600 transition">المتجر</button>
@@ -34,9 +363,10 @@
             <button data-nav="contact" class="nav-link text-slate-700 hover:text-amber-600 transition">تواصل معنا</button>
           </nav>
 
+          <!-- Icons -->
           <div class="flex items-center gap-3">
             <div class="hidden lg:flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5 text-xs w-64">
-              <input id="searchInput" type="text" placeholder="ابحثي عن عطر، مكياج..." class="bg-transparent outline-none flex-1 text-[11px]" />
+              <input id="searchInput" type="text" placeholder="ابحثي عن عطر، مكياج..." class="bg-transparent outline-none flex-1 text-[11px]">
               <span class="material-symbols-outlined text-slate-400 text-base">search</span>
             </div>
 
@@ -55,13 +385,15 @@
           </div>
         </div>
 
+        <!-- Mobile Search Bar -->
         <div id="mobileSearchBar" class="md:hidden hidden pb-3 px-4">
           <div class="flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-2 text-xs">
-            <input id="mobileSearchInput" type="text" placeholder="ابحثي عن منتج..." class="bg-transparent outline-none flex-1 text-[12px]" />
+            <input id="mobileSearchInput" type="text" placeholder="ابحثي عن منتج..." class="bg-transparent outline-none flex-1 text-[12px]">
             <span class="material-symbols-outlined text-slate-400 text-base">search</span>
           </div>
         </div>
 
+        <!-- Mobile Nav -->
         <nav id="mobileNav" class="md:hidden hidden pb-3 px-4 border-t border-slate-100 mt-2 pt-2 text-sm">
           <div class="flex flex-col gap-2">
             <button data-nav="home" class="nav-link w-full text-right py-2 text-slate-700">الرئيسية</button>
@@ -74,156 +406,79 @@
     </header>
 
     <main class="flex-1">
-      <section id="section-home" class="border-b border-slate-200 bg-gradient-to-b from-white via-[#fdf7f2] to-[#f7f7f8]">
-        <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-16">
-          <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div class="space-y-6 text-center lg:text-right">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-100 text-[11px] font-medium text-amber-800">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                فلسفة العناية الحديثة: جرّبي، قرري، ثم اشتري
-              </div>
-              <h1 class="text-3xl lg:text-4xl xl:text-5xl font-extrabold leading-relaxed text-slate-900">
-                اكتشفي <span class="text-amber-500">عطرِك</span> الذي يحكي قصتك
-              </h1>
-              <p class="text-sm lg:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                في <strong>لونابيل</strong> نؤمن أن كل تجربة تبدأ بالتجربة الهادئة. اختاري عينات بحجم صغير، جرّبيها براحتك في المنزل، ثم قرري شراء الحجم الكامل بثقة تامة.
-              </p>
-              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-4">
-                <button data-nav="shop" class="primary-btn inline-flex items-center gap-2">
-                  تسوّقي الآن
-                  <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-                </button>
-                <button data-scroll-target="#trySection" class="ghost-btn text-sm">
-                  تعرّفي على الفلسفة
-                </button>
-              </div>
-            </div>
 
-            <div class="relative">
-              <div class="absolute -top-6 -left-6 w-32 h-32 bg-amber-100/80 rounded-full blur-2xl"></div>
-              <div class="absolute -bottom-8 -right-10 w-40 h-40 bg-rose-100/70 rounded-full blur-3xl"></div>
-              <div class="relative bg-white/80 border border-slate-100 rounded-3xl shadow-[0_18px_60px_rgba(15,23,42,0.12)] overflow-hidden">
-                <div class="grid grid-cols-2 gap-0">
-                  <figure class="aspect-[3/4] bg-slate-900 flex items-end justify-center p-4">
-                    <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=600" alt="زجاجات عطور فاخرة" class="w-full h-full object-cover object-center" loading="lazy" />
-                  </figure>
-                  <div class="flex flex-col">
-                    <figure class="aspect-[4/3] bg-[#fdf5f7] p-3 flex items-center justify-center">
-                      <img src="https://images.pexels.com/photos/3738371/pexels-photo-3738371.jpeg?auto=compress&cs=tinysrgb&w=600" alt="مستحضرات مكياج فاخرة" class="w-full h-full object-cover rounded-2xl" loading="lazy" />
-                    </figure>
-                    <figure class="aspect-[4/3] bg-[#fefaf3] p-3 flex items-center justify-center border-t border-slate-100">
-                      <img src="https://images.pexels.com/photos/3738341/pexels-photo-3738341.jpeg?auto=compress&cs=tinysrgb&w=600" alt="منتجات عناية بالبشرة" class="w-full h-full object-cover rounded-2xl" loading="lazy" />
-                    </figure>
-                  </div>
-                </div>
-              </div>
+      <!-- NEW: Home Page Section -->
+      <section id="page-home" class="page-section container mx-auto px-4 lg:px-8 py-10 lg:py-16">
+        <div class="text-center mb-10 lg:mb-12">
+          <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-2">اكتشفي عالم الجمال</h1>
+          <p class="text-lg text-slate-600">تسوقي من مجموعاتنا الفاخرة من العطور، المكياج، والعناية بالبشرة.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          <!-- Card 1: Perfumes -->
+          <a href="#" data-navigate-shop="perfume" class="home-category-card group aspect-[3/4]">
+            <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800" alt="عطور" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h2 class="text-2xl font-bold mb-2">العطور</h2>
+              <p class="text-sm opacity-90 mb-4">مزيج من الفخامة والجاذبية.</p>
+              <span class="inline-flex items-center gap-2 text-sm font-bold bg-amber-400 text-slate-900 px-5 py-2 rounded-full group-hover:bg-white transition-colors">
+                تصفحي الآن
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-[-4px]">arrow_back</span>
+              </span>
             </div>
-          </div>
+          </a>
+          <!-- Card 2: Makeup -->
+          <a href="#" data-navigate-shop="makeup" class="home-category-card group aspect-[3/4]">
+            <img src="https://images.pexels.com/photos/3738371/pexels-photo-3738371.jpeg?auto=compress&cs=tinysrgb&w=800" alt="مكياج" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h2 class="text-2xl font-bold mb-2">المكياج</h2>
+              <p class="text-sm opacity-90 mb-4">لإطلالة تبرز جمالك الطبيعي.</p>
+              <span class="inline-flex items-center gap-2 text-sm font-bold bg-amber-400 text-slate-900 px-5 py-2 rounded-full group-hover:bg-white transition-colors">
+                تصفحي الآن
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-[-4px]">arrow_back</span>
+              </span>
+            </div>
+          </a>
+          <!-- Card 3: Skin Care -->
+          <a href="#" data-navigate-shop="skincare" class="home-category-card group aspect-[3/4]">
+            <img src="https://images.pexels.com/photos/3738341/pexels-photo-3738341.jpeg?auto=compress&cs=tinysrgb&w=800" alt="عناية بالبشرة" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <h2 class="text-2xl font-bold mb-2">العناية بالبشرة</h2>
+              <p class="text-sm opacity-90 mb-4">روتينك اليومي لبشرة نضرة.</p>
+              <span class="inline-flex items-center gap-2 text-sm font-bold bg-amber-400 text-slate-900 px-5 py-2 rounded-full group-hover:bg-white transition-colors">
+                تصفحي الآن
+                <span class="material-symbols-outlined transition-transform group-hover:translate-x-[-4px]">arrow_back</span>
+              </span>
+            </div>
+          </a>
         </div>
       </section>
 
-      <section id="trySection" class="bg-white border-b border-slate-200">
-        <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
-          <div class="grid lg:grid-cols-3 gap-6 lg:gap-10 items-start">
-            <div class="lg:col-span-1 space-y-3">
-              <h2 class="section-title">فلسفة "جرّبي، قرري، ثم اشتري"</h2>
-              <p class="text-sm text-slate-600 leading-relaxed">
-                لأن العطر يشبه التفاصيل الصغيرة في حياتك، ولأن روتين العناية بالبشرة يحتاج وقتًا ليُثبت فعاليته.
-              </p>
-            </div>
-            <div class="lg:col-span-2 grid sm:grid-cols-3 gap-4 lg:gap-6">
-              <div class="feature-card">
-                <div class="feature-icon bg-amber-50 text-amber-500">
-                  <span class="material-symbols-outlined">science</span>
-                </div>
-                <h3 class="feature-title">جرّبي بأمان</h3>
-                <p class="feature-text">اختاري حجم العينة الصغير قبل اتخاذ قرارك.</p>
-              </div>
-              <div class="feature-card">
-                <div class="feature-icon bg-rose-50 text-rose-500">
-                  <span class="material-symbols-outlined">favorite</span>
-                </div>
-                <h3 class="feature-title">قرري براحة</h3>
-                <p class="feature-text">خذي وقتك في تجربة المنتج في أجوائك اليومية.</p>
-              </div>
-              <div class="feature-card">
-                <div class="feature-icon bg-slate-900 text-amber-300">
-                  <span class="material-symbols-outlined">workspace_premium</span>
-                </div>
-                <h3 class="feature-title">ثم اشتري بثقة</h3>
-                <p class="feature-text">عودي لطلب الحجم الكامل مع عروض خاصة.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="bg-[#f9fafb] border-b border-slate-200">
-        <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
-            <div>
-              <h2 class="section-title mb-1">تصفحي حسب الفئة</h2>
-            </div>
-            <div class="flex flex-wrap gap-2 text-xs font-medium">
-              <button class="category-chip active" data-filter-category="all">كل المنتجات</button>
-              <button class="category-chip" data-filter-category="perfume">العطور</button>
-              <button class="category-chip" data-filter-category="makeup">المكياج</button>
-              <button class="category-chip" data-filter-category="skincare">العناية بالبشرة</button>
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <article class="category-card" data-category-target="perfume">
-              <div class="relative overflow-hidden rounded-2xl">
-                <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم العطور" class="w-full h-48 object-cover" loading="lazy" />
-                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
-                  <h3 class="text-lg font-extrabold text-white">العطور</h3>
-                  <div class="text-sm text-amber-200">نسائي ورجالي</div>
-                </div>
-              </div>
-            </article>
-            <article class="category-card" data-category-target="makeup">
-              <div class="relative overflow-hidden rounded-2xl">
-                <img src="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم المكياج" class="w-full h-48 object-cover" loading="lazy" />
-                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
-                  <h3 class="text-lg font-extrabold text-white">المكياج</h3>
-                  <div class="text-sm text-rose-200">إطلالات كاملة</div>
-                </div>
-              </div>
-            </article>
-            <article class="category-card" data-category-target="skincare">
-              <div class="relative overflow-hidden rounded-2xl">
-                <img src="https://images.pexels.com/photos/3735383/pexels-photo-3735383.jpeg?auto=compress&cs=tinysrgb&w=600" alt="قسم العناية بالبشرة" class="w-full h-48 object-cover" loading="lazy" />
-                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-900/80 to-transparent">
-                  <h3 class="text-lg font-extrabold text-white">العناية بالبشرة</h3>
-                  <div class="text-sm text-emerald-200">روتين متكامل</div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="section-shop" class="bg-white border-b border-slate-200">
+      <!-- MODIFIED: Shop Page Section (hidden by default) -->
+      <section id="page-shop" class="page-section bg-white border-b border-slate-200 hidden">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
             <div>
-              <h2 class="section-title mb-1">تسوّقي المجموعات المختارة</h2>
-              <p class="text-xs text-slate-500 max-w-lg">اكتشفي مجموعة مختارة من أفضل منتجاتنا.</p>
+              <!-- Dynamic Title -->
+              <h2 id="shopPageTitle" class="text-2xl lg:text-3xl font-bold mb-1">تسوقي</h2>
+              <p class="text-sm text-slate-500 max-w-lg">اكتشفي أفضل المنتجات في هذا القسم.</p>
             </div>
-            <div class="flex flex-wrap gap-2 text-xs font-medium">
-              <button class="shop-tab active" data-shop-tab="perfume">العطور</button>
-              <button class="shop-tab" data-shop-tab="makeup">المكياج</button>
-              <button class="shop-tab" data-shop-tab="skincare">العناية بالبشرة</button>
-            </div>
+            <button data-nav="home" class="nav-link text-sm font-medium text-slate-700 hover:text-amber-600 transition inline-flex items-center gap-1 self-start lg:self-end">
+              <span class="material-symbols-outlined text-base">chevron_right</span>
+              العودة للرئيسية
+            </button>
           </div>
 
+          <!-- Filters (Removed the shop tabs) -->
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-5 text-xs">
             <div class="flex flex-wrap items-center gap-2">
               <label class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1">
                 <span class="text-slate-500">السعر</span>
                 <select id="priceFilter" class="bg-transparent outline-none text-[11px]">
-                  <option value="all">الكل</option>
+                  <option value="all" selected="selected">الكل</option>
                   <option value="0-500">حتى ٥٠٠ جنيه</option>
                   <option value="500-1000">من ٥٠٠ إلى ١٠٠٠ جنيه</option>
                   <option value="1000+">أكثر من ١٠٠٠ جنيه</option>
@@ -232,7 +487,7 @@
               <label class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1">
                 <span class="text-slate-500">الجنس</span>
                 <select id="genderFilter" class="bg-transparent outline-none text-[11px]">
-                  <option value="all">الكل</option>
+                  <option value="all" selected="selected">الكل</option>
                   <option value="women">نسائي</option>
                   <option value="men">رجالي</option>
                   <option value="unisex">للجنسين</option>
@@ -243,47 +498,68 @@
               <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1">
                 <span class="text-slate-500">ترتيب</span>
                 <select id="sortSelect" class="bg-transparent outline-none text-[11px]">
-                  <option value="featured">الأكثر تميّزًا</option>
+                  <option value="featured" selected="selected">الأكثر تميّزًا</option>
                   <option value="price-asc">السعر: من الأقل للأعلى</option>
                   <option value="price-desc">السعر: من الأعلى للأقل</option>
                   <option value="newest">الأحدث</option>
                 </select>
               </div>
-              <span id="resultsCount" class="text-[11px] text-slate-500">٠ منتجات</span>
+              <span id="resultsCount" class="text-[11px] text-slate-500">0 منتج</span>
             </div>
           </div>
 
+          <!-- Products Grid -->
           <div id="productsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5 min-h-[300px]">
-            </div>
+            <!-- Products will be injected here -->
+          </div>
         </div>
       </section>
 
-      <section id="productDrawer" class="fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white/95">
-          <div class="flex items-center gap-2">
-            <button id="productDrawerBack" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
-              <span class="material-symbols-outlined text-[20px]">chevron_right</span>
-            </button>
-            <h2 class="text-sm font-semibold text-slate-800">تفاصيل المنتج</h2>
-          </div>
-          <button id="productDrawerClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
-            <span class="material-symbols-outlined text-[20px]">close</span>
-          </button>
-        </div>
-        <div class="flex-1 overflow-y-auto">
-          <div id="productDetailContent" class="p-4"></div>
+      <!-- MODIFIED: About Page Section (placeholder, hidden) -->
+      <section id="page-about" class="page-section bg-white py-16 hidden">
+        <div class="container mx-auto px-4 text-center max-w-xl">
+          <h2 class="text-3xl font-bold mb-4">من نحن</h2>
+          <p class="text-slate-600 leading-relaxed">
+            في لونابيل، نؤمن بقوة الجمال الفاخر. بدأت رحلتنا بشغف لتقديم أرقى العطور ومستحضرات التجميل ومنتجات العناية بالبشرة، مع التركيز على الجودة والتجربة الفريدة.
+            نحن نختار كل منتج بعناية لنضمن لكِ الأفضل دائمًا.
+          </p>
         </div>
       </section>
-      
-      <section id="section-contact" class="bg-white py-10">
-           <div class="container mx-auto px-4 text-center">
-               <h2 class="section-title mb-4">تواصل معنا</h2>
-               <p class="text-sm text-slate-600">support@elitebeauty.eg</p>
-           </div>
-       </section>
+
+      <!-- MODIFIED: Contact Page Section (hidden by default) -->
+      <section id="page-contact" class="page-section bg-white py-16 hidden">
+        <div class="container mx-auto px-4 text-center max-w-md">
+          <h2 class="text-3xl font-bold mb-4">تواصل معنا</h2>
+          <p class="text-slate-600 mb-8">نحن هنا للإجابة على جميع استفساراتك. تواصلي معنا عبر البريد الإلكتروني.</p>
+          <a href="mailto:support@lunabelle.eg" class="text-lg font-semibold text-amber-600 hover:text-amber-700 transition-colors">
+            support@lunabelle.eg
+          </a>
+        </div>
+      </section>
 
     </main>
 
+    <!-- Product Details Drawer -->
+    <section id="productDrawer" class="fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white/95">
+        <div class="flex items-center gap-2">
+          <button id="productDrawerBack" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
+            <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+          </button>
+          <h2 class="text-sm font-semibold text-slate-800">تفاصيل المنتج</h2>
+        </div>
+        <button id="productDrawerClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto">
+        <div id="productDetailContent" class="p-4">
+          <!-- Product details injected here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Cart Sidebar -->
     <aside id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
       <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 bg-white/95">
         <div class="flex items-center gap-2">
@@ -292,11 +568,13 @@
           </button>
           <div>
             <h2 class="text-sm font-semibold text-slate-800">سلة التسوق</h2>
-            <p id="cartSidebarSubtitle" class="text-[11px] text-slate-500">سلتك فارغة حاليًا</p>
+            <p id="cartSidebarSubtitle" class="text-[11px] text-slate-500">سلتك فارغة</p>
           </div>
         </div>
       </div>
-      <div class="flex-1 overflow-y-auto" id="cartItemsContainer"></div>
+      <div class="flex-1 overflow-y-auto" id="cartItemsContainer">
+        <!-- Cart items injected here -->
+      </div>
       <div class="border-t border-slate-200 bg-white/95 p-4 space-y-3 text-xs">
         <div class="flex items-center justify-between">
           <span class="text-slate-600">إجمالي المنتجات</span>
@@ -306,15 +584,522 @@
       </div>
     </aside>
 
+    <!-- Backdrop -->
     <div id="backdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 z-40"></div>
 
+    <!-- Footer -->
     <footer class="bg-slate-900 text-slate-100 mt-auto py-6 text-center text-xs">
-        <p>&copy; <span id="currentYear"></span> لونابيل. جميع الحقوق محفوظة.</p>
+      <p>© <span id="currentYear">2025</span> لونابيل. جميع الحقوق محفوظة.</p>
     </footer>
   </div>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500&display=swap" />
-  
-  <script src="script.js"></script>
+  <script>
+    // --- Custom JavaScript (from script.js) ---
+
+    // Basic state
+    const state = {
+      activePage: 'home', // NEW: Tracks the current visible page
+      products: [],
+      activeShopTab: 'perfume', // Default active category
+      searchQuery: '',
+      priceFilter: 'all',
+      genderFilter: 'all',
+      sortMode: 'featured',
+      cart: [],
+      activeProduct: null,
+    };
+
+    // Product catalog
+    const productsCatalog = [{
+      id: 'p1',
+      name: 'عطر إيليت الذهبي',
+      category: 'perfume',
+      gender: 'women',
+      basePrice: 1200,
+      priceRangeLabel: '١٢٠٠ – ٢٣٠٠ جنيه',
+      sizes: [{
+        label: '٥٠ مل',
+        value: 50
+      }, {
+        label: '١٠٠ مل',
+        value: 100
+      }],
+      image: 'https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'مزيج فاخر من الورد الدمشقي مع الفانيليا البيضاء.',
+      tags: ['نسائي', 'فواح', 'بست سيلر'],
+      badge: 'bestseller',
+      isNew: false,
+      rating: 4.9,
+      reviewsCount: 124,
+      createdAt: 20240110,
+    }, {
+      id: 'p2',
+      name: 'عطر نوير للرجال',
+      category: 'perfume',
+      gender: 'men',
+      basePrice: 980,
+      priceRangeLabel: '٩٨٠ – ١٩٥٠ جنيه',
+      sizes: [{
+        label: '٥٠ مل',
+        value: 50
+      }, {
+        label: '١٠٠ مل',
+        value: 100
+      }],
+      image: 'https://images.pexels.com/photos/965731/pexels-photo-965731.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'عطر رجالي قوي بنفحات من الخشب الداكن والهيل.',
+      tags: ['رجالي', 'خشبي'],
+      badge: 'bestseller',
+      isNew: true,
+      rating: 4.7,
+      reviewsCount: 87,
+      createdAt: 20240201,
+    }, {
+      id: 'm1',
+      name: 'باليت ظلال عيون نود روز',
+      category: 'makeup',
+      gender: 'women',
+      basePrice: 520,
+      priceRangeLabel: '٥٢٠ – ٧٨٠ جنيه',
+      sizes: [{
+        label: 'كامل',
+        value: 10
+      }],
+      image: 'https://images.pexels.com/photos/3738371/pexels-photo-3738371.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'باليت ناعمة بألوان الورد والبيج.',
+      tags: ['عيون', 'نيود'],
+      badge: 'bestseller',
+      isNew: false,
+      rating: 4.9,
+      reviewsCount: 65,
+      createdAt: 20231110,
+    }, {
+      id: 'm2',
+      name: 'روج ساتان بيوتي',
+      category: 'makeup',
+      gender: 'women',
+      basePrice: 280,
+      priceRangeLabel: '٢٨٠ – ٤٢٠ جنيه',
+      sizes: [{
+        label: '٣ مل',
+        value: 3
+      }],
+      image: 'https://images.pexels.com/photos/3738345/pexels-photo-3738345.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'أحمر شفاه كريمي بملمس ساتاني.',
+      tags: ['شفاه', 'مرطب'],
+      badge: 'new',
+      isNew: true,
+      rating: 4.6,
+      reviewsCount: 29,
+      createdAt: 20240401,
+    }, {
+      id: 's1',
+      name: 'سيروم فيتامين C',
+      category: 'skincare',
+      gender: 'unisex',
+      basePrice: 650,
+      priceRangeLabel: '٦٥٠ – ١١٥٠ جنيه',
+      sizes: [{
+        label: '٣٠ مل',
+        value: 30
+      }],
+      image: 'https://images.pexels.com/photos/3738341/pexels-photo-3738341.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'سيروم مركز لتوحيد لون البشرة.',
+      tags: ['توهج', 'عناية'],
+      badge: 'bestseller',
+      isNew: false,
+      rating: 4.8,
+      reviewsCount: 102,
+      createdAt: 20231020,
+    }, {
+      id: 's2',
+      name: 'مرطب جل خفيف',
+      category: 'skincare',
+      gender: 'unisex',
+      basePrice: 430,
+      priceRangeLabel: '٤٣٠ – ٧٢٠ جنيه',
+      sizes: [{
+        label: '٥٠ مل',
+        value: 50
+      }],
+      image: 'https://images.pexels.com/photos/3738362/pexels-photo-3738362.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'تركيبة جل خفيفة سريعة الامتصاص.',
+      tags: ['ترطيب', 'خفيف'],
+      badge: 'new',
+      isNew: true,
+      rating: 4.5,
+      reviewsCount: 38,
+      createdAt: 20240328,
+    }, {
+      id: 'p3',
+      name: 'عطر ليالي الأندلس',
+      category: 'perfume',
+      gender: 'women',
+      basePrice: 1500,
+      priceRangeLabel: '١٥٠٠ - ٢٨٠٠ جنيه',
+      sizes: [{
+        label: '٥٠ مل',
+        value: 50
+      }],
+      image: 'https://images.pexels.com/photos/965993/pexels-photo-965993.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'عطر شرقي ساحر.',
+      tags: ['شرقي', 'سهرات'],
+      badge: 'new',
+      isNew: true,
+      rating: 5.0,
+      reviewsCount: 12,
+      createdAt: 20240501,
+    }, {
+      id: 'm3',
+      name: 'ماسكارا كثافة قصوى',
+      category: 'makeup',
+      gender: 'women',
+      basePrice: 350,
+      priceRangeLabel: '٣٥٠ جنيه',
+      sizes: [{
+        label: '١٠ مل',
+        value: 10
+      }],
+      image: 'https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=600',
+      description: 'ماسكارا سوداء فاحمة.',
+      tags: ['عيون'],
+      badge: '',
+      isNew: false,
+      rating: 4.3,
+      reviewsCount: 45,
+      createdAt: 20231201,
+    }];
+
+    // Helpers
+    const formatPrice = (value) => `${value.toLocaleString('ar-EG')} جنيه`;
+
+    // DOM refs
+    const pageHome = document.getElementById('page-home');
+    const pageShop = document.getElementById('page-shop');
+    const pageAbout = document.getElementById('page-about');
+    const pageContact = document.getElementById('page-contact');
+    const allPages = [pageHome, pageShop, pageAbout, pageContact];
+
+    const shopPageTitle = document.getElementById('shopPageTitle');
+    const productsGrid = document.getElementById('productsGrid');
+    const priceFilterEl = document.getElementById('priceFilter');
+    const genderFilterEl = document.getElementById('genderFilter');
+    const sortSelectEl = document.getElementById('sortSelect');
+    const resultsCountEl = document.getElementById('resultsCount');
+    const searchInputEl = document.getElementById('searchInput');
+    const mobileSearchInputEl = document.getElementById('mobileSearchInput');
+    const cartToggleEl = document.getElementById('cartToggle');
+    const cartSidebarEl = document.getElementById('cartSidebar');
+    const cartSidebarCloseEl = document.getElementById('cartSidebarClose');
+    const cartItemsContainerEl = document.getElementById('cartItemsContainer');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartSubtotalEl = document.getElementById('cartSubtotal');
+    const checkoutButtonEl = document.getElementById('checkoutButton');
+    const productDrawerEl = document.getElementById('productDrawer');
+    const productDetailContentEl = document.getElementById('productDetailContent');
+    const productDrawerBackEl = document.getElementById('productDrawerBack');
+    const productDrawerCloseEl = document.getElementById('productDrawerClose');
+    const backdropEl = document.getElementById('backdrop');
+    const currentYearEl = document.getElementById('currentYear');
+
+    // --- NEW Page Navigation Logic ---
+    function navigateTo(pageId) {
+      state.activePage = pageId;
+      allPages.forEach(page => {
+        if (page) {
+          // Toggle 'hidden' class based on page ID
+          page.classList.toggle('hidden', page.id !== `page-${pageId}`);
+          if (page.id === `page-${pageId}`) {
+            // Add animation class when page becomes visible
+            page.classList.add('page-section');
+          }
+        }
+      });
+      // Scroll to the top when navigating
+      window.scrollTo(0, 0);
+    }
+
+    function navigateToShop(category) {
+      state.activeShopTab = category; // Set the active category
+
+      // Update shop page title
+      const titles = {
+        perfume: 'قسم العطور',
+        makeup: 'قسم المكياج',
+        skincare: 'قسم العناية بالبشرة'
+      };
+      if (shopPageTitle) {
+        shopPageTitle.textContent = titles[category] || 'المتجر';
+      }
+
+      navigateTo('shop'); // Show the shop page
+      filterAndRenderProducts(); // Filter for the specific category
+    }
+
+    // --- Modified Navigation Event Listeners ---
+
+    // Main Nav Links (Desktop & Mobile)
+    document.querySelectorAll('[data-nav]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = btn.getAttribute('data-nav');
+
+        if (key === 'home') navigateTo('home');
+        else if (key === 'shop') navigateToShop(state.activeShopTab || 'perfume'); // Go to shop with current or default category
+        else if (key === 'about') navigateTo('about');
+        else if (key === 'contact') navigateTo('contact');
+
+        // Close mobile nav if open
+        document.getElementById('mobileNav')?.classList.add('hidden');
+      });
+    });
+
+    // NEW: Homepage Category Card Listeners
+    document.querySelectorAll('[data-navigate-shop]').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const category = card.getAttribute('data-navigate-shop');
+        navigateToShop(category);
+      });
+    });
+
+    // Mobile Toggles
+    document.getElementById('mobileMenuToggle')?.addEventListener('click', () => {
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    });
+    document.getElementById('mobileSearchToggle')?.addEventListener('click', () => {
+      document.getElementById('mobileSearchBar').classList.toggle('hidden');
+    });
+
+    // --- Product Filtering Logic ---
+
+    // Other Filters
+    priceFilterEl?.addEventListener('change', () => {
+      state.priceFilter = priceFilterEl.value;
+      filterAndRenderProducts();
+    });
+    genderFilterEl?.addEventListener('change', () => {
+      state.genderFilter = genderFilterEl.value;
+      filterAndRenderProducts();
+    });
+    sortSelectEl?.addEventListener('change', () => {
+      state.sortMode = sortSelectEl.value;
+      filterAndRenderProducts();
+    });
+    searchInputEl?.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value.trim();
+      filterAndRenderProducts();
+    });
+    mobileSearchInputEl?.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value.trim();
+      filterAndRenderProducts();
+    });
+
+    // Logic Checks
+    function productPassesCategory(product) {
+      // Now only filters by the activeShopTab state
+      if (state.activeShopTab) {
+        return product.category === state.activeShopTab;
+      }
+      return false; // Don't show anything if no category is set
+    }
+
+    function productPassesPrice(product) {
+      if (state.priceFilter === 'all') return true;
+      const [minStr, maxStr] = state.priceFilter.split('-');
+      const min = parseInt(minStr) || 0;
+      const max = maxStr === '+' || maxStr === undefined ? Infinity : parseInt(maxStr);
+      return product.basePrice >= min && product.basePrice <= max;
+    }
+
+    function productPassesGender(product) {
+      if (state.genderFilter === 'all') return true;
+      return product.gender === state.genderFilter;
+    }
+
+    function productPassesSearch(product) {
+      if (!state.searchQuery) return true;
+      const q = state.searchQuery.toLowerCase();
+      return (product.name + product.description + product.tags.join(' ')).toLowerCase().includes(q);
+    }
+
+    function filterAndRenderProducts() {
+      let result = productsCatalog.filter(p =>
+        productPassesCategory(p) &&
+        productPassesPrice(p) &&
+        productPassesGender(p) &&
+        productPassesSearch(p)
+      );
+
+      // Sort
+      if (state.sortMode === 'price-asc') result.sort((a, b) => a.basePrice - b.basePrice);
+      else if (state.sortMode === 'price-desc') result.sort((a, b) => b.basePrice - a.basePrice);
+      else if (state.sortMode === 'newest') result.sort((a, b) => b.createdAt - a.createdAt);
+      else result.sort((a, b) => b.rating - a.rating); // Featured
+
+      state.products = result;
+      renderProductsGrid();
+    }
+
+    function renderProductsGrid() {
+      if (!productsGrid) return;
+      productsGrid.innerHTML = '';
+      resultsCountEl && (resultsCountEl.textContent = `${state.products.length} منتج`);
+
+      if (state.products.length === 0) {
+        productsGrid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-500">لا توجد منتجات تطابق خياراتك.</div>`;
+        return;
+      }
+
+      state.products.forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'product-card group';
+        card.innerHTML = `
+          <div class="relative overflow-hidden h-[230px]">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            ${product.isNew ? '<span class="absolute top-2 right-2 badge badge-new">جديد</span>' : ''}
+            <button class="product-quick-add primary-btn text-[10px] px-2 py-1 absolute bottom-2 left-2 right-2 justify-center opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">إضافة للسلة</button>
+          </div>
+          <div class="p-3 flex flex-col gap-1">
+            <h3 class="text-sm font-bold text-slate-900">${product.name}</h3>
+            <p class="text-[10px] text-slate-500">${product.category === 'perfume' ? 'عطر' : product.category === 'makeup' ? 'مكياج' : 'عناية'}</p>
+            <div class="flex items-center justify-between mt-2">
+              <span class="text-sm font-bold text-amber-600">${formatPrice(product.basePrice)}</span>
+              <div class="flex items-center text-[10px] text-slate-400 gap-1"><span class="material-symbols-outlined text-[12px] text-amber-400">star</span>${product.rating}</div>
+            </div>
+          </div>
+        `;
+
+        // Add to cart click
+        card.querySelector('.product-quick-add').addEventListener('click', (e) => {
+          e.stopPropagation();
+          addToCart(product);
+        });
+
+        // Open details
+        card.addEventListener('click', () => openProductDrawer(product));
+        productsGrid.appendChild(card);
+      });
+    }
+
+    // --- Cart Functions ---
+    function loadCartFromStorage() {
+      try {
+        state.cart = JSON.parse(localStorage.getItem('lunabelle_cart')) || [];
+      } catch (e) {
+        state.cart = [];
+      }
+    }
+
+    function saveCart() {
+      localStorage.setItem('lunabelle_cart', JSON.stringify(state.cart));
+      renderCart();
+    }
+
+    function addToCart(product) {
+      const existing = state.cart.find(i => i.productId === product.id);
+      if (existing) existing.quantity++;
+      else state.cart.push({
+        productId: product.id,
+        name: product.name,
+        price: product.basePrice,
+        image: product.image,
+        quantity: 1
+      });
+      saveCart();
+      openCartSidebar();
+    }
+
+    function renderCart() {
+      if (!cartItemsContainerEl) return;
+      cartItemsContainerEl.innerHTML = '';
+      let total = 0;
+      let count = 0;
+
+      if (state.cart.length === 0) {
+        cartItemsContainerEl.innerHTML = `<p class="text-center text-slate-500 text-sm p-8">سلتك فارغة.</p>`;
+      }
+
+      state.cart.forEach((item, idx) => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <div class="cart-item-img"><img src="${item.image}" alt="${item.name}" /></div>
+          <div class="flex flex-col justify-center gap-1">
+            <div class="text-xs font-bold">${item.name}</div>
+            <div class="text-[10px] text-slate-500">${formatPrice(item.price)} x ${item.quantity}</div>
+            <button class="text-red-500 text-[10px] self-start" data-idx="${idx}">حذف</button>
+          </div>
+        `;
+        div.querySelector('button').addEventListener('click', () => {
+          state.cart.splice(idx, 1);
+          saveCart();
+        });
+        cartItemsContainerEl.appendChild(div);
+      });
+
+      cartCountEl.textContent = count;
+      cartSubtotalEl.textContent = formatPrice(total);
+      document.getElementById('cartSidebarSubtitle').textContent = count === 0 ? 'سلتك فارغة' : `${count} منتجات`;
+    }
+
+    function openCartSidebar() {
+      cartSidebarEl.style.transform = 'translateX(0)';
+      backdropEl.classList.add('is-visible');
+    }
+
+    function closeCartSidebar() {
+      cartSidebarEl.style.transform = 'translateX(100%)';
+      if (productDrawerEl.style.transform !== 'translateX(0)') {
+        backdropEl.classList.remove('is-visible');
+      }
+    }
+
+    cartToggleEl?.addEventListener('click', openCartSidebar);
+    cartSidebarCloseEl?.addEventListener('click', closeCartSidebar);
+    backdropEl?.addEventListener('click', () => {
+      closeCartSidebar();
+      closeDrawer(productDrawerEl);
+    });
+
+    // --- Product Drawer ---
+    function openProductDrawer(product) {
+      if (!productDetailContentEl) return;
+      productDetailContentEl.innerHTML = `
+        <img src="${product.image}" class="w-full rounded-xl mb-4" />
+        <h2 class="text-lg font-bold mb-2">${product.name}</h2>
+        <p class="text-sm text-slate-600 mb-4">${product.description}</p>
+        <div class="font-bold text-xl text-amber-600 mb-4">${formatPrice(product.basePrice)}</div>
+        <button id="drawerAddToCart" class="primary-btn w-full justify-center">إضافة إلى السلة</button>
+      `;
+      document.getElementById('drawerAddToCart').addEventListener('click', () => {
+        addToCart(product);
+        closeDrawer(productDrawerEl);
+      });
+      productDrawerEl.style.transform = 'translateX(0)';
+      backdropEl.classList.add('is-visible');
+    }
+
+    function closeDrawer(el) {
+      if (el) el.style.transform = 'translateX(-100%)'; // left side drawer
+      if (cartSidebarEl.style.transform !== 'translateX(0)') {
+        backdropEl.classList.remove('is-visible');
+      }
+    }
+    productDrawerBackEl?.addEventListener('click', () => closeDrawer(productDrawerEl));
+    productDrawerCloseEl?.addEventListener('click', () => closeDrawer(productDrawerEl));
+
+    // --- Init ---
+    window.addEventListener('DOMContentLoaded', () => {
+      loadCartFromStorage();
+      renderCart();
+      navigateTo('home'); // Show the homepage first
+      if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+    });
+  </script>
+
 </body>
+
 </html>
