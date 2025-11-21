@@ -1,91 +1,75 @@
 {
-  "products": [
+  "hero_categories": [
     {
-      "id": 1,
-      "name": "عطر إيليت الذهبي",
-      "description": "مزيج فاخر من الورد الدمشقي مع الفانيليا البيضاء.",
-      "image": "images/perfume-gold.jpg",
-      "category": "perfume",
-      "sizes": {
-        "50ml": 1200,
-        "100ml": 2300
-      }
+      "id": "perfume",
+      "title": "العطور",
+      "subtitle": "مزيج من الفخامة والجاذبية.",
+      "image": "images/cat_perfume.jpg"
     },
     {
-      "id": 2,
-      "name": "عطر نوير للرجال",
-      "description": "عطر رجالي قوي بنفحات من الخشب الداكن والهيل.",
-      "image": "images/perfume-noir.jpg",
-      "category": "perfume",
-      "sizes": {
-        "50ml": 980,
-        "100ml": 1950
-      }
+      "id": "makeup",
+      "title": "المكياج",
+      "subtitle": "لإطلالة تبرز جمالك الطبيعي.",
+      "image": "images/cat_makeup.jpg"
     },
     {
-      "id": 3,
-      "name": "عطر ليالي الأندلس",
-      "description": "عطر شرقي ساحر مناسب للسهرات والمناسبات.",
-      "image": "images/perfume-andalus.jpg",
-      "category": "perfume",
-      "sizes": {
-        "50ml": 1500,
-        "100ml": 2800
-      }
-    },
-    {
-      "id": 4,
-      "name": "عطر زهرة الكرز",
-      "description": "عطر رقيق ومنعش برائحة الربيع والزهور.",
-      "image": "images/perfume-cherry.jpg",
-      "category": "perfume",
-      "sizes": {
-        "30ml": 650,
-        "50ml": 950
-      }
-    },
-    {
-      "id": 5,
-      "name": "باليت ظلال عيون نود",
-      "description": "باليت ناعمة بألوان الورد والبيج تناسب كل الأوقات.",
-      "image": "images/makeup-palette.jpg",
-      "category": "makeup",
-      "sizes": {
-        "Standard": 520,
-        "Mini": 320
-      }
-    },
-    {
-      "id": 6,
-      "name": "روج ساتان بيوتي",
-      "description": "أحمر شفاه كريمي بملمس ساتاني يدوم طويلاً.",
-      "image": "images/makeup-lipstick.jpg",
-      "category": "makeup",
-      "sizes": {
-        "3ml": 280
-      }
-    },
-    {
-      "id": 7,
-      "name": "سيروم فيتامين C",
-      "description": "سيروم مركز لتوحيد لون البشرة ومنحها نضارة.",
-      "image": "images/skin-serum.jpg",
-      "category": "skincare",
-      "sizes": {
-        "30ml": 650,
-        "50ml": 900
-      }
-    },
-    {
-      "id": 8,
-      "name": "مرطب جل خفيف",
-      "description": "تركيبة جل خفيفة سريعة الامتصاص لترطيب عميق.",
-      "image": "images/skin-gel.jpg",
-      "category": "skincare",
-      "sizes": {
-        "50ml": 430,
-        "100ml": 750
-      }
+      "id": "skincare",
+      "title": "العناية بالبشرة",
+      "subtitle": "روتينك اليومي لبشرة نضرة.",
+      "image": "images/cat_skincare.jpg"
     }
-  ]
+  ],
+  "products": {
+    "perfume": [
+      {
+        "id": "p1",
+        "name": "عطر إيليت الذهبي",
+        "description": "مزيج فاخر من الورد الدمشقي مع الفانيليا البيضاء.",
+        "images": ["images/p1_main.jpg", "images/p1_side.jpg"],
+        "gender": "women",
+        "sizes": { "50ml": 1200, "100ml": 2100 },
+        "tags": ["نسائي", "فواح"],
+        "rating": 4.9,
+        "isNew": false
+      },
+      {
+        "id": "p2",
+        "name": "عطر نوير للرجال",
+        "description": "عطر رجالي قوي بنفحات من الخشب الداكن والهيل.",
+        "images": ["images/p2_main.jpg"],
+        "gender": "men",
+        "sizes": { "50ml": 980, "100ml": 1850 },
+        "tags": ["رجالي", "خشبي"],
+        "rating": 4.7,
+        "isNew": true
+      }
+    ],
+    "makeup": [
+      {
+        "id": "m1",
+        "name": "تنت الشفاه والخدود",
+        "description": "تنت طبيعي يدوم طويلاً.",
+        "images": ["images/m1_main.jpg"],
+        "gender": "women",
+        "sizes": { "Full": 450 },
+        "shades": ["أحمر كرزي", "خوخي دافئ", "وردي ناعم"],
+        "tags": ["شفاه", "طبيعي"],
+        "rating": 4.6,
+        "isNew": false
+      }
+    ],
+    "skincare": [
+      {
+        "id": "s1",
+        "name": "سيروم فيتامين C",
+        "description": "سيروم مركز لتوحيد لون البشرة والنضارة.",
+        "images": ["images/s1_main.jpg"],
+        "gender": "unisex",
+        "sizes": { "30ml": 650 },
+        "tags": ["عناية", "نضارة"],
+        "rating": 4.8,
+        "isNew": false
+      }
+    ]
+  }
 }
