@@ -1,4 +1,8 @@
 {
+  "config": {
+    "logo": "images/logo.jpg",
+    "hero_background": "images/heading.jpg"
+  },
   "hero_categories": [
     {
       "id": "perfume",
@@ -432,3 +436,4 @@
     ]
   }
 }
+

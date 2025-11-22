@@ -140,6 +140,14 @@
         cursor: pointer; border: 2px solid transparent; opacity: 0.6; transition: all 0.2s;
     }
     .drawer-gallery-thumb.active { border-color: #be123c; opacity: 1; }
+
+    /* Hero Section Dynamic Background */
+    #heroSection {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 0.5s ease;
+    }
   </style>
 </head>
 
@@ -154,8 +162,9 @@
           
           <!-- 1. Logo Section (Left) -->
           <a href="#" data-nav="home" class="flex items-center gap-3">
-            <!-- Logo Image: Looks for images/Logo.jpg -->
-            <img src="images/Logo.jpg" 
+            <!-- Logo Image: Loaded from JS via products.json config -->
+            <img id="mainLogo"
+                 src="images/Logo.jpg" 
                  alt="Lunabelle" 
                  class="w-16 h-16 rounded-full object-cover border-2 border-rose-100 shadow-sm"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -200,8 +209,8 @@
       <!-- Home Page Section -->
       <section id="page-home" class="page-section">
         <!-- Hero Categories (Loaded from JSON) -->
-        <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-16">
-          <div class="text-center mb-10 lg:mb-12">
+        <div id="heroSection" class="container mx-auto px-4 lg:px-8 py-10 lg:py-16">
+          <div class="text-center mb-10 lg:mb-12 bg-white/60 backdrop-blur-sm p-6 rounded-2xl inline-block mx-auto shadow-sm">
             <h1 class="text-3xl lg:text-4xl font-extrabold text-rose-950 mb-2">اكتشفي عالم الجمال</h1>
             <p class="text-lg text-rose-800/80">تسوقي من مجموعاتنا الفاخرة من العطور، المكياج، والعناية بالبشرة.</p>
           </div>
@@ -424,6 +433,8 @@
     const productDrawerCloseEl = document.getElementById('productDrawerClose');
     const backdropEl = document.getElementById('backdrop');
     const currentYearEl = document.getElementById('currentYear');
+    const mainLogoEl = document.getElementById('mainLogo');
+    const heroSectionEl = document.getElementById('heroSection');
 
     const formatPrice = (value) => `${value.toLocaleString('ar-EG')} جنيه`;
 
@@ -436,9 +447,17 @@
         if(!response.ok) throw new Error("HTTP error " + response.status);
         data = await response.json();
       } catch (error) {
-        // Fallback for Preview/Canvas (where products.json doesn't exist)
-        console.log("Fetching failed (expected in preview), loading embedded data.");
-        data = MOCKED_PRODUCTS_JSON;
+        // Fallback for Preview/Canvas
+        console.log("Fetching failed (expected in preview), using fallback.");
+        data = { hero_categories: [], products: {}, config: {} }; 
+      }
+      
+      // 1. & 2. Apply Config (Logo & Background)
+      if(data.config) {
+          if(data.config.logo) mainLogoEl.src = data.config.logo;
+          if(data.config.hero_background) {
+              heroSectionEl.style.backgroundImage = `url('${data.config.hero_background}')`;
+          }
       }
       
       // Process Data
@@ -464,10 +483,9 @@
 
     function renderHeroCategories() {
         if(!heroCategoriesContainer) return;
-        // Fallback if state.heroCategories is empty/undefined in mocked data
         const categories = (state.heroCategories && state.heroCategories.length > 0) 
             ? state.heroCategories 
-            : MOCKED_PRODUCTS_JSON.hero_categories;
+            : [];
 
         heroCategoriesContainer.innerHTML = categories.map(cat => `
             <a href="#" data-navigate-shop="${cat.id}" class="home-category-card group aspect-[3/4] w-5/6 flex-shrink-0 snap-center lg:w-full">
@@ -490,14 +508,68 @@
                 e.preventDefault();
                 const target = el.getAttribute('data-navigate-shop');
                 state.activeShopTab = target;
-                document.getElementById('page-home').classList.add('hidden');
-                document.getElementById('page-shop').classList.remove('hidden');
-                updateFilterUI();
-                filterAndRenderProducts();
-                window.scrollTo(0,0);
+                // Replace direct DOM manipulation with Navigation wrapper
+                navigateTo('shop');
             });
         });
     }
+
+    // --- 3. History & Navigation Management ---
+    
+    // Helper to switch views
+    function showView(viewName) {
+        if (viewName === 'home') {
+            document.getElementById('page-home').classList.remove('hidden');
+            document.getElementById('page-shop').classList.add('hidden');
+        } else if (viewName === 'shop') {
+            document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-shop').classList.remove('hidden');
+            updateFilterUI();
+            filterAndRenderProducts();
+        }
+        window.scrollTo(0,0);
+        document.getElementById('mobileNav').classList.add('hidden');
+    }
+
+    // Helper to handle history pushes
+    function navigateTo(view) {
+        showView(view);
+        history.pushState({ view: view }, '', '');
+    }
+
+    function openDrawerWithHistory(type, data = null) {
+        // Push state for the drawer
+        history.pushState({ view: (document.getElementById('page-shop').classList.contains('hidden') ? 'home' : 'shop'), drawer: type, data: data }, '', '');
+        
+        if(type === 'product') _renderAndOpenProductDrawer(data);
+        else if(type === 'cart') _openCartSidebar();
+        else if(type === 'checkout') _openCheckoutModal();
+    }
+
+    // Handle Browser Back Button
+    window.addEventListener('popstate', (event) => {
+        const state = event.state;
+        
+        // Close all drawers/modals first
+        closeDrawer(productDrawerEl, false); 
+        _closeCartSidebar(false);
+        _closeCheckout(false);
+        
+        if (!state) {
+            // Default state (Home)
+            showView('home');
+        } else {
+            // Restore View
+            showView(state.view || 'home');
+
+            // Restore Drawer if present in state (unlikely on back, but good for forward)
+            // Usually back button removes the drawer state, so we just closed them above.
+        }
+    });
+
+    // Initial History State
+    history.replaceState({ view: 'home' }, '', '');
+
 
     // --- Navigation & Filters ---
     document.querySelectorAll('[data-nav]').forEach((btn) => {
@@ -505,31 +577,23 @@
         e.preventDefault();
         const key = btn.getAttribute('data-nav');
         if (key === 'home') {
-            document.getElementById('page-home').classList.remove('hidden');
-            document.getElementById('page-shop').classList.add('hidden');
-            window.scrollTo(0,0);
+            navigateTo('home');
         } else if (key === 'shop') {
-            document.getElementById('page-home').classList.add('hidden');
-            document.getElementById('page-shop').classList.remove('hidden');
-            window.scrollTo(0,0);
+            navigateTo('shop');
         } else {
-            document.getElementById('page-home').classList.remove('hidden');
-            document.getElementById('page-shop').classList.add('hidden');
+            // For about/contact, staying on home but scrolling
+            navigateTo('home'); 
             const mapping = { about: '#section-about', contact: '#section-contact' };
             setTimeout(() => {
                 const target = document.querySelector(mapping[key]);
                 if (target) target.scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
-        document.getElementById('mobileNav').classList.add('hidden');
       });
     });
 
     document.getElementById('mobileMenuToggle')?.addEventListener('click', () => {
       document.getElementById('mobileNav').classList.toggle('hidden');
-    });
-    document.getElementById('mobileSearchToggle')?.addEventListener('click', () => {
-      document.getElementById('mobileSearchBar').classList.toggle('hidden');
     });
 
     document.querySelectorAll('.shop-tab').forEach((btn) => {
@@ -697,29 +761,70 @@
       document.getElementById('cartSidebarSubtitle').textContent = count === 0 ? 'سلتك فارغة' : `${count} منتجات`;
     }
 
-    function openCartSidebar() { cartSidebarEl.style.transform = 'translateX(0)'; backdropEl.classList.add('is-visible'); }
-    function closeCartSidebar() { 
+    // Cart & Drawer Logic Wrappers
+    function openCartSidebar() { 
+        openDrawerWithHistory('cart');
+    }
+    
+    function _openCartSidebar() {
+        cartSidebarEl.style.transform = 'translateX(0)'; 
+        backdropEl.classList.add('is-visible');
+    }
+    
+    function _closeCartSidebar(animate = true) { 
         cartSidebarEl.style.transform = 'translateX(100%)'; 
         if(productDrawerEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible'); 
     }
+
+    function closeCartSidebar() { 
+        // If user clicks X, go back in history (which triggers popstate -> _closeCartSidebar)
+        if (history.state && history.state.drawer) {
+            history.back();
+        } else {
+            _closeCartSidebar(); // Fallback
+        }
+    }
+    
     cartToggleEl?.addEventListener('click', openCartSidebar);
     cartSidebarCloseEl?.addEventListener('click', closeCartSidebar);
-    backdropEl?.addEventListener('click', () => { closeCartSidebar(); closeDrawer(productDrawerEl); closeCheckout(); });
+    
+    // Backdrop click handles multiple things
+    backdropEl?.addEventListener('click', () => { 
+        if(history.state && (history.state.drawer || history.state.modal)) {
+            history.back();
+        } else {
+            // Fallback closures
+             _closeCartSidebar(); 
+             closeDrawer(productDrawerEl, false);
+             _closeCheckout();
+        }
+    });
 
     // Checkout Modal Logic
     openCheckoutModalBtn?.addEventListener('click', () => {
         if(state.cart.length === 0) { alert('سلتك فارغة!'); return; }
-        // Close sidebar first
-        cartSidebarEl.style.transform = 'translateX(100%)';
-        // Show Modal (Backdrop stays visible)
-        checkoutModal.classList.add('is-visible');
+        openDrawerWithHistory('checkout');
     });
+    
+    function _openCheckoutModal() {
+        _closeCartSidebar(false); // Visually close cart
+        checkoutModal.classList.add('is-visible');
+    }
 
     function closeCheckout() {
+        if (history.state && history.state.drawer === 'checkout') {
+            history.back();
+        } else {
+            _closeCheckout();
+        }
+    }
+    
+    function _closeCheckout(animate=true) {
         checkoutModal.classList.remove('is-visible');
         successModal.classList.remove('is-visible');
-        backdropEl.classList.remove('is-visible');
+        if(animate && cartSidebarEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible');
     }
+    
     closeCheckoutModal?.addEventListener('click', closeCheckout);
     closeSuccessModal?.addEventListener('click', closeCheckout);
 
@@ -764,6 +869,11 @@
 
     // --- Product Drawer ---
     function openProductDrawer(product) {
+        openDrawerWithHistory('product', product);
+    }
+
+    function _renderAndOpenProductDrawer(product) {
+      if(!product) return;
       const sizeKeys = Object.keys(product.sizes);
       let selectedSize = sizeKeys[0], selectedPrice = product.sizes[selectedSize];
       let selectedShade = (product.shades && product.shades.length > 0) ? product.shades[0] : null;
@@ -798,14 +908,31 @@
           productDetailContentEl.querySelectorAll('.d-shade').forEach(b => b.classList.remove('active'));
           btn.classList.add('active'); selectedShade = btn.getAttribute('data-val');
       }));
-      document.getElementById('drawerAddToCart').addEventListener('click', () => { addToCart(product, selectedSize, selectedPrice, selectedShade); closeDrawer(productDrawerEl); });
+      // Fix: Ensure drawer closes via history back to maintain state sync
+      document.getElementById('drawerAddToCart').addEventListener('click', () => { 
+          addToCart(product, selectedSize, selectedPrice, selectedShade); 
+          // After adding to cart, usually we open cart drawer, which pushes new state.
+          // So we don't need to explicitly close this one, but let's be clean.
+          // The 'openCartSidebar' call inside addToCart pushes a new state 'cart'.
+      });
 
       productDrawerEl.style.transform = 'translateX(0)'; backdropEl.classList.add('is-visible');
     }
 
-    function closeDrawer(el) { if(el) el.style.transform = 'translateX(-100%)'; if(cartSidebarEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible'); }
-    productDrawerBackEl?.addEventListener('click', () => closeDrawer(productDrawerEl));
-    productDrawerCloseEl?.addEventListener('click', () => closeDrawer(productDrawerEl));
+    function closeDrawer(el, animate=true) { 
+        if(el) el.style.transform = 'translateX(-100%)'; 
+        if(animate && cartSidebarEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible'); 
+    }
+    
+    // When clicking X, go back
+    productDrawerBackEl?.addEventListener('click', () => {
+        if(history.state && history.state.drawer) history.back();
+        else closeDrawer(productDrawerEl);
+    });
+    productDrawerCloseEl?.addEventListener('click', () => {
+        if(history.state && history.state.drawer) history.back();
+        else closeDrawer(productDrawerEl);
+    });
 
     // Init
     window.addEventListener('DOMContentLoaded', () => {
@@ -815,3 +942,4 @@
   </script>
 </body>
 </html>
+
