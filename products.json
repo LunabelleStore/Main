@@ -24,258 +24,406 @@
       {
         "id": "m1",
         "name": "فاوندشن ديور باكستيدج",
-        "category": "makeup",
-        "description": "تغطية مثالية ومظهر طبيعي.",
-        "images": ["images/makeup_dior_1.jpg", "images/makeup_dior_2.jpg", "images/makeup_dior_3.jpg"],
-        "sizes": { "2ml": 170, "4ml": 340, "5ml": 430 },
-        "shades": ["1W", "0W", "3WP"],
-        "rating": 4.8,
-        "isNew": false
+        "description": "أساس ديور باكستيدج بتغطية مميزة",
+        "images": ["images/foundation-dior-packstage.jpg"],
+        "sizes": {
+          "2ml": 170,
+          "4ml": 340,
+          "5ml": 430,
+          "6ml": 520,
+          "8ml": 680,
+          "10ml": 850
+        }
       },
       {
         "id": "m2",
         "name": "فاوندشن هدي بيوتي ايزي بلور",
-        "category": "makeup",
-        "description": "أساس ناعم بتأثير الفلتر.",
-        "images": ["images/makeup_huda_found_1.jpg", "images/makeup_huda_found_2.jpg", "images/makeup_huda_found_3.jpg"],
-        "sizes": { "2ml": 250, "4ml": 500, "5ml": 625 },
-        "shades": ["Angel Food", "Cashew", "Custard", "Latte", "toasted coconut"],
-        "rating": 4.7,
-        "isNew": true
+        "description": "أساس هدي بيوتي بتقنية الإزي بلور",
+        "images": ["images/foundation-huda-beauty-easy-blur.jpg"],
+        "sizes": {
+          "2ml": 250,
+          "4ml": 500,
+          "5ml": 625,
+          "6ml": 750,
+          "8ml": 1000,
+          "10ml": 1200
+        }
       },
       {
         "id": "m3",
         "name": "لوس باودر هدي بيوتي ايزي بلور",
-        "category": "makeup",
-        "description": "تثبيت المكياج وإخفاء المسام.",
-        "images": ["images/makeup_huda_powder_1.jpg", "images/makeup_huda_powder_2.jpg", "images/makeup_huda_powder_3.jpg"],
-        "sizes": { "2ml": 320, "3ml": 480, "4ml": 640, "5ml": 800 },
-        "shades": ["pound cake", "cherry blossom"],
-        "rating": 4.9,
-        "isNew": false
+        "description": "بودرة هدي بيوتي للإزي بلور",
+        "images": ["images/loose-powder-huda-beauty-easy-blur.jpg"],
+        "sizes": {
+          "2ml": 320,
+          "3ml": 480,
+          "4ml": 640,
+          "5ml": 800
+        }
       },
       {
         "id": "m4",
         "name": "برايمر هدي بيوتي ايزي بلور",
-        "category": "makeup",
-        "description": "تجهيز البشرة وتنعيمها.",
-        "images": ["images/makeup_huda_primer_1.jpg", "images/makeup_huda_primer_2.jpg", "images/makeup_huda_primer_3.jpg"],
-        "sizes": { "2ml": 240, "3ml": 360, "4ml": 480, "5ml": 600 },
-        "shades": [],
-        "rating": 4.6,
-        "isNew": false
+        "description": "برايمر هدي بيوتي للإزي بلور",
+        "images": ["images/primer-huda-beauty-easy-blur.jpg"],
+        "sizes": {
+          "2ml": 240,
+          "3ml": 360,
+          "4ml": 480,
+          "5ml": 600,
+          "6ml": 720,
+          "8ml": 960,
+          "10ml": 1200
+        }
       },
       {
         "id": "m5",
         "name": "مثبت ميك اب هدي بيوتي",
-        "category": "makeup",
-        "description": "لمكياج يدوم طويلاً.",
-        "images": ["images/makeup_huda_set_1.jpg", "images/makeup_huda_set_2.jpg", "images/makeup_huda_set_3.jpg"],
-        "sizes": { "5ml": 200 },
-        "shades": [],
-        "rating": 4.7,
-        "isNew": false
+        "description": "مثبت ميك أب هدي بيوتي",
+        "images": ["images/makeup-setter-huda-beauty.jpg"],
+        "sizes": {
+          "5ml": 200,
+          "10ml": 400
+        }
       },
       {
         "id": "m6",
         "name": "كوريكتور هدي بيوتي",
-        "category": "makeup",
-        "description": "تصحيح عيوب البشرة.",
-        "images": ["images/makeup_huda_corr_1.jpg", "images/makeup_huda_corr_2.jpg", "images/makeup_huda_corr_3.jpg"],
-        "sizes": { "1ml": 330, "2ml": 650 },
-        "shades": ["peach"],
-        "rating": 4.5,
-        "isNew": false
+        "description": "كوريكتور هدي بيوتي",
+        "images": ["images/corrector-huda-beauty.jpg"],
+        "sizes": {
+          "1ml": 330,
+          "2ml": 650
+        }
       },
       {
         "id": "m7",
         "name": "مثبت حواجب جوتو بي",
-        "category": "makeup",
-        "description": "تثبيت الحواجب طوال اليوم.",
-        "images": ["images/makeup_got2b_1.jpg", "images/makeup_got2b_2.jpg", "images/makeup_got2b_3.jpg"],
-        "sizes": { "5ml": 70 },
-        "shades": [],
-        "rating": 4.4,
-        "isNew": false
+        "description": "مثبت حواجب جوتو بي",
+        "images": ["images/eyebrow-setter-goto-b.jpg"],
+        "sizes": {
+          "5ml": 70,
+          "10ml": 140
+        }
       },
       {
         "id": "m8",
         "name": "فلتر ايلف",
-        "category": "makeup",
-        "description": "إشراقة ونضارة فورية.",
-        "images": ["images/makeup_elf_filter_1.jpg", "images/makeup_elf_filter_2.jpg", "images/makeup_elf_filter_3.jpg"],
-        "sizes": { "2ml": 145, "4ml": 290, "5ml": 360 },
-        "shades": ["1 fair", "3 light/medium", "light beige"],
-        "rating": 4.6,
-        "isNew": true
+        "description": "فلتر ايلف",
+        "images": ["images/filter-elf.jpg"],
+        "sizes": {
+          "2ml": 145,
+          "4ml": 290,
+          "5ml": 360,
+          "6ml": 435,
+          "8ml": 580,
+          "10ml": 725
+        }
       },
       {
         "id": "m9",
         "name": "كونسيلر تو فيسد",
-        "category": "makeup",
-        "description": "تغطية عالية للهالات السوداء.",
-        "images": ["images/makeup_toofaced_1.jpg", "images/makeup_toofaced_2.jpg", "images/makeup_toofaced_3.jpg"],
-        "sizes": { "2ml": 360, "4ml": 720, "5ml": 900 },
-        "shades": ["snow", "vanilla", "love"],
-        "rating": 4.8,
-        "isNew": false
+        "description": "كونسيلر تو فيسد",
+        "images": ["images/concealer-two-faced.jpg"],
+        "sizes": {
+          "2ml": 360,
+          "4ml": 720,
+          "5ml": 900,
+          "6ml": 1080
+        }
       },
       {
         "id": "m10",
-        "name": "بلاشر رير بيوتي",
-        "category": "makeup",
-        "description": "تورد طبيعي وجذاب.",
-        "images": ["images/makeup_rare_blush_1.jpg", "images/makeup_rare_blush_2.jpg", "images/makeup_rare_blush_3.jpg"],
-        "sizes": { "2ml": 720 },
-        "shades": ["happy", "believe"],
-        "rating": 4.9,
-        "isNew": true
+        "name": "مرطب كلينك جل",
+        "description": "مرطب كلينك جل",
+        "images": ["images/moisturizer-clinique-gel.jpg"],
+        "sizes": {
+          "6ml": 125,
+          "10ml": 250
+        }
       },
       {
         "id": "m11",
+        "name": "بلاشر رير بيوتي",
+        "description": "بلاشر رير بيوتي",
+        "images": ["images/blusher-rare-beauty.jpg"],
+        "sizes": {
+          "1ml": 360,
+          "2ml": 720
+        }
+      },
+      {
+        "id": "m12",
         "name": "بلاشر ايلف",
-        "category": "makeup",
-        "description": "ألوان عصرية وثبات عالي.",
-        "images": ["images/makeup_elf_blush_1.jpg", "images/makeup_elf_blush_2.jpg", "images/makeup_elf_blush_3.jpg"],
-        "sizes": { "1ml": 360, "2ml": 680 },
-        "shades": ["coral crush", "pinky promise"],
-        "rating": 4.5,
-        "isNew": false
+        "description": "بلاشر ايلف",
+        "images": ["images/blusher-elf.jpg"],
+        "sizes": {
+          "1ml": 340,
+          "2ml": 680
+        }
       }
     ],
     "skincare": [
       {
         "id": "s1",
-        "name": "مرطب كلينك جل",
-        "category": "skincare",
-        "description": "ترطيب عميق وخفيف على البشرة.",
-        "images": ["images/skin_clinique_1.jpg", "images/skin_clinique_2.jpg", "images/skin_clinique_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720, "50ml": 1200 },
-        "shades": [],
-        "rating": 4.8,
-        "isNew": false
+        "name": "غسول زيتي سكين 1004 سنتيلا",
+        "description": "غسول زيتي سكين 1004 سنتيلا",
+        "images": ["images/oil-cleanser-skin1004-centella.jpg"],
+        "sizes": {
+          "10ml": 120,
+          "15ml": 180,
+          "20ml": 250,
+          "30ml": 350
+        }
       },
       {
         "id": "s2",
-        "name": "غسول زيتي سكين 1004 سنتيلا",
-        "category": "skincare",
-        "description": "تنظيف عميق وإزالة المكياج بلطف.",
-        "images": ["images/skin_oil_1.jpg", "images/skin_oil_2.jpg", "images/skin_oil_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720, "50ml": 1200 },
-        "shades": [],
-        "rating": 4.7,
-        "isNew": false
+        "name": "غسول فوم سكين 1004 سنتيلا",
+        "description": "غسول فوم سكين 1004 سنتيلا",
+        "images": ["images/foam-cleanser-skin1004-centella.jpg"],
+        "sizes": {
+          "10ml": 175,
+          "15ml": 250,
+          "20ml": 330,
+          "30ml": 500
+        }
       },
       {
         "id": "s3",
-        "name": "غسول فوم سكين 1004 سنتيلا",
-        "category": "skincare",
-        "description": "رغوة غنية لتنظيف المسام.",
-        "images": ["images/skin_foam_1.jpg", "images/skin_foam_2.jpg", "images/skin_foam_3.jpg"],
-        "sizes": { "5ml": 350, "10ml": 700, "15ml": 1050, "20ml": 1400, "30ml": 2100 },
-        "shades": [],
-        "rating": 4.7,
-        "isNew": false
-      },
-      {
-        "id": "s4",
         "name": "سيروم برايتننج سكين 1004 سنتيلا",
-        "category": "skincare",
-        "description": "لتفتيح ونضارة البشرة.",
-        "images": ["images/skin_serum_1.jpg", "images/skin_serum_2.jpg", "images/skin_serum_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720, "50ml": 1200 },
-        "shades": [],
-        "rating": 4.8,
-        "isNew": true
+        "description": "سيروم برايتننج سكين 1004 سنتيلا",
+        "images": ["images/brightening-serum-skin1004-centella.jpg"],
+        "sizes": {
+          "10ml": 220,
+          "15ml": 330,
+          "20ml": 420,
+          "30ml": 640
+        }
       }
     ],
     "perfume": [
       {
         "id": "p1",
-        "name": "Arrogate Pink",
-        "category": "perfume",
-        "description": "عطر أرجات الوردي، أنوثة طاغية.",
-        "images": ["images/perfume_arrogate_p_1.jpg", "images/perfume_arrogate_p_2.jpg", "images/perfume_arrogate_p_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
-        "rating": 4.8,
-        "isNew": false
+        "name": "arrogate pink",
+        "description": "عطر اروجيت بينك",
+        "images": ["images/arrogate-pink.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
       },
       {
         "id": "p2",
-        "name": "Arrogate Girl",
-        "category": "perfume",
-        "description": "عطر أرجات جيرل، للحظات المميزة.",
-        "images": ["images/perfume_arrogate_g_1.jpg", "images/perfume_arrogate_g_2.jpg", "images/perfume_arrogate_g_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
-        "rating": 4.7,
-        "isNew": false
+        "name": "arrogate girl",
+        "description": "عطر اروجيت جيرل",
+        "images": ["images/arrogate-girl.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
       },
       {
         "id": "p3",
-        "name": "La Belle",
-        "category": "perfume",
-        "description": "جان بول غوتييه لا بيل.",
-        "images": ["images/perfume_labelle_1.jpg", "images/perfume_labelle_2.jpg", "images/perfume_labelle_3.jpg"],
-        "sizes": { "5ml": 350, "10ml": 700, "15ml": 1050, "20ml": 1400, "30ml": 2100 },
-        "rating": 4.9,
-        "isNew": false
+        "name": "la belle",
+        "description": "عطر لا بيل",
+        "images": ["images/la-belle.jpg"],
+        "sizes": {
+          "5ml": 350,
+          "10ml": 700,
+          "20ml": 1350
+        }
       },
       {
         "id": "p4",
-        "name": "Marshmallow Blush",
-        "category": "perfume",
-        "description": "رائحة المارشميلو الناعمة.",
-        "images": ["images/perfume_marshmallow_1.jpg", "images/perfume_marshmallow_2.jpg", "images/perfume_marshmallow_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
-        "rating": 4.6,
-        "isNew": true
+        "name": "marshmallow blush",
+        "description": "عطر مارشملو بلاش",
+        "images": ["images/marshmallow-blush.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
       },
       {
         "id": "p5",
-        "name": "Pink Diamond Sakura",
-        "category": "perfume",
-        "description": "عبير زهور الساكورا المنعش.",
-        "images": ["images/perfume_sakura_1.jpg", "images/perfume_sakura_2.jpg", "images/perfume_sakura_3.jpg"],
-        "sizes": { "5ml": 130, "10ml": 260, "15ml": 390, "20ml": 520, "30ml": 780 },
-        "rating": 4.7,
-        "isNew": false
+        "name": "pink diamond sakura",
+        "description": "عطر بينك دايموند ساكورا",
+        "images": ["images/pink-diamond-sakura.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
       },
       {
         "id": "p6",
-        "name": "Prada Paradoxe",
-        "category": "perfume",
-        "description": "برادا بارادوكس، تناقض جذاب.",
-        "images": ["images/perfume_prada_1.jpg", "images/perfume_prada_2.jpg", "images/perfume_prada_3.jpg"],
-        "sizes": { "5ml": 420, "10ml": 840, "15ml": 1260, "20ml": 1680, "30ml": 2520 },
-        "rating": 4.9,
-        "isNew": false
+        "name": "prada pardoxe",
+        "description": "عطر برادا بارادوكس",
+        "images": ["images/prada-pardoxe.jpg"],
+        "sizes": {
+          "5ml": 400,
+          "10ml": 800,
+          "20ml": 1600
+        }
       },
       {
         "id": "p7",
-        "name": "Sense",
-        "category": "perfume",
-        "description": "عطر سينس.",
-        "images": ["images/perfume_sense_1.jpg", "images/perfume_sense_2.jpg", "images/perfume_sense_3.jpg"],
-        "sizes": { "5ml": 110, "10ml": 220, "15ml": 330, "20ml": 440, "30ml": 660 },
-        "rating": 4.5,
-        "isNew": false
+        "name": "sense",
+        "description": "عطر سينس",
+        "images": ["images/sense.jpg"],
+        "sizes": {
+          "5ml": 250,
+          "10ml": 500,
+          "20ml": 1000
+        }
       },
       {
         "id": "p8",
-        "name": "خمرة (Khamrah)",
-        "category": "perfume",
-        "description": "عطر خمرة من لطافة.",
-        "images": ["images/perfume_khamrah_1.jpg", "images/perfume_khamrah_2.jpg", "images/perfume_khamrah_3.jpg"],
-        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
-        "rating": 4.8,
-        "isNew": false
+        "name": "خمره",
+        "description": "عطر خمره",
+        "images": ["images/khomrah.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
       },
       {
         "id": "p9",
-        "name": "خمرة قهوة (Qahwa)",
-        "category": "perfume",
-        "description": "عطر خمرة بنفحات القهوة.",
-        "images": ["images/perfume_khamrah_q_1.jpg", "images/perfume_khamrah_q_2.jpg", "images/perfume_khamrah_q_3.jpg"],
+        "name": "خمره قهوه",
+        "description": "عطر خمره قهوه",
+        "images": ["images/khomrah-coffee.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
+      },
+      {
+        "id": "p10",
+        "name": "اميره العرب",
+        "description": "عطر اميرة العرب",
+        "images": ["images/princess-of-arabs.jpg"],
+        "sizes": {
+          "5ml": 90,
+          "10ml": 170,
+          "20ml": 340
+        }
+      },
+      {
+        "id": "p11",
+        "name": "اميره العرب برايف روز",
+        "description": "عطر اميرة العرب برايف روز",
+        "images": ["images/princess-of-arabs-private-rose.jpg"],
+        "sizes": {
+          "5ml": 90,
+          "10ml": 170,
+          "20ml": 340
+        }
+      },
+      {
+        "id": "p12",
+        "name": "مهره",
+        "description": "عطر مهره",
+        "images": ["images/mohrah.jpg"],
+        "sizes": {
+          "5ml": 90,
+          "10ml": 170,
+          "20ml": 340
+        }
+      },
+      {
+        "id": "p13",
+        "name": "يارا بينك",
+        "description": "عطر يارا بينك",
+        "images": ["images/yara-pink.jpg"],
+        "sizes": {
+          "5ml": 110,
+          "10ml": 200,
+          "20ml": 400
+        }
+      },
+      {
+        "id": "p14",
+        "name": "يارا كاندي",
+        "description": "عطر يارا كاندي",
+        "images": ["images/yara-candy.jpg"],
+        "sizes": {
+          "5ml": 110,
+          "10ml": 200,
+          "20ml": 400
+        }
+      },
+      {
+        "id": "p15",
+        "name": "مسك الرمان إبراهيم القرشي",
+        "description": "مسك الرمان إبراهيم القرشي",
+        "images": ["images/misk-al-rumman-ibrahim-al-qurashi.jpg"],
+        "sizes": {
+          "5ml": 200,
+          "10ml": 400
+        }
+      },
+      {
+        "id": "p16",
+        "name": "اكلاير",
+        "description": "عطر اكلاير",
+        "images": ["images/eclair.jpg"],
+        "sizes": {
+          "5ml": 150,
+          "10ml": 300,
+          "20ml": 600
+        }
+      },
+      {
+        "id": "p17",
+        "name": "valentino intense",
+        "description": "عطر فالنتينو إنتينس",
+        "images": ["images/valentino-intense.jpg"],
+        "sizes": {
+          "5ml": 400,
+          "10ml": 800,
+          "20ml": 1600
+        }
+      },
+      {
+        "id": "p18",
+        "name": "Billie Eilish",
+        "description": "عطر بيلي ايليش",
+        "images": ["images/billie-eilish.jpg"],
+        "sizes": {
+          "5ml": 200,
+          "10ml": 400,
+          "20ml": 800
+        }
+      },
+      {
+        "id": "p19",
+        "name": "pink lady",
+        "description": "عطر بينك ليدي",
+        "images": ["images/pink-lady.jpg"],
+        "sizes": {
+          "5ml": 120,
+          "10ml": 240,
+          "20ml": 480
+        }
+      },
+      {
+        "id": "p20",
+        "name": "hypnotic poison",
+        "description": "عطر هيبنوتيك بويسون",
+        "images": ["images/hypnotic-poison.jpg"],
+        "sizes": {
+          "5ml": 400,
+          "10ml": 800,
+          "20ml": 1600
+        }
+      }
+    ]
+  }
+}erfume_khamrah_q_3.jpg"],
         "sizes": { "5ml": 130, "10ml": 260, "15ml": 390, "20ml": 520, "30ml": 780 },
         "rating": 4.8,
         "isNew": true
