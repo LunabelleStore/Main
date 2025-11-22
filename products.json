@@ -150,7 +150,7 @@
         "category": "skincare",
         "description": "ترطيب عميق وخفيف على البشرة.",
         "images": ["images/skin_clinique_1.jpg", "images/skin_clinique_2.jpg", "images/skin_clinique_3.jpg"],
-        "sizes": {},
+        "sizes": { "5ml": 120 },
         "shades": [],
         "rating": 4.8,
         "isNew": false
@@ -161,7 +161,7 @@
         "category": "skincare",
         "description": "تنظيف عميق وإزالة المكياج بلطف.",
         "images": ["images/skin_oil_1.jpg", "images/skin_oil_2.jpg", "images/skin_oil_3.jpg"],
-        "sizes": { "1ml": 340 },
+        "sizes": { "5ml": 120 },
         "shades": [],
         "rating": 4.7,
         "isNew": false
@@ -172,7 +172,7 @@
         "category": "skincare",
         "description": "رغوة غنية لتنظيف المسام.",
         "images": ["images/skin_foam_1.jpg", "images/skin_foam_2.jpg", "images/skin_foam_3.jpg"],
-        "sizes": {},
+        "sizes": { "5ml": 350 },
         "shades": [],
         "rating": 4.7,
         "isNew": false
@@ -183,7 +183,7 @@
         "category": "skincare",
         "description": "لتفتيح ونضارة البشرة.",
         "images": ["images/skin_serum_1.jpg", "images/skin_serum_2.jpg", "images/skin_serum_3.jpg"],
-        "sizes": {},
+        "sizes": { "5ml": 120 },
         "shades": [],
         "rating": 4.8,
         "isNew": true
@@ -336,7 +336,7 @@
         "category": "perfume",
         "description": "مسك الرمان الفاخر.",
         "images": ["images/perfume_musk_1.jpg", "images/perfume_musk_2.jpg", "images/perfume_musk_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "1ml": 360 },
         "rating": 5.0,
         "isNew": false
       },
@@ -346,7 +346,7 @@
         "category": "perfume",
         "description": "عطر إكلاير.",
         "images": ["images/perfume_eclaire_1.jpg", "images/perfume_eclaire_2.jpg", "images/perfume_eclaire_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "1ml": 340 },
         "rating": 4.7,
         "isNew": false
       },
@@ -366,7 +366,7 @@
         "category": "perfume",
         "description": "عطر بيلي إيليش.",
         "images": ["images/perfume_billie_1.jpg", "images/perfume_billie_2.jpg", "images/perfume_billie_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 350 },
         "rating": 4.8,
         "isNew": false
       },
