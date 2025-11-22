@@ -150,7 +150,7 @@
         "category": "skincare",
         "description": "ترطيب عميق وخفيف على البشرة.",
         "images": ["images/skin_clinique_1.jpg", "images/skin_clinique_2.jpg", "images/skin_clinique_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720, "50ml": 1200 },
         "shades": [],
         "rating": 4.8,
         "isNew": false
@@ -161,7 +161,7 @@
         "category": "skincare",
         "description": "تنظيف عميق وإزالة المكياج بلطف.",
         "images": ["images/skin_oil_1.jpg", "images/skin_oil_2.jpg", "images/skin_oil_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720, "50ml": 1200 },
         "shades": [],
         "rating": 4.7,
         "isNew": false
@@ -172,7 +172,7 @@
         "category": "skincare",
         "description": "رغوة غنية لتنظيف المسام.",
         "images": ["images/skin_foam_1.jpg", "images/skin_foam_2.jpg", "images/skin_foam_3.jpg"],
-        "sizes": { "5ml": 350 },
+        "sizes": { "5ml": 350, "10ml": 700, "15ml": 1050, "20ml": 1400, "30ml": 2100 },
         "shades": [],
         "rating": 4.7,
         "isNew": false
@@ -183,7 +183,7 @@
         "category": "skincare",
         "description": "لتفتيح ونضارة البشرة.",
         "images": ["images/skin_serum_1.jpg", "images/skin_serum_2.jpg", "images/skin_serum_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720, "50ml": 1200 },
         "shades": [],
         "rating": 4.8,
         "isNew": true
@@ -196,7 +196,7 @@
         "category": "perfume",
         "description": "عطر أرجات الوردي، أنوثة طاغية.",
         "images": ["images/perfume_arrogate_p_1.jpg", "images/perfume_arrogate_p_2.jpg", "images/perfume_arrogate_p_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
         "rating": 4.8,
         "isNew": false
       },
@@ -206,7 +206,7 @@
         "category": "perfume",
         "description": "عطر أرجات جيرل، للحظات المميزة.",
         "images": ["images/perfume_arrogate_g_1.jpg", "images/perfume_arrogate_g_2.jpg", "images/perfume_arrogate_g_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
         "rating": 4.7,
         "isNew": false
       },
@@ -216,7 +216,7 @@
         "category": "perfume",
         "description": "جان بول غوتييه لا بيل.",
         "images": ["images/perfume_labelle_1.jpg", "images/perfume_labelle_2.jpg", "images/perfume_labelle_3.jpg"],
-        "sizes": { "5ml": 350 },
+        "sizes": { "5ml": 350, "10ml": 700, "15ml": 1050, "20ml": 1400, "30ml": 2100 },
         "rating": 4.9,
         "isNew": false
       },
@@ -226,7 +226,7 @@
         "category": "perfume",
         "description": "رائحة المارشميلو الناعمة.",
         "images": ["images/perfume_marshmallow_1.jpg", "images/perfume_marshmallow_2.jpg", "images/perfume_marshmallow_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
         "rating": 4.6,
         "isNew": true
       },
@@ -236,7 +236,7 @@
         "category": "perfume",
         "description": "عبير زهور الساكورا المنعش.",
         "images": ["images/perfume_sakura_1.jpg", "images/perfume_sakura_2.jpg", "images/perfume_sakura_3.jpg"],
-        "sizes": { "5ml": 130 },
+        "sizes": { "5ml": 130, "10ml": 260, "15ml": 390, "20ml": 520, "30ml": 780 },
         "rating": 4.7,
         "isNew": false
       },
@@ -246,7 +246,7 @@
         "category": "perfume",
         "description": "برادا بارادوكس، تناقض جذاب.",
         "images": ["images/perfume_prada_1.jpg", "images/perfume_prada_2.jpg", "images/perfume_prada_3.jpg"],
-        "sizes": { "5ml": 420 },
+        "sizes": { "5ml": 420, "10ml": 840, "15ml": 1260, "20ml": 1680, "30ml": 2520 },
         "rating": 4.9,
         "isNew": false
       },
@@ -256,7 +256,7 @@
         "category": "perfume",
         "description": "عطر سينس.",
         "images": ["images/perfume_sense_1.jpg", "images/perfume_sense_2.jpg", "images/perfume_sense_3.jpg"],
-        "sizes": { "5ml": 110 },
+        "sizes": { "5ml": 110, "10ml": 220, "15ml": 330, "20ml": 440, "30ml": 660 },
         "rating": 4.5,
         "isNew": false
       },
@@ -266,7 +266,7 @@
         "category": "perfume",
         "description": "عطر خمرة من لطافة.",
         "images": ["images/perfume_khamrah_1.jpg", "images/perfume_khamrah_2.jpg", "images/perfume_khamrah_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
         "rating": 4.8,
         "isNew": false
       },
@@ -276,7 +276,7 @@
         "category": "perfume",
         "description": "عطر خمرة بنفحات القهوة.",
         "images": ["images/perfume_khamrah_q_1.jpg", "images/perfume_khamrah_q_2.jpg", "images/perfume_khamrah_q_3.jpg"],
-        "sizes": { "5ml": 130 },
+        "sizes": { "5ml": 130, "10ml": 260, "15ml": 390, "20ml": 520, "30ml": 780 },
         "rating": 4.8,
         "isNew": true
       },
@@ -286,7 +286,7 @@
         "category": "perfume",
         "description": "عطر أميرة العرب الأصلي.",
         "images": ["images/perfume_ameera_1.jpg", "images/perfume_ameera_2.jpg", "images/perfume_ameera_3.jpg"],
-        "sizes": { "5ml": 100 },
+        "sizes": { "5ml": 100, "10ml": 200, "15ml": 300, "20ml": 400, "30ml": 600 },
         "rating": 4.6,
         "isNew": false
       },
@@ -296,7 +296,7 @@
         "category": "perfume",
         "description": "نسخة البرايف روز الفاخرة.",
         "images": ["images/perfume_ameera_prive_1.jpg", "images/perfume_ameera_prive_2.jpg", "images/perfume_ameera_prive_3.jpg"],
-        "sizes": { "5ml": 110 },
+        "sizes": { "5ml": 110, "10ml": 220, "15ml": 330, "20ml": 440, "30ml": 660 },
         "rating": 4.7,
         "isNew": true
       },
@@ -306,7 +306,7 @@
         "category": "perfume",
         "description": "عطر مهرة من لطافة.",
         "images": ["images/perfume_mahra_1.jpg", "images/perfume_mahra_2.jpg", "images/perfume_mahra_3.jpg"],
-        "sizes": { "5ml": 130 },
+        "sizes": { "5ml": 130, "10ml": 260, "15ml": 390, "20ml": 520, "30ml": 780 },
         "rating": 4.7,
         "isNew": false
       },
@@ -316,7 +316,7 @@
         "category": "perfume",
         "description": "عطر يارا الوردي المشهور.",
         "images": ["images/perfume_yara_pink_1.jpg", "images/perfume_yara_pink_2.jpg", "images/perfume_yara_pink_3.jpg"],
-        "sizes": { "5ml": 90 },
+        "sizes": { "5ml": 90, "10ml": 180, "15ml": 270, "20ml": 360, "30ml": 540 },
         "rating": 4.9,
         "isNew": false
       },
@@ -326,7 +326,7 @@
         "category": "perfume",
         "description": "عطر يارا كاندي الجديد.",
         "images": ["images/perfume_yara_candy_1.jpg", "images/perfume_yara_candy_2.jpg", "images/perfume_yara_candy_3.jpg"],
-        "sizes": { "5ml": 90 },
+        "sizes": { "5ml": 90, "10ml": 180, "15ml": 270, "20ml": 360, "30ml": 540 },
         "rating": 4.8,
         "isNew": true
       },
@@ -336,7 +336,7 @@
         "category": "perfume",
         "description": "مسك الرمان الفاخر.",
         "images": ["images/perfume_musk_1.jpg", "images/perfume_musk_2.jpg", "images/perfume_musk_3.jpg"],
-        "sizes": { "1ml": 360 },
+        "sizes": { "1ml": 360, "2ml": 720, "3ml": 1080, "5ml": 1800 },
         "rating": 5.0,
         "isNew": false
       },
@@ -346,7 +346,7 @@
         "category": "perfume",
         "description": "عطر إكلاير.",
         "images": ["images/perfume_eclaire_1.jpg", "images/perfume_eclaire_2.jpg", "images/perfume_eclaire_3.jpg"],
-        "sizes": { "1ml": 340 },
+        "sizes": { "1ml": 340, "2ml": 680, "3ml": 1020, "5ml": 1700 },
         "rating": 4.7,
         "isNew": false
       },
@@ -356,7 +356,7 @@
         "category": "perfume",
         "description": "فالنتينو انتنس.",
         "images": ["images/perfume_valentino_1.jpg", "images/perfume_valentino_2.jpg", "images/perfume_valentino_3.jpg"],
-        "sizes": { "5ml": 350 },
+        "sizes": { "5ml": 350, "10ml": 700, "15ml": 1050, "20ml": 1400, "30ml": 2100 },
         "rating": 4.9,
         "isNew": false
       },
@@ -366,7 +366,7 @@
         "category": "perfume",
         "description": "عطر بيلي إيليش.",
         "images": ["images/perfume_billie_1.jpg", "images/perfume_billie_2.jpg", "images/perfume_billie_3.jpg"],
-        "sizes": { "5ml": 350 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
         "rating": 4.8,
         "isNew": false
       },
@@ -376,7 +376,7 @@
         "category": "perfume",
         "description": "عطر بينك ليدي.",
         "images": ["images/perfume_pink_lady_1.jpg", "images/perfume_pink_lady_2.jpg", "images/perfume_pink_lady_3.jpg"],
-        "sizes": { "5ml": 120 },
+        "sizes": { "5ml": 120, "10ml": 240, "15ml": 360, "20ml": 480, "30ml": 720 },
         "rating": 4.6,
         "isNew": true
       },
@@ -386,12 +386,10 @@
         "category": "perfume",
         "description": "ديور هيبنوتيك بويزون.",
         "images": ["images/perfume_hypnotic_1.jpg", "images/perfume_hypnotic_2.jpg", "images/perfume_hypnotic_3.jpg"],
-        "sizes": { "5ml": 450 },
+        "sizes": { "5ml": 450, "10ml": 900, "15ml": 1350, "20ml": 1800, "30ml": 2700 },
         "rating": 4.9,
         "isNew": false
       }
     ]
   }
 }
-
-
