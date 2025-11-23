@@ -8,7 +8,6 @@
   <title>Lunabelle - متجر عطور ومستحضرات تجميل فاخرة</title>
   <meta name="description" content="تجربة تسوق فاخرة للعطور ومستحضرات التجميل.">
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,12 +32,10 @@
     }
   </script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-  <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 
   <style>
@@ -154,38 +151,30 @@
 <body class="bg-[#fdf2f8] text-slate-900 font-sans">
   <div id="app" class="min-h-screen flex flex-col">
     
-    <!-- Header -->
     <header class="bg-white/80 backdrop-blur border-b border-rose-100 sticky top-0 z-40">
       <div class="container mx-auto px-4 lg:px-8">
-        <!-- flex-row-reverse makes the first child (Logo) go to the LEFT in RTL -->
         <div class="flex items-center justify-between py-3 lg:py-4 flex-row-reverse">
           
-          <!-- 1. Logo Section (Left) -->
           <a href="#" data-nav="home" class="flex items-center gap-3">
-            <!-- Logo Image: Loaded from JS via products.json config -->
             <img id="mainLogo"
-                 src="images/Logo.jpg" 
+                 src="images/logo.jpg" 
                  alt="Lunabelle" 
                  class="w-16 h-16 rounded-full object-cover border-2 border-rose-100 shadow-sm"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <!-- Fallback if image not found -->
             <div class="w-16 h-16 rounded-full bg-rose-600 hidden items-center justify-center text-white font-bold text-xl shadow-sm border-2 border-white">LB</div>
           </a>
 
-          <!-- 2. Desktop Nav (Center) - Removed "المتجر" -->
           <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
             <button data-nav="home" class="nav-link text-slate-700 hover:text-rose-600 transition">الرئيسية</button>
             <button data-nav="about" class="nav-link text-slate-700 hover:text-rose-600 transition">من نحن</button>
             <button data-nav="contact" class="nav-link text-slate-700 hover:text-rose-600 transition">تواصل معنا</button>
           </nav>
 
-          <!-- 3. Icons Section (Right) -->
           <div class="flex items-center gap-3">
             <button id="cartToggle" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-rose-900 text-rose-100 hover:bg-rose-800 transition">
               <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
               <span id="cartCount" class="absolute -top-1 -left-1 min-w-[18px] h-[18px] rounded-full bg-rose-500 text-[10px] text-white flex items-center justify-center font-bold shadow-sm">0</span>
             </button>
-            <!-- Mobile Menu Button -->
             <button id="mobileMenuToggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-rose-200 text-rose-600">
               <span class="material-symbols-outlined text-[22px]">menu</span>
             </button>
@@ -193,7 +182,6 @@
 
         </div>
 
-        <!-- Mobile Nav -->
         <nav id="mobileNav" class="md:hidden hidden pb-3 px-4 border-t border-rose-100 mt-2 pt-2 text-sm">
           <div class="flex flex-col gap-2">
             <button data-nav="home" class="nav-link w-full text-right py-2 text-slate-700">الرئيسية</button>
@@ -206,20 +194,16 @@
 
     <main class="flex-1">
 
-      <!-- Home Page Section -->
       <section id="page-home" class="page-section">
-        <!-- Hero Categories (Loaded from JSON) -->
         <div id="heroSection" class="container mx-auto px-4 lg:px-8 py-10 lg:py-16">
           <div class="text-center mb-10 lg:mb-12 bg-white/60 backdrop-blur-sm p-6 rounded-2xl inline-block mx-auto shadow-sm">
             <h1 class="text-3xl lg:text-4xl font-extrabold text-rose-950 mb-2">اكتشفي عالم الجمال</h1>
             <p class="text-lg text-rose-800/80">تسوقي من مجموعاتنا الفاخرة من العطور، المكياج، والعناية بالبشرة.</p>
           </div>
           <div id="heroCategoriesContainer" class="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 lg:gap-8 lg:overflow-visible pb-4 lg:pb-0 no-scrollbar">
-            <!-- Injected via JS -->
-          </div>
+            </div>
         </div>
 
-        <!-- About Us -->
         <div id="section-about" class="bg-rose-50/50 py-16 lg:py-24 border-t border-rose-100">
           <div class="container mx-auto px-4 text-center max-w-2xl">
              <span class="text-rose-600 font-bold text-sm mb-2 block tracking-widest">عن لونابيل</span>
@@ -230,30 +214,24 @@
           </div>
         </div>
 
-        <!-- Contact -->
         <div id="section-contact" class="bg-white py-16 lg:py-24 border-t border-rose-100">
           <div class="container mx-auto px-4 text-center max-w-lg">
             <span class="text-rose-600 font-bold text-sm mb-2 block tracking-widest">ابقي على تواصل</span>
             <h2 class="text-3xl lg:text-4xl font-extrabold mb-6 text-slate-900">تواصل معنا</h2>
             
             <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <!-- Whatsapp -->
                 <a href="https://wa.me/201001120329" target="_blank" class="social-icon hover-whatsapp" title="WhatsApp">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.698c1.009.55 2.18.895 3.422.895 3.178 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.768-5.768-5.768zm0-2c4.271 0 7.761 3.527 7.768 7.882 0 4.309-3.48 7.81-7.772 7.812-1.364.002-2.635-.35-3.737-1.049l-4.29.989.987-4.176c-.641-1.12-1.022-2.364-1.022-3.732 0-4.297 3.476-7.793 7.766-7.793l.304.007zm3.984 10.18c-.212-.107-1.254-.622-1.447-.695-.194-.072-.334-.109-.474.107-.141.214-.542.696-.665.838-.122.144-.246.16-.458.055-.212-.107-.896-.332-1.708-1.058-.631-.564-1.058-1.262-1.182-1.476-.123-.214-.013-.33.093-.436.097-.096.212-.249.318-.374.106-.124.141-.213.212-.355.07-.144.035-.267-.018-.374-.053-.107-.474-1.145-.649-1.568-.171-.413-.345-.357-.474-.364l-.403-.007c-.14 0-.369.054-.562.267-.193.213-.736.718-.736 1.752 0 1.034.754 2.032.859 2.173.106.143 1.483 2.274 3.596 3.184 1.769.762 2.128.61 2.516.572.388-.038 1.254-.513 1.429-1.007.175-.495.175-.918.123-1.007-.052-.089-.193-.143-.405-.25z"/></svg>
                 </a>
-                <!-- Instagram -->
                 <a href="https://www.instagram.com/lunabelle.perfumes" target="_blank" class="social-icon hover-instagram" title="Instagram">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <!-- Facebook -->
                 <a href="https://www.facebook.com/people/lunabelle/61573079371279/" target="_blank" class="social-icon hover-facebook" title="Facebook">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
-                <!-- Tiktok -->
                 <a href="https://www.tiktok.com/@fatma_perfume" target="_blank" class="social-icon hover-tiktok" title="TikTok">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                 </a>
-                <!-- YouTube -->
                 <a href="https://youtube.com/@lunabelle_store" target="_blank" class="social-icon hover-youtube" title="YouTube">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
@@ -262,7 +240,6 @@
         </div>
       </section>
 
-      <!-- Shop Page Section (Hidden) -->
       <section id="page-shop" class="page-section bg-white border-b border-rose-100 hidden">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
@@ -276,7 +253,6 @@
             </button>
           </div>
 
-          <!-- Filters -->
           <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-5 text-xs">
             <div class="flex flex-wrap items-center gap-2">
                <button class="shop-tab" data-shop-tab="perfume">عطور</button>
@@ -306,14 +282,12 @@
             </div>
           </div>
 
-          <!-- Products Grid -->
           <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5 min-h-[300px]"></div>
         </div>
       </section>
 
     </main>
 
-    <!-- Drawers & Modals -->
     <section id="productDrawer" class="fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col">
       <div class="flex items-center justify-between px-4 py-3 border-b border-rose-100 bg-white/95">
         <div class="flex items-center gap-2">
@@ -345,7 +319,6 @@
       </div>
     </aside>
 
-    <!-- Checkout Modal -->
     <div id="checkoutModal" class="fixed inset-0 z-[60] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200">
         <div class="bg-white w-full max-w-md mx-4 rounded-2xl shadow-2xl border border-rose-100 p-6 relative">
             <button id="closeCheckoutModal" class="absolute top-4 left-4 text-rose-400 hover:text-rose-700"><span class="material-symbols-outlined">close</span></button>
@@ -370,7 +343,6 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
     <div id="successModal" class="fixed inset-0 z-[70] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200">
         <div class="bg-white w-full max-w-sm mx-4 rounded-2xl shadow-2xl border border-rose-100 p-8 text-center">
             <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -454,7 +426,13 @@
       
       // 1. & 2. Apply Config (Logo & Background)
       if(data.config) {
-          if(data.config.logo) mainLogoEl.src = data.config.logo;
+          if(data.config.logo) {
+              mainLogoEl.src = data.config.logo;
+              // Force display incase onerror hid it previously
+              mainLogoEl.style.display = 'block';
+              // Hide fallback
+              if(mainLogoEl.nextElementSibling) mainLogoEl.nextElementSibling.style.display = 'none';
+          }
           if(data.config.hero_background) {
               heroSectionEl.style.backgroundImage = `url('${data.config.hero_background}')`;
           }
@@ -561,9 +539,6 @@
         } else {
             // Restore View
             showView(state.view || 'home');
-
-            // Restore Drawer if present in state (unlikely on back, but good for forward)
-            // Usually back button removes the drawer state, so we just closed them above.
         }
     });
 
@@ -942,4 +917,3 @@
   </script>
 </body>
 </html>
-
