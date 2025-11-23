@@ -1,8 +1,4 @@
 {
-  "config": {
-    "logo": "images/logo.jpg",
-    "hero_background": "images/heading.jpg"
-  },
   "hero_categories": [
     {
       "id": "perfume",
@@ -173,6 +169,27 @@
           "1ml": 340,
           "2ml": 680
         }
+      },
+      {
+        "id": "m13",
+        "name": "باكيدج ميني ميك اب هدي بيوتي",
+        "description": "باكيدج ميني ميك اب هدي بيوتي",
+        "images": ["images/m131.jpg", "images/m132.jpg", "images/m133.jpg"],
+        "sizes": {}
+      },
+      {
+        "id": "m14",
+        "name": "باكيدج ميك اب كامل",
+        "description": "باكيدج ميك اب كامل",
+        "images": ["images/m141.jpg", "images/m142.jpg", "images/m143.jpg"],
+        "sizes": {}
+      },
+      {
+        "id": "m15",
+        "name": "ليب جلوس هدي بيوتي",
+        "description": "ليب جلوس هدي بيوتي",
+        "images": ["images/m151.jpg", "images/m152.jpg", "images/m153.jpg"],
+        "sizes": {}
       }
     ],
     "skincare": [
@@ -211,6 +228,13 @@
           "20ml": 420,
           "30ml": 640
         }
+      },
+      {
+        "id": "s4",
+        "name": "باكيدج سنتيلا سكين 1004",
+        "description": "باكيدج سنتيلا سكين 1004",
+        "images": ["images/s41.jpg", "images/s42.jpg", "images/s43.jpg"],
+        "sizes": {}
       }
     ],
     "perfume": [
@@ -435,4 +459,4 @@
       }
     ]
   }
-      }
+}
