@@ -17,25 +17,25 @@
             sans: ['Tajawal', 'sans-serif'],
           },
           colors: {
-            // New "Rose Gold" & "Champagne" Palette
+            // "Rose Gold" & "Champagne" Palette
             luna: {
-              50: '#fdf8f6',  // Very light cream/pink
+              50: '#fdf8f6',  
               100: '#fbeee6',
-              200: '#f6dcd3', // Soft peach
+              200: '#f6dcd3', 
               300: '#efb8a5',
               400: '#e58e73',
               500: '#d9644c',
               600: '#c2412e',
-              700: '#a33024', // Deep warm red/brown
+              700: '#a33024',
               800: '#872a23',
               900: '#712623',
-              gold: '#D4AF37', // Classic Gold
+              gold: '#D4AF37', 
               'gold-light': '#F3E5AB',
               'gold-dark': '#AA8C2C',
               'rose-gold': '#B76E79',
             },
             slate: {
-              850: '#1f2937', // Softer black
+              850: '#1f2937', 
             }
           }
         }
@@ -183,7 +183,7 @@
     .gallery-container { position: relative; overflow: hidden; border-radius: 1rem; background: #f9f9f9; }
     .gallery-slide { display: flex; transition: transform 0.3s ease-out; height: 100%; }
     .gallery-img { 
-        min-width: 100%; height: 100%; object-fit: contain; /* Changed to contain to see full product */
+        min-width: 100%; height: 100%; object-fit: contain;
         background: #fff;
     }
     .gallery-nav-btn {
@@ -223,12 +223,10 @@
 <body class="bg-luna-50 text-slate-800 font-sans">
   <div id="app" class="min-h-screen flex flex-col">
     
-    <!-- HEADER -->
     <header class="bg-white/90 backdrop-blur-md border-b border-luna-200 sticky top-0 z-40 h-[85px] shadow-sm">
       <div class="container mx-auto px-4 lg:px-8 h-full relative">
         <div class="flex items-center justify-between h-full">
           
-          <!-- RIGHT SECTION (Search & Nav) -->
           <div class="flex items-center gap-4 lg:gap-6">
             <button id="mobileMenuToggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-luna-50 text-luna-800 hover:bg-luna-100 transition">
               <span class="material-symbols-outlined text-[24px]">menu</span>
@@ -252,12 +250,11 @@
             </div>
           </div>
 
-          <!-- CENTER SECTION (Logo) -->
           <div class="absolute left-1/2 top-0 transform -translate-x-1/2 z-50 mt-2">
             <a href="#" data-nav="home" class="block group relative">
               <div class="absolute inset-0 bg-white rounded-full blur-md opacity-50 group-hover:opacity-80 transition"></div>
               <img id="mainLogo"
-                   src="logo.jpg" 
+                   src="images/logo.jpg" 
                    alt="Lunabelle" 
                    class="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-500 relative z-10"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -265,7 +262,6 @@
             </a>
           </div>
 
-          <!-- LEFT SECTION (Cart) -->
           <div class="flex items-center gap-3">
             <button id="cartToggle" class="relative flex items-center justify-center w-11 h-11 rounded-full text-luna-800 hover:bg-luna-50 border border-transparent hover:border-luna-100 transition group">
               <span class="material-symbols-outlined text-[26px] group-hover:text-luna-gold transition-colors">shopping_bag</span>
@@ -274,7 +270,6 @@
           </div>
         </div>
 
-        <!-- Mobile Menu -->
         <nav id="mobileNav" class="md:hidden hidden pb-6 px-5 border-t border-luna-100 mt-0 pt-6 text-sm bg-white absolute top-full left-0 right-0 shadow-xl z-40 rounded-b-3xl">
             <div class="relative mb-5">
               <input 
@@ -297,11 +292,8 @@
 
     <main class="flex-1"> 
 
-      <!-- PAGE: HOME -->
       <section id="page-home" class="page-section fade-in-up">
         <div class="container mx-auto px-4 lg:px-8 py-8 lg:py-12 mt-4">
-          <!-- Hero Title Removed as requested -->
-          <!-- Simple Welcoming Divider -->
           <div class="flex items-center justify-center gap-4 mb-8 opacity-60">
              <div class="h-[1px] w-12 bg-luna-gold"></div>
              <span class="text-xs tracking-[0.2em] text-luna-800 uppercase">Original Store</span>
@@ -309,8 +301,7 @@
           </div>
 
           <div id="heroCategoriesContainer" class="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:gap-8">
-            <!-- Categories injected by JS -->
-          </div>
+            </div>
         </div>
 
         <div id="section-about" class="bg-white py-16 border-t border-luna-100 relative overflow-hidden">
@@ -330,7 +321,6 @@
             <h2 class="text-3xl font-bold mb-8 text-luna-900">نحن هنا لأجلك</h2>
             
             <div class="flex flex-wrap justify-center gap-6">
-                <!-- Social Icons from user file -->
                 <a href="https://wa.me/201001120329" target="_blank" class="social-icon" title="WhatsApp">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.698c1.009.55 2.18.895 3.422.895 3.178 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.768-5.768-5.768zm0-2c4.271 0 7.761 3.527 7.768 7.882 0 4.309-3.48 7.81-7.772 7.812-1.364.002-2.635-.35-3.737-1.049l-4.29.989.987-4.176c-.641-1.12-1.022-2.364-1.022-3.732 0-4.297 3.476-7.793 7.766-7.793l.304.007zm3.984 10.18c-.212-.107-1.254-.622-1.447-.695-.194-.072-.334-.109-.474.107-.141.214-.542.696-.665.838-.122.144-.246.16-.458.055-.212-.107-.896-.332-1.708-1.058-.631-.564-1.058-1.262-1.182-1.476-.123-.214-.013-.33.093-.436.097-.096.212-.249.318-.374.106-.124.141-.213.212-.355.07-.144.035-.267-.018-.374-.053-.107-.474-1.145-.649-1.568-.171-.413-.345-.357-.474-.364l-.403-.007c-.14 0-.369.054-.562.267-.193.213-.736.718-.736 1.752 0 1.034.754 2.032.859 2.173.106.143 1.483 2.274 3.596 3.184 1.769.762 2.128.61 2.516.572.388-.038 1.254-.513 1.429-1.007.175-.495.175-.918.123-1.007-.052-.089-.193-.143-.405-.25z"/></svg>
                 </a>
@@ -351,7 +341,6 @@
         </div>
       </section>
 
-      <!-- PAGE: SHOP -->
       <section id="page-shop" class="page-section hidden fade-in-up">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
@@ -361,7 +350,6 @@
             </div>
           </div>
 
-          <!-- Filters -->
           <div class="bg-white p-4 rounded-2xl shadow-sm border border-luna-100 mb-8 sticky top-[90px] z-30">
               <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 text-xs">
                 <div class="flex flex-wrap items-center gap-2">
@@ -396,36 +384,28 @@
         </div>
       </section>
 
-      <!-- PAGE: PRODUCT DETAILS (Dedicated Page) -->
       <section id="page-product" class="page-section hidden fade-in-up bg-white min-h-screen">
           <div class="container mx-auto px-4 lg:px-8 py-8 lg:py-12">
-            <!-- Breadcrumb / Back -->
             <button id="backToShopBtn" class="mb-6 flex items-center text-sm text-luna-800 hover:text-luna-gold transition font-bold">
                 <span class="material-symbols-outlined text-lg ml-1">arrow_forward</span>
                 عودة للمتجر
             </button>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-                <!-- Gallery Section -->
                 <div class="relative">
                     <div id="productGallery" class="gallery-container w-full aspect-square lg:aspect-[4/3] bg-luna-50 mb-4 relative touch-pan-y">
-                        <!-- Images injected here -->
                         <div class="gallery-wrapper h-full w-full relative overflow-hidden">
                              <div id="galleryTrack" class="gallery-slide"></div>
                         </div>
                         
-                        <!-- Navigation Arrows -->
                         <button id="galleryPrev" class="gallery-nav-btn gallery-prev hidden"><span class="material-symbols-outlined">chevron_right</span></button>
                         <button id="galleryNext" class="gallery-nav-btn gallery-next hidden"><span class="material-symbols-outlined">chevron_left</span></button>
                         
-                        <!-- Dots -->
                         <div id="galleryDots" class="gallery-dots"></div>
                     </div>
-                    <!-- Thumbnails -->
                     <div id="galleryThumbs" class="flex gap-2 overflow-x-auto pb-2 hide-scroll"></div>
                 </div>
 
-                <!-- Product Info Section -->
                 <div class="flex flex-col">
                     <div class="border-b border-luna-100 pb-6 mb-6">
                         <span id="detailCategory" class="text-xs font-bold text-luna-gold uppercase tracking-wider mb-2 block"></span>
@@ -434,10 +414,8 @@
                     </div>
 
                     <div class="space-y-6">
-                        <!-- Options -->
                         <div id="detailOptions"></div>
 
-                        <!-- Price & Add -->
                         <div class="bg-luna-50 p-6 rounded-2xl border border-luna-100 mt-4">
                             <div class="flex items-end justify-between mb-6">
                                 <div>
@@ -458,7 +436,6 @@
 
     </main>
 
-    <!-- Floating Actions -->
     <div id="scrollTopBtn" class="floating-btn" title="Scroll Top">
         <span class="material-symbols-outlined">arrow_upward</span>
     </div>
@@ -467,7 +444,6 @@
          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.698c1.009.55 2.18.895 3.422.895 3.178 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.768-5.768-5.768zm0-2c4.271 0 7.761 3.527 7.768 7.882 0 4.309-3.48 7.81-7.772 7.812-1.364.002-2.635-.35-3.737-1.049l-4.29.989.987-4.176c-.641-1.12-1.022-2.364-1.022-3.732 0-4.297 3.476-7.793 7.766-7.793l.304.007zm3.984 10.18c-.212-.107-1.254-.622-1.447-.695-.194-.072-.334-.109-.474.107-.141.214-.542.696-.665.838-.122.144-.246.16-.458.055-.212-.107-.896-.332-1.708-1.058-.631-.564-1.058-1.262-1.182-1.476-.123-.214-.013-.33.093-.436.097-.096.212-.249.318-.374.106-.124.141-.213.212-.355.07-.144.035-.267-.018-.374-.053-.107-.474-1.145-.649-1.568-.171-.413-.345-.357-.474-.364l-.403-.007c-.14 0-.369.054-.562.267-.193.213-.736.718-.736 1.752 0 1.034.754 2.032.859 2.173.106.143 1.483 2.274 3.596 3.184 1.769.762 2.128.61 2.516.572.388-.038 1.254-.513 1.429-1.007.175-.495.175-.918.123-1.007-.052-.089-.193-.143-.405-.25z"/></svg>
     </a>
 
-    <!-- CART SIDEBAR -->
     <aside id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
       <div class="flex items-center justify-between px-6 py-4 border-b border-luna-100 bg-white">
         <div class="flex items-center gap-3">
@@ -488,7 +464,6 @@
       </div>
     </aside>
 
-    <!-- CHECKOUT MODAL -->
     <div id="checkoutModal" class="fixed inset-0 z-[60] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300 px-4">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-luna-100 p-8 relative scale-95 transition-transform duration-300" id="checkoutContent">
             <button id="closeCheckoutModal" class="absolute top-4 left-4 text-luna-300 hover:text-luna-700 transition"><span class="material-symbols-outlined">close</span></button>
@@ -513,7 +488,6 @@
         </div>
     </div>
 
-    <!-- SUCCESS MODAL -->
     <div id="successModal" class="fixed inset-0 z-[70] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300 px-4">
         <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl border border-luna-100 p-8 text-center scale-95">
             <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -539,6 +513,7 @@
 
   <script>
     // --- Configuration ---
+    // PASTE YOUR FORMSPREE URL HERE
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkgegzvy"; 
 
     // Basic state
@@ -600,7 +575,7 @@
 
     const formatPrice = (value) => `${value.toLocaleString('ar-EG')} جنيه`;
 
-    // --- Fetch Data ---
+    // --- Fetch Data from JSON ---
     async function fetchData() {
       let data;
       try {
@@ -612,7 +587,7 @@
         data = { hero_categories: [], products: {}, config: {} }; 
       }
       
-      // Config (Logo)
+      // 1. & 2. Apply Config (Logo & Background)
       if(data.config && data.config.logo) {
           mainLogoEl.src = data.config.logo;
           mainLogoEl.style.display = 'block';
@@ -629,7 +604,7 @@
             items.forEach(item => {
               item.category = category;
               if(!item.images && item.image) item.images = [item.image];
-              // Ensure images array exists
+              // Ensure images array exists and valid
               if(!item.images) item.images = ['images/placeholder.jpg'];
               const prices = Object.values(item.sizes);
               item.basePrice = Math.min(...prices); 
@@ -660,6 +635,7 @@
             </a>
         `).join('');
 
+        // Re-attach listeners to dynamic category cards
         document.querySelectorAll('[data-navigate-shop]').forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -670,6 +646,8 @@
     }
 
     // --- Navigation System ---
+    
+    // Helper to switch views
     function showView(viewName) {
         // Hide all views
         ['page-home', 'page-shop', 'page-product'].forEach(id => {
@@ -707,6 +685,7 @@
         history.pushState({ view: view, data: data }, '', '');
     }
 
+    // Handle Browser Back Button
     window.addEventListener('popstate', (event) => {
         // Close modals first if open
         if(cartSidebarEl.style.transform === 'translateX(0px)') {
@@ -916,7 +895,7 @@
         // Add to Cart Action
         detailAddToCart.onclick = () => {
             addToCart(product, selectedSize, product.sizes[selectedSize], selectedShade);
-            // Optional: Give feedback button changed state temporarily
+            // Feedback
             const originalHTML = detailAddToCart.innerHTML;
             detailAddToCart.innerHTML = `<span class="material-symbols-outlined">check</span> تمت الإضافة`;
             detailAddToCart.classList.add('bg-green-600', '!text-white');
@@ -979,14 +958,9 @@
         
         state.currentGalleryIndex = index;
         
-        // Move Track
+        // Move Track (Direction LTR logic for transform)
         const percent = index * 100;
-        galleryTrack.style.transform = `translateX(${percent}%)`; // RTL: +% moves right image into view? No, in RTL translateX moves differently? 
-        // In standard CSS transform, translateX(-100%) moves left. 
-        // Let's test standard logic. Usually for RTL carousels we might need positive values or standard negative.
-        // Actually, just using standard flex-direction: row (which follows RTL) means 1st image is on right. 
-        // So to show 2nd image (on left of 1st), we need to move track to the Right (+100%).
-        galleryTrack.style.transform = `translateX(${percent}%)`;
+        galleryTrack.style.transform = `translateX(${percent}%)`; // RTL Adjustment
 
         // Update UI
         Array.from(galleryDots.children).forEach((d, i) => d.classList.toggle('active', i === index));
@@ -1017,12 +991,11 @@
     function handleSwipe() {
         const threshold = 50;
         if (touchEndX < touchStartX - threshold) {
-            // Swiped Left -> Next Image (in RTL visual flow, swipe left usually implies moving to content on right? No, standard logic: Swipe Left gesture means 'Next')
-            // In RTL, 'Next' item is to the Left. So swipe right-to-left.
+            // Swiped Left (Next in RTL means going left? No, physically moving content right)
             updateGallery(state.currentGalleryIndex + 1);
         }
         if (touchEndX > touchStartX + threshold) {
-            // Swiped Right -> Prev Image
+            // Swiped Right
             updateGallery(state.currentGalleryIndex - 1);
         }
     }
@@ -1159,4 +1132,3 @@
   </script>
 </body>
 </html>
-
