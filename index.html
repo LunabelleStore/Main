@@ -13,18 +13,29 @@
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+          },
           colors: {
-            rose: {
-              50: '#fff1f2',
-              100: '#ffe4e6',
-              200: '#fecdd3',
-              300: '#fda4af',
-              400: '#fb7185',
-              500: '#f43f5e',
-              600: '#e11d48',
-              700: '#be123c',
-              800: '#9f1239',
-              900: '#881337',
+            // New "Rose Gold" & "Champagne" Palette
+            luna: {
+              50: '#fdf8f6',  // Very light cream/pink
+              100: '#fbeee6',
+              200: '#f6dcd3', // Soft peach
+              300: '#efb8a5',
+              400: '#e58e73',
+              500: '#d9644c',
+              600: '#c2412e',
+              700: '#a33024', // Deep warm red/brown
+              800: '#872a23',
+              900: '#712623',
+              gold: '#D4AF37', // Classic Gold
+              'gold-light': '#F3E5AB',
+              'gold-dark': '#AA8C2C',
+              'rose-gold': '#B76E79',
+            },
+            slate: {
+              850: '#1f2937', // Softer black
             }
           }
         }
@@ -34,8 +45,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 
   <style>
@@ -46,359 +56,489 @@
       font-family: 'Tajawal', sans-serif;
       direction: rtl;
       -webkit-font-smoothing: antialiased;
+      background-color: #fdf8f6; /* Luna 50 */
+      color: #4a4a4a;
     }
     img { max-width: 100%; display: block; }
     button { cursor: pointer; }
     button:disabled { opacity: 0.7; cursor: not-allowed; }
 
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #fbeee6; }
+    ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #aa8c2c; }
+
+    /* Elegant Button Style - Rose Gold Gradient */
     .primary-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      background: linear-gradient(135deg, #fb7185, #e11d48, #9f1239);
-      color: #ffffff; padding: 0.55rem 1.35rem;
-      border-radius: 999px; font-size: 0.78rem; font-weight: 700;
-      border: none; box-shadow: 0 12px 35px rgba(225, 29, 72, 0.25);
-      transition: all 0.15s ease-out;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: linear-gradient(135deg, #d4af37, #b76e79); /* Gold to Rose Gold */
+      color: #ffffff; padding: 0.75rem 1.5rem;
+      border-radius: 8px; font-size: 0.9rem; font-weight: 700;
+      border: none; box-shadow: 0 4px 15px rgba(183, 110, 121, 0.3);
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
     }
-    .primary-btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+    .primary-btn:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 8px 20px rgba(183, 110, 121, 0.4); 
+      filter: brightness(1.05);
+    }
 
     .ghost-btn {
-      border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(255, 255, 255, 0.75); color: #475569;
-      padding: 0.45rem 1.1rem; display: inline-flex; align-items: center;
-      gap: 0.3rem; transition: all 0.15s ease-out;
+      border-radius: 8px; border: 1px solid #d4af37;
+      background: transparent; color: #872a23;
+      padding: 0.5rem 1.2rem; display: inline-flex; align-items: center;
+      gap: 0.4rem; transition: all 0.2s ease;
+      font-weight: 600;
     }
-    .ghost-btn:hover { background: #be123c; border-color: #be123c; color: #fff; }
+    .ghost-btn:hover { background: #fbeee6; }
 
+    /* Chips & Tabs */
     .category-chip, .shop-tab {
-      border-radius: 999px; border: 1px solid #e2e8f0;
-      padding: 0.35rem 0.85rem; background: #f9fafb; color: #64748b;
-      transition: all 0.15s ease-out;
+      border-radius: 99px; border: 1px solid #f6dcd3;
+      padding: 0.4rem 1.2rem; background: #ffffff; color: #872a23;
+      transition: all 0.2s ease; cursor: pointer; font-size: 0.9rem;
     }
-    .category-chip:hover, .shop-tab:hover { border-color: #fb7185; color: #be123c; background: #fff1f2; }
-    .category-chip.active, .shop-tab.active { background: #be123c; color: #ffffff; border-color: #be123c; }
+    .shop-tab:hover { border-color: #d4af37; color: #d4af37; background: #fff; }
+    .shop-tab.active { 
+      background: #d4af37; color: #ffffff; border-color: #d4af37; 
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.25);
+    }
 
+    /* Cards */
     .home-category-card {
       position: relative; border-radius: 1.5rem; overflow: hidden;
-      transition: all 0.3s ease-in-out; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
-    .home-category-card:hover { transform: translateY(-8px); box-shadow: 0 18px 35px rgba(0, 0, 0, 0.1); }
-    .home-category-card img { transition: transform 0.4s ease; }
-    .home-category-card:hover img { transform: scale(1.1); }
+    .home-category-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15); }
+    .home-category-card img { transition: transform 0.6s ease; }
+    .home-category-card:hover img { transform: scale(1.08); }
 
-    /* Header Navigation Link Style */
-    .nav-link { position: relative; }
-    .nav-link::after {
-      content: ''; position: absolute; right: 0; bottom: -0.25rem;
-      width: 0; height: 2px; background: #be123c; border-radius: 999px;
-      transition: width 0.18s ease-out;
-    }
-    .nav-link:hover::after { width: 100%; }
-
-    /* Product Card */
     .product-card {
-      position: relative; border-radius: 1.25rem; border: 1px solid #e2e8f0;
+      position: relative; border-radius: 1rem; border: none;
       background: #ffffff; overflow: hidden; display: flex; flex-direction: column;
-      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
     }
-    .product-card:hover { transform: translateY(-3px); box-shadow: 0 16px 45px rgba(190, 18, 60, 0.15); border-color: #fda4af; }
-    .product-quick-add {
-      position: absolute; left: 0.75rem; bottom: 0.75rem; right: 0.75rem;
-      transform: translateY(120%); opacity: 0; transition: all 0.2s ease-out;
+    .product-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 15px 35px rgba(183, 110, 121, 0.15); 
     }
-    .product-card:hover .product-quick-add { transform: translateY(0); opacity: 1; }
+
+    /* Navigation */
+    .nav-link { position: relative; color: #4a4a4a; font-weight: 500; }
+    .nav-link::after {
+      content: ''; position: absolute; right: 0; bottom: -4px;
+      width: 0; height: 2px; background: #d4af37;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: #d4af37; }
+    .nav-link:hover::after { width: 100%; }
 
     /* Variant Buttons */
     .variant-btn {
-      font-size: 0.65rem; padding: 0.3rem 0.6rem; border-radius: 999px;
-      border: 1px solid #e2e8f0; color: #64748b; background: #f8fafc;
-      transition: all 0.15s ease-out;
+      font-size: 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px;
+      border: 1px solid #f2f2f2; color: #666; background: #fcfcfc;
+      transition: all 0.2s ease;
     }
-    .variant-btn:hover { border-color: #be123c; background: #fff; color: #be123c; }
-    .variant-btn.active { background: #be123c; color: #ffffff; border-color: #be123c; font-weight: 700; }
+    .variant-btn:hover { border-color: #d4af37; color: #d4af37; }
+    .variant-btn.active { background: #d4af37; color: #ffffff; border-color: #d4af37; }
 
     /* Social Icons */
     .social-icon {
-      transition: transform 0.2s, color 0.2s; display: flex; align-items: center;
-      justify-content: center; background-color: #fff1f2; border-radius: 50%;
-      width: 48px; height: 48px; color: #9f1239; border: 1px solid #fecdd3;
+      transition: all 0.3s; display: flex; align-items: center;
+      justify-content: center; background-color: #ffffff; border-radius: 50%;
+      width: 50px; height: 50px; color: #d4af37; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
     .social-icon:hover {
-      transform: scale(1.1) translateY(-3px); background-color: #be123c;
-      color: #fff; border-color: #be123c; box-shadow: 0 4px 12px rgba(190, 18, 60, 0.2);
+      transform: scale(1.1) rotate(5deg); background-color: #d4af37;
+      color: #fff; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
     }
 
-    /* Drawers & Modals */
-    #cartSidebar, #productDrawer { will-change: transform; }
-    #backdrop.is-visible, #checkoutModal.is-visible, #successModal.is-visible { opacity: 1; pointer-events: auto; }
+    /* Floating Actions */
+    .floating-btn {
+      position: fixed; z-index: 90; 
+      width: 50px; height: 50px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer; opacity: 0; pointer-events: none; transform: scale(0.8);
+    }
+    .floating-btn.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
+    .floating-btn:hover { transform: scale(1.1); }
     
-    /* Gallery Thumbs */
-    .drawer-gallery-thumb {
-        width: 60px; height: 60px; border-radius: 0.5rem; overflow: hidden;
-        cursor: pointer; border: 2px solid transparent; opacity: 0.6; transition: all 0.2s;
+    #scrollTopBtn { 
+      bottom: 2rem; right: 2rem; 
+      background: white; color: #d4af37; border: 1px solid #f6dcd3;
     }
-    .drawer-gallery-thumb.active { border-color: #be123c; opacity: 1; }
+    #floatingWhatsapp {
+      bottom: 6rem; right: 2rem;
+      background: #25D366; color: white;
+    }
 
-    /* Hero Section Dynamic Background */
-    #heroSection {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      transition: background-image 0.5s ease;
+    /* Gallery Styles */
+    .gallery-container { position: relative; overflow: hidden; border-radius: 1rem; background: #f9f9f9; }
+    .gallery-slide { display: flex; transition: transform 0.3s ease-out; height: 100%; }
+    .gallery-img { 
+        min-width: 100%; height: 100%; object-fit: contain; /* Changed to contain to see full product */
+        background: #fff;
     }
+    .gallery-nav-btn {
+        position: absolute; top: 50%; transform: translateY(-50%);
+        width: 36px; height: 36px; border-radius: 50%;
+        background: rgba(255,255,255,0.8); color: #333;
+        display: flex; items-center; justify-content: center;
+        cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        z-index: 10; transition: background 0.2s;
+    }
+    .gallery-nav-btn:hover { background: white; color: #d4af37; }
+    .gallery-prev { left: 10px; }
+    .gallery-next { right: 10px; }
+    .gallery-dots {
+        position: absolute; bottom: 10px; left: 0; right: 0;
+        display: flex; justify-content: center; gap: 6px; z-index: 10;
+    }
+    .gallery-dot {
+        width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.2);
+        transition: all 0.3s;
+    }
+    .gallery-dot.active { background: #d4af37; transform: scale(1.2); }
+
+    /* Modals */
+    #backdrop.is-visible, #checkoutModal.is-visible, #successModal.is-visible { opacity: 1; pointer-events: auto; }
+    #cartSidebar { will-change: transform; }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in-up { animation: fadeIn 0.4s ease-out forwards; }
+
+    /* Hide scrollbar for gallery but keep swipe */
+    .hide-scroll::-webkit-scrollbar { display: none; }
   </style>
 </head>
 
-<body class="bg-[#fdf2f8] text-slate-900 font-sans">
+<body class="bg-luna-50 text-slate-800 font-sans">
   <div id="app" class="min-h-screen flex flex-col">
     
     <!-- HEADER -->
-    <header class="bg-white/80 backdrop-blur border-b border-rose-100 sticky top-0 z-40 h-[80px]">
+    <header class="bg-white/90 backdrop-blur-md border-b border-luna-200 sticky top-0 z-40 h-[85px] shadow-sm">
       <div class="container mx-auto px-4 lg:px-8 h-full relative">
         <div class="flex items-center justify-between h-full">
           
-          <!-- RIGHT SECTION (Navigation + Search) -->
+          <!-- RIGHT SECTION (Search & Nav) -->
           <div class="flex items-center gap-4 lg:gap-6">
-            <!-- Mobile Menu Button -->
-            <button id="mobileMenuToggle" class="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-rose-200 text-rose-600 hover:bg-rose-50 transition">
+            <button id="mobileMenuToggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-luna-50 text-luna-800 hover:bg-luna-100 transition">
               <span class="material-symbols-outlined text-[24px]">menu</span>
             </button>
 
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-              <button data-nav="home" class="nav-link text-slate-700 hover:text-rose-600 transition">الرئيسية</button>
-              <button data-nav="about" class="nav-link text-slate-700 hover:text-rose-600 transition">من نحن</button>
-              <button data-nav="contact" class="nav-link text-slate-700 hover:text-rose-600 transition">تواصل معنا</button>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+              <button data-nav="home" class="nav-link">الرئيسية</button>
+              <button data-nav="shop" class="nav-link">المتجر</button>
+              <button data-nav="about" class="nav-link">من نحن</button>
+              <button data-nav="contact" class="nav-link">تواصل معنا</button>
             </nav>
 
-            <!-- Desktop Search Bar -->
-            <div class="hidden md:flex items-center relative">
+            <div class="hidden md:flex items-center relative group">
               <input 
                 type="text" 
                 id="searchInput" 
-                placeholder="بحث..." 
-                class="rounded-full border border-rose-200 pl-4 pr-9 py-1.5 text-xs focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-200 w-40 bg-rose-50/30 transition-all focus:w-48 text-rose-900"
+                placeholder="ابحثي عن..." 
+                class="rounded-full border border-luna-200 pl-4 pr-10 py-2 text-xs focus:outline-none focus:border-luna-gold focus:ring-1 focus:ring-luna-gold w-40 bg-luna-50 transition-all focus:w-56 text-luna-900"
               >
-              <span class="material-symbols-outlined absolute right-2.5 top-1/2 transform -translate-y-1/2 text-rose-400 text-[18px] pointer-events-none">search</span>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 text-luna-400 text-[18px] pointer-events-none group-focus-within:text-luna-gold">search</span>
             </div>
           </div>
 
           <!-- CENTER SECTION (Logo) -->
           <div class="absolute left-1/2 top-0 transform -translate-x-1/2 z-50 mt-2">
-            <a href="#" data-nav="home" class="block group">
+            <a href="#" data-nav="home" class="block group relative">
+              <div class="absolute inset-0 bg-white rounded-full blur-md opacity-50 group-hover:opacity-80 transition"></div>
               <img id="mainLogo"
-                   src="images/logo.jpg" 
+                   src="logo.jpg" 
                    alt="Lunabelle" 
-                   class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-300"
+                   class="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-500 relative z-10"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="w-28 h-28 rounded-full bg-rose-600 hidden items-center justify-center text-white font-bold text-3xl shadow-lg border-4 border-white">LB</div>
+              <div class="w-28 h-28 rounded-full bg-luna-gold hidden items-center justify-center text-white font-bold text-3xl shadow-lg border-4 border-white z-10">LB</div>
             </a>
           </div>
 
           <!-- LEFT SECTION (Cart) -->
           <div class="flex items-center gap-3">
-            <button id="cartToggle" class="relative flex items-center justify-center w-10 h-10 rounded-full text-rose-800 hover:bg-rose-50 border border-transparent hover:border-rose-100 transition">
-              <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
-              <span id="cartCount" class="absolute -top-1 -left-1 min-w-[18px] h-[18px] rounded-full bg-rose-600 text-[10px] text-white flex items-center justify-center font-bold shadow-sm">0</span>
+            <button id="cartToggle" class="relative flex items-center justify-center w-11 h-11 rounded-full text-luna-800 hover:bg-luna-50 border border-transparent hover:border-luna-100 transition group">
+              <span class="material-symbols-outlined text-[26px] group-hover:text-luna-gold transition-colors">shopping_bag</span>
+              <span id="cartCount" class="absolute top-0 left-0 min-w-[20px] h-[20px] rounded-full bg-luna-gold text-[11px] text-white flex items-center justify-center font-bold shadow-md border-2 border-white transform scale-0 transition-transform duration-300">0</span>
             </button>
           </div>
-
         </div>
 
-        <!-- Mobile Navigation Menu -->
-        <nav id="mobileNav" class="md:hidden hidden pb-4 px-4 border-t border-rose-100 mt-0 pt-4 text-sm bg-white absolute top-full left-0 right-0 shadow-lg z-40 rounded-b-2xl">
-          <div class="flex flex-col gap-2">
-            <!-- Mobile Search Bar with Icon -->
-             <div class="relative mb-3">
+        <!-- Mobile Menu -->
+        <nav id="mobileNav" class="md:hidden hidden pb-6 px-5 border-t border-luna-100 mt-0 pt-6 text-sm bg-white absolute top-full left-0 right-0 shadow-xl z-40 rounded-b-3xl">
+            <div class="relative mb-5">
               <input 
                 type="text" 
                 id="mobileSearchInput" 
                 placeholder="ابحثي عن منتج..." 
-                class="w-full rounded-full border border-rose-200 pr-10 pl-4 py-2.5 text-sm focus:outline-none focus:border-rose-500 bg-rose-50/50 text-rose-900 placeholder-rose-300"
+                class="w-full rounded-full border border-luna-200 pr-10 pl-4 py-3 text-sm focus:outline-none focus:border-luna-gold bg-luna-50 text-luna-900"
               >
-              <span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 text-rose-500 text-[20px] pointer-events-none">search</span>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 transform -translate-y-1/2 text-luna-400 text-[20px]">search</span>
             </div>
-            
-            <button data-nav="home" class="nav-link w-full text-right py-3 px-2 text-slate-700 hover:bg-rose-50 rounded-lg transition-colors font-bold">الرئيسية</button>
-            <button data-nav="about" class="nav-link w-full text-right py-3 px-2 text-slate-700 hover:bg-rose-50 rounded-lg transition-colors font-bold">من نحن</button>
-            <button data-nav="contact" class="nav-link w-full text-right py-3 px-2 text-slate-700 hover:bg-rose-50 rounded-lg transition-colors font-bold">تواصل معنا</button>
-          </div>
+            <div class="flex flex-col gap-1">
+                <button data-nav="home" class="nav-link w-full text-right py-3 border-b border-dashed border-luna-100">الرئيسية</button>
+                <button data-nav="shop" class="nav-link w-full text-right py-3 border-b border-dashed border-luna-100">المتجر</button>
+                <button data-nav="about" class="nav-link w-full text-right py-3 border-b border-dashed border-luna-100">من نحن</button>
+                <button data-nav="contact" class="nav-link w-full text-right py-3">تواصل معنا</button>
+            </div>
         </nav>
       </div>
     </header>
 
-    <main class="flex-1 pt-8"> 
+    <main class="flex-1"> 
 
-      <section id="page-home" class="page-section">
-        <div id="heroSection" class="container mx-auto px-4 lg:px-8 py-10 lg:py-16 mt-4">
-          <div class="text-center mb-8 lg:mb-12 bg-white/60 backdrop-blur-sm p-6 rounded-2xl inline-block mx-auto shadow-sm">
-            <h1 class="text-3xl lg:text-4xl font-extrabold text-rose-950 mb-2">اكتشفي عالم الجمال</h1>
-            <p class="text-lg text-rose-800/80">تسوقي من مجموعاتنا الفاخرة من العطور، المكياج، والعناية بالبشرة.</p>
+      <!-- PAGE: HOME -->
+      <section id="page-home" class="page-section fade-in-up">
+        <div class="container mx-auto px-4 lg:px-8 py-8 lg:py-12 mt-4">
+          <!-- Hero Title Removed as requested -->
+          <!-- Simple Welcoming Divider -->
+          <div class="flex items-center justify-center gap-4 mb-8 opacity-60">
+             <div class="h-[1px] w-12 bg-luna-gold"></div>
+             <span class="text-xs tracking-[0.2em] text-luna-800 uppercase">Original Store</span>
+             <div class="h-[1px] w-12 bg-luna-gold"></div>
           </div>
-          <!-- MODIFIED: Flex column for mobile (stacked) and Grid for desktop -->
-          <div id="heroCategoriesContainer" class="flex flex-col gap-4 lg:grid lg:grid-cols-3 lg:gap-8">
+
+          <div id="heroCategoriesContainer" class="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:gap-8">
+            <!-- Categories injected by JS -->
           </div>
         </div>
 
-        <div id="section-about" class="bg-rose-50/50 py-16 lg:py-24 border-t border-rose-100">
-          <div class="container mx-auto px-4 text-center max-w-2xl">
-             <span class="text-rose-600 font-bold text-sm mb-2 block tracking-widest">عن لونابيل</span>
-            <h2 class="text-3xl lg:text-4xl font-extrabold mb-6 text-slate-900">من نحن</h2>
-            <p class="text-slate-600 leading-relaxed text-lg mb-6">
-              في لونابيل، نؤمن بقوة الجمال الفاخر. بدأت رحلتنا بشغف لتقديم أرقى العطور ومستحضرات التجميل ومنتجات العناية بالبشرة.
+        <div id="section-about" class="bg-white py-16 border-t border-luna-100 relative overflow-hidden">
+          <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-luna-100 rounded-full blur-3xl opacity-50"></div>
+          <div class="container mx-auto px-4 text-center max-w-2xl relative z-10">
+             <span class="text-luna-gold font-bold text-xs mb-3 block tracking-widest uppercase">قصتنا</span>
+            <h2 class="text-3xl font-bold mb-6 text-luna-900">من نحن</h2>
+            <p class="text-slate-600 leading-loose text-lg mb-6 font-light">
+              في لونابيل، نؤمن أن الجمال هو انعكاس للروح. بدأت رحلتنا بشغف لتقديم أرقى العطور ومستحضرات التجميل التي تليق بجمالكِ الفريد. كل قطعة لدينا هي قصة فخامة تُروى.
             </p>
           </div>
         </div>
 
-        <div id="section-contact" class="bg-white py-16 lg:py-24 border-t border-rose-100">
+        <div id="section-contact" class="bg-luna-50 py-16 border-t border-luna-200">
           <div class="container mx-auto px-4 text-center max-w-lg">
-            <span class="text-rose-600 font-bold text-sm mb-2 block tracking-widest">ابقي على تواصل</span>
-            <h2 class="text-3xl lg:text-4xl font-extrabold mb-6 text-slate-900">تواصل معنا</h2>
+            <span class="text-luna-gold font-bold text-xs mb-3 block tracking-widest uppercase">تواصل معنا</span>
+            <h2 class="text-3xl font-bold mb-8 text-luna-900">نحن هنا لأجلك</h2>
             
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <a href="https://wa.me/201001120329" target="_blank" class="social-icon hover-whatsapp" title="WhatsApp">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.698c1.009.55 2.18.895 3.422.895 3.178 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.768-5.768-5.768zm0-2c4.271 0 7.761 3.527 7.768 7.882 0 4.309-3.48 7.81-7.772 7.812-1.364.002-2.635-.35-3.737-1.049l-4.29.989.987-4.176c-.641-1.12-1.022-2.364-1.022-3.732 0-4.297 3.476-7.793 7.766-7.793l.304.007zm3.984 10.18c-.212-.107-1.254-.622-1.447-.695-.194-.072-.334-.109-.474.107-.141.214-.542.696-.665.838-.122.144-.246.16-.458.055-.212-.107-.896-.332-1.708-1.058-.631-.564-1.058-1.262-1.182-1.476-.123-.214-.013-.33.093-.436.097-.096.212-.249.318-.374.106-.124.141-.213.212-.355.07-.144.035-.267-.018-.374-.053-.107-.474-1.145-.649-1.568-.171-.413-.345-.357-.474-.364l-.403-.007c-.14 0-.369.054-.562.267-.193.213-.736.718-.736 1.752 0 1.034.754 2.032.859 2.173.106.143 1.483 2.274 3.596 3.184 1.769.762 2.128.61 2.516.572.388-.038 1.254-.513 1.429-1.007.175-.495.175-.918.123-1.007-.052-.089-.193-.143-.405-.25z"/></svg>
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Social Icons from user file -->
+                <a href="https://wa.me/201001120329" target="_blank" class="social-icon" title="WhatsApp">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.698c1.009.55 2.18.895 3.422.895 3.178 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.768-5.768-5.768zm0-2c4.271 0 7.761 3.527 7.768 7.882 0 4.309-3.48 7.81-7.772 7.812-1.364.002-2.635-.35-3.737-1.049l-4.29.989.987-4.176c-.641-1.12-1.022-2.364-1.022-3.732 0-4.297 3.476-7.793 7.766-7.793l.304.007zm3.984 10.18c-.212-.107-1.254-.622-1.447-.695-.194-.072-.334-.109-.474.107-.141.214-.542.696-.665.838-.122.144-.246.16-.458.055-.212-.107-.896-.332-1.708-1.058-.631-.564-1.058-1.262-1.182-1.476-.123-.214-.013-.33.093-.436.097-.096.212-.249.318-.374.106-.124.141-.213.212-.355.07-.144.035-.267-.018-.374-.053-.107-.474-1.145-.649-1.568-.171-.413-.345-.357-.474-.364l-.403-.007c-.14 0-.369.054-.562.267-.193.213-.736.718-.736 1.752 0 1.034.754 2.032.859 2.173.106.143 1.483 2.274 3.596 3.184 1.769.762 2.128.61 2.516.572.388-.038 1.254-.513 1.429-1.007.175-.495.175-.918.123-1.007-.052-.089-.193-.143-.405-.25z"/></svg>
                 </a>
-                <a href="https://www.instagram.com/lunabelle.perfumes" target="_blank" class="social-icon hover-instagram" title="Instagram">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <a href="https://www.instagram.com/lunabelle.perfumes" target="_blank" class="social-icon" title="Instagram">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://www.facebook.com/people/lunabelle/61573079371279/" target="_blank" class="social-icon hover-facebook" title="Facebook">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <a href="https://www.facebook.com/people/lunabelle/61573079371279/" target="_blank" class="social-icon" title="Facebook">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
-                <a href="https://www.tiktok.com/@fatma_perfume" target="_blank" class="social-icon hover-tiktok" title="TikTok">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                <a href="https://www.tiktok.com/@fatma_perfume" target="_blank" class="social-icon" title="TikTok">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                 </a>
-                <a href="https://youtube.com/@lunabelle_store" target="_blank" class="social-icon hover-youtube" title="YouTube">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <a href="https://youtube.com/@lunabelle_store" target="_blank" class="social-icon" title="YouTube">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="page-shop" class="page-section bg-white border-b border-rose-100 hidden">
+      <!-- PAGE: SHOP -->
+      <section id="page-shop" class="page-section hidden fade-in-up">
         <div class="container mx-auto px-4 lg:px-8 py-10 lg:py-12">
-          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
+          <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8">
             <div>
-              <h2 id="shopPageTitle" class="text-2xl lg:text-3xl font-bold mb-1 text-rose-950">تسوقي</h2>
-              <p class="text-sm text-rose-900/60 max-w-lg">اكتشفي أفضل المنتجات في هذا القسم.</p>
+              <h2 id="shopPageTitle" class="text-3xl font-bold mb-1 text-luna-800">تسوقي</h2>
+              <p class="text-sm text-slate-500 max-w-lg">اكتشفي أفضل المنتجات المختارة بعناية.</p>
             </div>
-            <button data-nav="home" class="nav-link text-sm font-medium text-slate-700 hover:text-rose-600 transition inline-flex items-center gap-1 self-start lg:self-end">
-              <span class="material-symbols-outlined text-base">chevron_right</span>
-              العودة للرئيسية
-            </button>
           </div>
 
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-5 text-xs">
-            <div class="flex flex-wrap items-center gap-2">
-               <button class="shop-tab" data-shop-tab="perfume">عطور</button>
-               <button class="shop-tab" data-shop-tab="makeup">مكياج</button>
-               <button class="shop-tab" data-shop-tab="skincare">عناية</button>
-            </div>
-            <div class="flex items-center gap-2">
-              <label class="inline-flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-full px-3 py-1">
-                <span class="text-rose-700">السعر</span>
-                <select id="priceFilter" class="bg-transparent outline-none text-[11px] text-rose-900">
-                  <option value="all">الكل</option>
-                  <option value="0-500">حتى ٥٠٠</option>
-                  <option value="500-1000">٥٠٠ - ١٠٠٠</option>
-                  <option value="1000+">١٠٠٠+</option>
-                </select>
-              </label>
-              <div class="flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-full px-3 py-1">
-                <span class="text-rose-700">ترتيب</span>
-                <select id="sortSelect" class="bg-transparent outline-none text-[11px] text-rose-900">
-                  <option value="featured">الأكثر تميّزًا</option>
-                  <option value="price-asc">السعر: الأقل</option>
-                  <option value="price-desc">السعر: الأعلى</option>
-                  <option value="newest">الأحدث</option>
-                </select>
+          <!-- Filters -->
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-luna-100 mb-8 sticky top-[90px] z-30">
+              <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 text-xs">
+                <div class="flex flex-wrap items-center gap-2">
+                   <button class="shop-tab active" data-shop-tab="perfume">العطور</button>
+                   <button class="shop-tab" data-shop-tab="makeup">المكياج</button>
+                   <button class="shop-tab" data-shop-tab="skincare">العناية</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <div class="flex items-center gap-2 bg-luna-50 border border-luna-200 rounded-full px-4 py-2">
+                    <span class="text-luna-700 font-bold">السعر:</span>
+                    <select id="priceFilter" class="bg-transparent outline-none text-slate-700 cursor-pointer">
+                      <option value="all">الكل</option>
+                      <option value="0-500">أقل من ٥٠٠</option>
+                      <option value="500-1000">٥٠٠ - ١٠٠٠</option>
+                      <option value="1000+">أكثر من ١٠٠٠</option>
+                    </select>
+                  </div>
+                  <div class="flex items-center gap-2 bg-luna-50 border border-luna-200 rounded-full px-4 py-2">
+                    <span class="text-luna-700 font-bold">ترتيب:</span>
+                    <select id="sortSelect" class="bg-transparent outline-none text-slate-700 cursor-pointer">
+                      <option value="featured">الأكثر تميّزًا</option>
+                      <option value="price-asc">الأقل سعرًا</option>
+                      <option value="price-desc">الأعلى سعرًا</option>
+                      <option value="newest">وصل حديثًا</option>
+                    </select>
+                  </div>
+                </div>
               </div>
-              <span id="resultsCount" class="text-[11px] text-rose-500">0 منتج</span>
-            </div>
           </div>
 
-          <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5 min-h-[300px]"></div>
+          <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8 min-h-[400px]"></div>
         </div>
+      </section>
+
+      <!-- PAGE: PRODUCT DETAILS (Dedicated Page) -->
+      <section id="page-product" class="page-section hidden fade-in-up bg-white min-h-screen">
+          <div class="container mx-auto px-4 lg:px-8 py-8 lg:py-12">
+            <!-- Breadcrumb / Back -->
+            <button id="backToShopBtn" class="mb-6 flex items-center text-sm text-luna-800 hover:text-luna-gold transition font-bold">
+                <span class="material-symbols-outlined text-lg ml-1">arrow_forward</span>
+                عودة للمتجر
+            </button>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                <!-- Gallery Section -->
+                <div class="relative">
+                    <div id="productGallery" class="gallery-container w-full aspect-square lg:aspect-[4/3] bg-luna-50 mb-4 relative touch-pan-y">
+                        <!-- Images injected here -->
+                        <div class="gallery-wrapper h-full w-full relative overflow-hidden">
+                             <div id="galleryTrack" class="gallery-slide"></div>
+                        </div>
+                        
+                        <!-- Navigation Arrows -->
+                        <button id="galleryPrev" class="gallery-nav-btn gallery-prev hidden"><span class="material-symbols-outlined">chevron_right</span></button>
+                        <button id="galleryNext" class="gallery-nav-btn gallery-next hidden"><span class="material-symbols-outlined">chevron_left</span></button>
+                        
+                        <!-- Dots -->
+                        <div id="galleryDots" class="gallery-dots"></div>
+                    </div>
+                    <!-- Thumbnails -->
+                    <div id="galleryThumbs" class="flex gap-2 overflow-x-auto pb-2 hide-scroll"></div>
+                </div>
+
+                <!-- Product Info Section -->
+                <div class="flex flex-col">
+                    <div class="border-b border-luna-100 pb-6 mb-6">
+                        <span id="detailCategory" class="text-xs font-bold text-luna-gold uppercase tracking-wider mb-2 block"></span>
+                        <h1 id="detailName" class="text-2xl lg:text-4xl font-bold text-luna-900 mb-3 leading-tight"></h1>
+                        <p id="detailDesc" class="text-slate-600 text-lg leading-relaxed"></p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Options -->
+                        <div id="detailOptions"></div>
+
+                        <!-- Price & Add -->
+                        <div class="bg-luna-50 p-6 rounded-2xl border border-luna-100 mt-4">
+                            <div class="flex items-end justify-between mb-6">
+                                <div>
+                                    <span class="text-sm text-slate-500 block mb-1">السعر الإجمالي</span>
+                                    <span id="detailPrice" class="text-3xl font-bold text-luna-700"></span>
+                                </div>
+                            </div>
+                            <button id="detailAddToCart" class="primary-btn w-full py-4 text-lg shadow-lg">
+                                <span class="material-symbols-outlined">shopping_bag</span>
+                                إضافة لسلة التسوق
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
       </section>
 
     </main>
 
-    <section id="productDrawer" class="fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col">
-      <div class="flex items-center justify-between px-4 py-3 border-b border-rose-100 bg-white/95">
-        <div class="flex items-center gap-2">
-          <button id="productDrawerBack" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-rose-50 text-rose-800"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
-          <h2 class="text-sm font-semibold text-rose-900">تفاصيل المنتج</h2>
-        </div>
-        <button id="productDrawerClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-rose-50 text-rose-800"><span class="material-symbols-outlined text-[20px]">close</span></button>
-      </div>
-      <div class="flex-1 overflow-y-auto"><div id="productDetailContent" class="p-4"></div></div>
-    </section>
+    <!-- Floating Actions -->
+    <div id="scrollTopBtn" class="floating-btn" title="Scroll Top">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </div>
 
+    <a id="floatingWhatsapp" href="https://wa.me/201001120329" target="_blank" class="floating-btn" title="WhatsApp Us">
+         <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.698c1.009.55 2.18.895 3.422.895 3.178 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.768-5.768-5.768zm0-2c4.271 0 7.761 3.527 7.768 7.882 0 4.309-3.48 7.81-7.772 7.812-1.364.002-2.635-.35-3.737-1.049l-4.29.989.987-4.176c-.641-1.12-1.022-2.364-1.022-3.732 0-4.297 3.476-7.793 7.766-7.793l.304.007zm3.984 10.18c-.212-.107-1.254-.622-1.447-.695-.194-.072-.334-.109-.474.107-.141.214-.542.696-.665.838-.122.144-.246.16-.458.055-.212-.107-.896-.332-1.708-1.058-.631-.564-1.058-1.262-1.182-1.476-.123-.214-.013-.33.093-.436.097-.096.212-.249.318-.374.106-.124.141-.213.212-.355.07-.144.035-.267-.018-.374-.053-.107-.474-1.145-.649-1.568-.171-.413-.345-.357-.474-.364l-.403-.007c-.14 0-.369.054-.562.267-.193.213-.736.718-.736 1.752 0 1.034.754 2.032.859 2.173.106.143 1.483 2.274 3.596 3.184 1.769.762 2.128.61 2.516.572.388-.038 1.254-.513 1.429-1.007.175-.495.175-.918.123-1.007-.052-.089-.193-.143-.405-.25z"/></svg>
+    </a>
+
+    <!-- CART SIDEBAR -->
     <aside id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
-      <div class="flex items-center justify-between px-4 py-3 border-b border-rose-100 bg-white/95">
-        <div class="flex items-center gap-2">
-          <button id="cartSidebarClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-rose-50 text-rose-800"><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
+      <div class="flex items-center justify-between px-6 py-4 border-b border-luna-100 bg-white">
+        <div class="flex items-center gap-3">
+          <button id="cartSidebarClose" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-luna-50 text-luna-800 transition"><span class="material-symbols-outlined">chevron_right</span></button>
           <div>
-            <h2 class="text-sm font-semibold text-rose-900">سلة التسوق</h2>
-            <p id="cartSidebarSubtitle" class="text-[11px] text-rose-500">سلتك فارغة</p>
+            <h2 class="text-lg font-bold text-luna-900">سلة التسوق</h2>
+            <p id="cartSidebarSubtitle" class="text-xs text-luna-gold font-medium">سلتك فارغة</p>
           </div>
         </div>
       </div>
-      <div class="flex-1 overflow-y-auto" id="cartItemsContainer"></div>
-      <div class="border-t border-rose-100 bg-white/95 p-4 space-y-3 text-xs">
-        <div class="flex items-center justify-between">
-          <span class="text-rose-700">إجمالي المنتجات</span>
-          <span id="cartSubtotal" class="font-bold text-rose-900">٠ جنيه</span>
+      <div class="flex-1 overflow-y-auto p-4 space-y-4" id="cartItemsContainer"></div>
+      <div class="border-t border-luna-100 bg-luna-50/50 p-6 space-y-4">
+        <div class="flex items-center justify-between text-lg font-bold">
+          <span class="text-luna-800">الإجمالي:</span>
+          <span id="cartSubtotal" class="text-luna-600">0 جنيه</span>
         </div>
-        <button id="openCheckoutModalBtn" class="primary-btn w-full justify-center">إتمام الطلب</button>
+        <button id="openCheckoutModalBtn" class="primary-btn w-full justify-center py-3">إتمام الطلب</button>
       </div>
     </aside>
 
-    <div id="checkoutModal" class="fixed inset-0 z-[60] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200">
-        <div class="bg-white w-full max-w-md mx-4 rounded-2xl shadow-2xl border border-rose-100 p-6 relative">
-            <button id="closeCheckoutModal" class="absolute top-4 left-4 text-rose-400 hover:text-rose-700"><span class="material-symbols-outlined">close</span></button>
-            <h3 class="text-xl font-bold text-rose-900 mb-4 text-center">بيانات الشحن</h3>
-            <form id="checkoutForm" class="space-y-4">
+    <!-- CHECKOUT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 z-[60] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300 px-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-luna-100 p-8 relative scale-95 transition-transform duration-300" id="checkoutContent">
+            <button id="closeCheckoutModal" class="absolute top-4 left-4 text-luna-300 hover:text-luna-700 transition"><span class="material-symbols-outlined">close</span></button>
+            <h3 class="text-2xl font-bold text-luna-900 mb-6 text-center">بيانات الشحن</h3>
+            <form id="checkoutForm" class="space-y-5">
                 <div>
-                    <label class="block text-xs font-bold text-rose-700 mb-1">الاسم بالكامل</label>
-                    <input type="text" id="customerName" required class="form-input w-full" placeholder="اكتبي اسمك هنا">
+                    <label class="block text-xs font-bold text-luna-700 mb-1.5 uppercase tracking-wide">الاسم بالكامل</label>
+                    <input type="text" id="customerName" required class="w-full rounded-lg border border-luna-200 px-4 py-3 focus:border-luna-gold focus:ring-1 focus:ring-luna-gold outline-none transition" placeholder="اكتبي اسمك هنا">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-rose-700 mb-1">رقم الهاتف</label>
-                    <input type="tel" id="customerPhone" required class="form-input w-full" placeholder="01xxxxxxxxx">
+                    <label class="block text-xs font-bold text-luna-700 mb-1.5 uppercase tracking-wide">رقم الهاتف</label>
+                    <input type="tel" id="customerPhone" required class="w-full rounded-lg border border-luna-200 px-4 py-3 focus:border-luna-gold focus:ring-1 focus:ring-luna-gold outline-none transition" placeholder="01xxxxxxxxx">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-rose-700 mb-1">العنوان بالتفصيل</label>
-                    <textarea id="customerAddress" required class="form-input w-full h-24 resize-none" placeholder="اسم الشارع، رقم العمارة، رقم الشقة..."></textarea>
+                    <label class="block text-xs font-bold text-luna-700 mb-1.5 uppercase tracking-wide">العنوان بالتفصيل</label>
+                    <textarea id="customerAddress" required class="w-full rounded-lg border border-luna-200 px-4 py-3 h-24 resize-none focus:border-luna-gold focus:ring-1 focus:ring-luna-gold outline-none transition" placeholder="اسم الشارع، رقم العمارة، رقم الشقة..."></textarea>
                 </div>
                 <div class="pt-2">
-                    <button type="submit" id="confirmOrderBtn" class="primary-btn w-full justify-center py-3 text-sm">تأكيد الطلب</button>
+                    <button type="submit" id="confirmOrderBtn" class="primary-btn w-full justify-center py-3.5">تأكيد الطلب</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="successModal" class="fixed inset-0 z-[70] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-200">
-        <div class="bg-white w-full max-w-sm mx-4 rounded-2xl shadow-2xl border border-rose-100 p-8 text-center">
-            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="material-symbols-outlined text-3xl">check_circle</span>
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="fixed inset-0 z-[70] flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300 px-4">
+        <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl border border-luna-100 p-8 text-center scale-95">
+            <div class="w-20 h-20 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-4xl">check_circle</span>
             </div>
-            <h3 class="text-xl font-bold text-rose-900 mb-2">شكراً لك!</h3>
-            <p class="text-rose-700 text-sm mb-6">تم استلام طلبكم بنجاح وسيتم الرد عليكم في اقرب وقت ممكن 😊</p>
+            <h3 class="text-2xl font-bold text-luna-900 mb-2">شكراً لك!</h3>
+            <p class="text-slate-600 mb-8 leading-relaxed">تم استلام طلبك بنجاح. سيتم التواصل معكِ قريباً لتأكيد الشحن. 🌸</p>
             <button id="closeSuccessModal" class="primary-btn w-full justify-center">موافق</button>
         </div>
     </div>
 
-    <div id="backdrop" class="fixed inset-0 bg-rose-900/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 z-40"></div>
+    <div id="backdrop" class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-40"></div>
 
-    <footer class="bg-rose-950 text-rose-100 mt-auto py-6 text-center text-xs">
-      <p>© <span id="currentYear"></span> Lunabelle. جميع الحقوق محفوظة.</p>
+    <footer class="bg-white border-t border-luna-100 mt-auto py-8 text-center text-xs text-slate-400">
+      <div class="flex items-center justify-center gap-2 mb-4 opacity-70">
+          <span class="w-2 h-2 rounded-full bg-luna-gold"></span>
+          <span class="w-2 h-2 rounded-full bg-luna-300"></span>
+          <span class="w-2 h-2 rounded-full bg-luna-gold"></span>
+      </div>
+      <p>© <span id="currentYear"></span> Lunabelle. صنع بحب.</p>
     </footer>
   </div>
 
   <script>
     // --- Configuration ---
-    // PASTE YOUR FORMSPREE URL HERE
     const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkgegzvy"; 
 
     // Basic state
@@ -412,6 +552,8 @@
       priceFilter: 'all',
       sortMode: 'featured',
       cart: [],
+      currentProduct: null, // For detail view
+      currentGalleryIndex: 0
     };
 
     // DOM refs
@@ -419,7 +561,6 @@
     const heroCategoriesContainer = document.getElementById('heroCategoriesContainer');
     const priceFilterEl = document.getElementById('priceFilter');
     const sortSelectEl = document.getElementById('sortSelect');
-    const resultsCountEl = document.getElementById('resultsCount');
     const searchInputEl = document.getElementById('searchInput');
     const mobileSearchInputEl = document.getElementById('mobileSearchInput');
     const cartToggleEl = document.getElementById('cartToggle');
@@ -434,43 +575,48 @@
     const checkoutForm = document.getElementById('checkoutForm');
     const successModal = document.getElementById('successModal');
     const closeSuccessModal = document.getElementById('closeSuccessModal');
-    const productDrawerEl = document.getElementById('productDrawer');
-    const productDetailContentEl = document.getElementById('productDetailContent');
-    const productDrawerBackEl = document.getElementById('productDrawerBack');
-    const productDrawerCloseEl = document.getElementById('productDrawerClose');
     const backdropEl = document.getElementById('backdrop');
     const currentYearEl = document.getElementById('currentYear');
     const mainLogoEl = document.getElementById('mainLogo');
-    const heroSectionEl = document.getElementById('heroSection');
+    
+    // Dedicated Product Page Refs
+    const pageProductEl = document.getElementById('page-product');
+    const backToShopBtn = document.getElementById('backToShopBtn');
+    const galleryTrack = document.getElementById('galleryTrack');
+    const galleryPrev = document.getElementById('galleryPrev');
+    const galleryNext = document.getElementById('galleryNext');
+    const galleryDots = document.getElementById('galleryDots');
+    const galleryThumbs = document.getElementById('galleryThumbs');
+    const detailName = document.getElementById('detailName');
+    const detailDesc = document.getElementById('detailDesc');
+    const detailCategory = document.getElementById('detailCategory');
+    const detailPrice = document.getElementById('detailPrice');
+    const detailOptions = document.getElementById('detailOptions');
+    const detailAddToCart = document.getElementById('detailAddToCart');
+
+    // Floating Buttons
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const floatingWhatsapp = document.getElementById('floatingWhatsapp');
 
     const formatPrice = (value) => `${value.toLocaleString('ar-EG')} جنيه`;
 
-    // --- Fetch Data from JSON ---
+    // --- Fetch Data ---
     async function fetchData() {
       let data;
       try {
-        // Attempt to fetch from file (for Production/GitHub)
         const response = await fetch('products.json');
         if(!response.ok) throw new Error("HTTP error " + response.status);
         data = await response.json();
       } catch (error) {
-        // Fallback for Preview/Canvas
         console.log("Fetching failed (expected in preview), using fallback.");
         data = { hero_categories: [], products: {}, config: {} }; 
       }
       
-      // 1. & 2. Apply Config (Logo & Background)
-      if(data.config) {
-          if(data.config.logo) {
-              mainLogoEl.src = data.config.logo;
-              // Force display incase onerror hid it previously
-              mainLogoEl.style.display = 'block';
-              // Hide fallback
-              if(mainLogoEl.nextElementSibling) mainLogoEl.nextElementSibling.style.display = 'none';
-          }
-          if(data.config.hero_background) {
-              heroSectionEl.style.backgroundImage = `url('${data.config.hero_background}')`;
-          }
+      // Config (Logo)
+      if(data.config && data.config.logo) {
+          mainLogoEl.src = data.config.logo;
+          mainLogoEl.style.display = 'block';
+          if(mainLogoEl.nextElementSibling) mainLogoEl.nextElementSibling.style.display = 'none';
       }
       
       // Process Data
@@ -483,6 +629,8 @@
             items.forEach(item => {
               item.category = category;
               if(!item.images && item.image) item.images = [item.image];
+              // Ensure images array exists
+              if(!item.images) item.images = ['images/placeholder.jpg'];
               const prices = Object.values(item.sizes);
               item.basePrice = Math.min(...prices); 
               item.createdAt = item.isNew ? Date.now() : 0; 
@@ -496,105 +644,100 @@
 
     function renderHeroCategories() {
         if(!heroCategoriesContainer) return;
-        const categories = (state.heroCategories && state.heroCategories.length > 0) 
-            ? state.heroCategories 
-            : [];
-
-        // MODIFIED: Updated class string for Landscape Mobile cards + Grid Desktop
+        const categories = state.heroCategories || [];
+        // Elegant Category Cards
         heroCategoriesContainer.innerHTML = categories.map(cat => `
-            <a href="#" data-navigate-shop="${cat.id}" class="home-category-card group w-full h-40 sm:h-52 lg:h-auto lg:aspect-[3/4] relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all">
-              <img src="${cat.image}" alt="${cat.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-rose-900/90 via-rose-900/20 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-6 text-white flex flex-col justify-end h-full">
-                <h2 class="text-xl lg:text-2xl font-bold mb-1 lg:mb-2 drop-shadow-sm">${cat.title}</h2>
-                <p class="text-xs lg:text-sm opacity-90 mb-0 lg:mb-4 hidden lg:block">${cat.subtitle}</p>
-                <div class="mt-2 lg:mt-0">
-                    <span class="inline-flex items-center gap-1 text-[10px] lg:text-sm font-bold bg-white/20 hover:bg-white/30 backdrop-blur-md text-white px-3 py-1.5 lg:px-5 lg:py-2 rounded-full transition-colors border border-white/30">
-                    تصفحي الآن
-                    <span class="material-symbols-outlined text-[14px] lg:text-[18px] transition-transform group-hover:translate-x-[-4px]">arrow_back</span>
-                    </span>
-                </div>
+            <a href="#" data-navigate-shop="${cat.id}" class="home-category-card group w-full h-56 lg:h-auto lg:aspect-[3/4] relative overflow-hidden bg-slate-100 block">
+              <img src="${cat.image}" alt="${cat.title}" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-white z-10">
+                 <h2 class="text-3xl font-bold mb-2 drop-shadow-md tracking-wide">${cat.title}</h2>
+                 <p class="text-sm opacity-90 mb-6 font-light drop-shadow-sm max-w-[80%]">${cat.subtitle}</p>
+                 <span class="inline-block border border-white/60 bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full text-xs font-bold hover:bg-white hover:text-luna-800 transition-all transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300">
+                    تسوقي الآن
+                 </span>
               </div>
             </a>
         `).join('');
 
-        // Re-attach listeners to dynamic category cards
         document.querySelectorAll('[data-navigate-shop]').forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
-                const target = el.getAttribute('data-navigate-shop');
-                state.activeShopTab = target;
-                // Replace direct DOM manipulation with Navigation wrapper
+                state.activeShopTab = el.getAttribute('data-navigate-shop');
                 navigateTo('shop');
             });
         });
     }
 
-    // --- 3. History & Navigation Management ---
-    
-    // Helper to switch views
+    // --- Navigation System ---
     function showView(viewName) {
-        if (viewName === 'home') {
-            document.getElementById('page-home').classList.remove('hidden');
-            document.getElementById('page-shop').classList.add('hidden');
-        } else if (viewName === 'shop') {
-            document.getElementById('page-home').classList.add('hidden');
-            document.getElementById('page-shop').classList.remove('hidden');
+        // Hide all views
+        ['page-home', 'page-shop', 'page-product'].forEach(id => {
+            document.getElementById(id).classList.add('hidden');
+        });
+        
+        // Show target view
+        const target = document.getElementById(`page-${viewName}`);
+        if(target) target.classList.remove('hidden');
+
+        // Handle Floating Button Visibility
+        if(viewName === 'home') {
+            floatingWhatsapp.classList.remove('visible');
+        } else {
+            floatingWhatsapp.classList.add('visible');
+        }
+
+        window.scrollTo(0,0);
+        document.getElementById('mobileNav').classList.add('hidden');
+        
+        // Update Filters UI if Shop
+        if (viewName === 'shop') {
             updateFilterUI();
             filterAndRenderProducts();
         }
-        window.scrollTo(0,0);
-        document.getElementById('mobileNav').classList.add('hidden');
     }
 
-    // Helper to handle history pushes
-    function navigateTo(view) {
+    function navigateTo(view, data = null) {
+        // If going to product page, setup data first
+        if(view === 'product' && data) {
+            setupProductPage(data);
+        }
+        
         showView(view);
-        history.pushState({ view: view }, '', '');
+        history.pushState({ view: view, data: data }, '', '');
     }
 
-    function openDrawerWithHistory(type, data = null) {
-        // Push state for the drawer
-        history.pushState({ view: (document.getElementById('page-shop').classList.contains('hidden') ? 'home' : 'shop'), drawer: type, data: data }, '', '');
-        
-        if(type === 'product') _renderAndOpenProductDrawer(data);
-        else if(type === 'cart') _openCartSidebar();
-        else if(type === 'checkout') _openCheckoutModal();
-    }
-
-    // Handle Browser Back Button
     window.addEventListener('popstate', (event) => {
+        // Close modals first if open
+        if(cartSidebarEl.style.transform === 'translateX(0px)') {
+            _closeCartSidebar();
+            return;
+        }
+        if(checkoutModal.classList.contains('is-visible')) {
+            _closeCheckout();
+            return;
+        }
+
         const state = event.state;
-        
-        // Close all drawers/modals first
-        closeDrawer(productDrawerEl, false); 
-        _closeCartSidebar(false);
-        _closeCheckout(false);
-        
         if (!state) {
-            // Default state (Home)
             showView('home');
         } else {
-            // Restore View
+            if(state.view === 'product' && state.data) setupProductPage(state.data);
             showView(state.view || 'home');
         }
     });
-
-    // Initial History State
+    
+    // Initial State
     history.replaceState({ view: 'home' }, '', '');
 
-
-    // --- Navigation & Filters ---
+    // Bind Nav Links
     document.querySelectorAll('[data-nav]').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const key = btn.getAttribute('data-nav');
-        if (key === 'home') {
-            navigateTo('home');
-        } else if (key === 'shop') {
-            navigateTo('shop');
+        if (key === 'home' || key === 'shop') {
+            navigateTo(key);
         } else {
-            // For about/contact, staying on home but scrolling
             navigateTo('home'); 
             const mapping = { about: '#section-about', contact: '#section-contact' };
             setTimeout(() => {
@@ -609,6 +752,7 @@
       document.getElementById('mobileNav').classList.toggle('hidden');
     });
 
+    // --- Shop Logic ---
     document.querySelectorAll('.shop-tab').forEach((btn) => {
       btn.addEventListener('click', () => {
         state.activeShopTab = btn.getAttribute('data-shop-tab');
@@ -628,18 +772,14 @@
 
     priceFilterEl?.addEventListener('change', () => { state.priceFilter = priceFilterEl.value; filterAndRenderProducts(); });
     sortSelectEl?.addEventListener('change', () => { state.sortMode = sortSelectEl.value; filterAndRenderProducts(); });
-    // Bind search inputs
+    
     const handleSearch = (e) => { 
         state.searchQuery = e.target.value.trim(); 
-        
-        // If user types in search on Home page, auto-navigate to Shop to show results
         if(state.searchQuery.length > 0 && document.getElementById('page-shop').classList.contains('hidden')) {
             navigateTo('shop');
         }
-        
         filterAndRenderProducts(); 
     };
-    
     searchInputEl?.addEventListener('input', handleSearch);
     mobileSearchInputEl?.addEventListener('input', handleSearch);
 
@@ -654,7 +794,7 @@
         }
         if (state.searchQuery) {
           const q = state.searchQuery.toLowerCase();
-          const searchStr = (p.name + p.description + (p.tags ? p.tags.join(' ') : '')).toLowerCase();
+          const searchStr = (p.name + p.description).toLowerCase();
           if (!searchStr.includes(q)) return false;
         }
         return true;
@@ -663,104 +803,245 @@
       if (state.sortMode === 'price-asc') result.sort((a,b) => a.basePrice - b.basePrice);
       else if (state.sortMode === 'price-desc') result.sort((a,b) => b.basePrice - a.basePrice);
       else if (state.sortMode === 'newest') result.sort((a,b) => b.createdAt - a.createdAt);
-      else result.sort((a,b) => b.rating - a.rating);
+      // default: featured/random
 
       renderProductsGrid(result);
     }
 
     function renderProductsGrid(products) {
       productsGrid.innerHTML = '';
-      resultsCountEl.textContent = `${products.length} منتج`;
 
       if (products.length === 0) {
-        productsGrid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-500">لا توجد منتجات تطابق خياراتك.</div>`;
+        productsGrid.innerHTML = `<div class="col-span-full text-center py-20 opacity-50 flex flex-col items-center">
+            <span class="material-symbols-outlined text-4xl mb-2">sentiment_dissatisfied</span>
+            <p>لا توجد منتجات تطابق بحثك.</p>
+        </div>`;
         return;
       }
 
       products.forEach(product => {
         const card = document.createElement('article');
-        card.className = 'product-card group';
+        card.className = 'product-card group cursor-pointer';
         
-        const sizeKeys = Object.keys(product.sizes);
-        let currentSize = sizeKeys[0];
-        let currentPrice = product.sizes[currentSize];
-        let currentShade = (product.shades && product.shades.length > 0) ? product.shades[0] : null;
-        const mainImage = product.images && product.images.length > 0 ? product.images[0] : 'images/placeholder.jpg';
-
-        // Buttons HTML
-        const sizeButtonsHtml = sizeKeys.map(size => 
-            `<button class="variant-btn size-btn ${size === currentSize ? 'active' : ''}" data-value="${size}">${size}</button>`
-        ).join('');
-
-        let shadeSectionHtml = '';
-        if (product.shades && product.shades.length > 0) {
-            const shadeButtonsHtml = product.shades.map(shade => 
-                `<button class="variant-btn shade-btn ${shade === currentShade ? 'active' : ''}" data-value="${shade}">${shade}</button>`
-            ).join('');
-            shadeSectionHtml = `<div class="mt-2"><p class="text-[10px] text-slate-500 mb-1">الدرجة:</p><div class="flex gap-1 flex-wrap">${shadeButtonsHtml}</div></div>`;
-        }
+        const price = Math.min(...Object.values(product.sizes));
+        const mainImage = product.images[0];
 
         card.innerHTML = `
-          <div class="relative overflow-hidden h-[230px]">
-            <img src="${mainImage}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-            ${product.isNew ? '<span class="absolute top-2 right-2 badge badge-new">جديد</span>' : ''}
-            <button class="product-quick-add primary-btn text-[10px] px-2 py-1 absolute bottom-2 left-2 right-2 justify-center opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">إضافة للسلة</button>
+          <div class="relative overflow-hidden h-[280px] bg-slate-50">
+            <img src="${mainImage}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+            <button class="absolute bottom-4 right-4 bg-white/90 hover:bg-luna-gold hover:text-white text-luna-800 p-2 rounded-full shadow-md translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                <span class="material-symbols-outlined text-[20px]">visibility</span>
+            </button>
           </div>
-          <div class="p-3 flex flex-col gap-1">
-            <div><h3 class="text-sm font-bold text-slate-900 truncate">${product.name}</h3><p class="text-[10px] text-slate-500 mb-2">${product.category}</p></div>
-            <div class="flex gap-1 flex-wrap sizes-container">${sizeButtonsHtml}</div>
-            ${shadeSectionHtml}
-            <div class="flex items-center justify-between mt-2">
-               <span class="price-display text-sm font-bold text-rose-700">${formatPrice(currentPrice)}</span>
-               <div class="flex items-center text-[10px] text-slate-400 gap-1"><span class="material-symbols-outlined text-[12px] text-rose-400">star</span>${product.rating}</div>
+          <div class="p-4 flex flex-col flex-1">
+            <h3 class="text-sm font-bold text-slate-800 truncate mb-1">${product.name}</h3>
+            <p class="text-xs text-slate-400 mb-3">${product.description.substring(0,40)}...</p>
+            <div class="mt-auto flex items-center justify-between">
+               <span class="text-sm font-bold text-luna-600">${formatPrice(price)}</span>
+               <span class="text-[10px] text-luna-400 px-2 py-1 bg-luna-50 rounded-md">اضغطي للتفاصيل</span>
             </div>
           </div>
         `;
         
-        // Listeners
-        const priceDisplay = card.querySelector('.price-display');
-        card.querySelectorAll('.size-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                card.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentSize = btn.getAttribute('data-value');
-                currentPrice = product.sizes[currentSize];
-                priceDisplay.textContent = formatPrice(currentPrice);
-            });
-        });
-        card.querySelectorAll('.shade-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                card.querySelectorAll('.shade-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentShade = btn.getAttribute('data-value');
-            });
-        });
-        card.querySelector('.product-quick-add').addEventListener('click', (e) => {
-          e.stopPropagation();
-          addToCart(product, currentSize, currentPrice, currentShade);
-        });
-        card.addEventListener('click', (e) => {
-            if(!e.target.closest('button')) openProductDrawer(product);
-        });
-        
+        card.addEventListener('click', () => navigateTo('product', product));
         productsGrid.appendChild(card);
       });
     }
 
-    // --- Cart & Checkout ---
+    // --- Dedicated Product Page Logic ---
+    let galleryImages = [];
+    
+    function setupProductPage(product) {
+        state.currentProduct = product;
+        galleryImages = product.images;
+        state.currentGalleryIndex = 0;
+
+        // Populate Info
+        detailName.textContent = product.name;
+        detailDesc.textContent = product.description;
+        const catMap = { perfume: 'عطور فاخرة', makeup: 'مستحضرات تجميل', skincare: 'عناية بالبشرة' };
+        detailCategory.textContent = catMap[product.category] || 'منتج مميز';
+
+        // Options (Sizes & Shades)
+        detailOptions.innerHTML = '';
+        const sizeKeys = Object.keys(product.sizes);
+        let selectedSize = sizeKeys[0];
+        let selectedShade = (product.shades && product.shades.length) ? product.shades[0] : null;
+
+        // Size Selector
+        const sizeContainer = document.createElement('div');
+        sizeContainer.innerHTML = `<label class="text-xs font-bold text-slate-500 mb-2 block uppercase">الحجم</label>`;
+        const sizeBtnsWrapper = document.createElement('div');
+        sizeBtnsWrapper.className = 'flex flex-wrap gap-2';
+        sizeKeys.forEach(size => {
+            const btn = document.createElement('button');
+            btn.className = `variant-btn ${size === selectedSize ? 'active' : ''}`;
+            btn.textContent = size;
+            btn.onclick = () => {
+                selectedSize = size;
+                updatePrice(product.sizes[size]);
+                sizeBtnsWrapper.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            };
+            sizeBtnsWrapper.appendChild(btn);
+        });
+        sizeContainer.appendChild(sizeBtnsWrapper);
+        detailOptions.appendChild(sizeContainer);
+
+        // Shade Selector
+        if(product.shades && product.shades.length > 0) {
+            const shadeContainer = document.createElement('div');
+            shadeContainer.innerHTML = `<label class="text-xs font-bold text-slate-500 mb-2 block uppercase mt-4">الدرجة</label>`;
+            const shadeBtnsWrapper = document.createElement('div');
+            shadeBtnsWrapper.className = 'flex flex-wrap gap-2';
+            product.shades.forEach(shade => {
+                const btn = document.createElement('button');
+                btn.className = `variant-btn ${shade === selectedShade ? 'active' : ''}`;
+                btn.textContent = shade;
+                btn.onclick = () => {
+                    selectedShade = shade;
+                    shadeBtnsWrapper.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                };
+                shadeBtnsWrapper.appendChild(btn);
+            });
+            shadeContainer.appendChild(shadeBtnsWrapper);
+            detailOptions.appendChild(shadeContainer);
+        }
+
+        // Initial Price
+        updatePrice(product.sizes[selectedSize]);
+
+        // Add to Cart Action
+        detailAddToCart.onclick = () => {
+            addToCart(product, selectedSize, product.sizes[selectedSize], selectedShade);
+            // Optional: Give feedback button changed state temporarily
+            const originalHTML = detailAddToCart.innerHTML;
+            detailAddToCart.innerHTML = `<span class="material-symbols-outlined">check</span> تمت الإضافة`;
+            detailAddToCart.classList.add('bg-green-600', '!text-white');
+            setTimeout(() => {
+                detailAddToCart.innerHTML = originalHTML;
+                detailAddToCart.classList.remove('bg-green-600', '!text-white');
+            }, 1500);
+        };
+
+        // Render Gallery
+        renderGallery();
+    }
+
+    function updatePrice(price) {
+        detailPrice.textContent = formatPrice(price);
+    }
+
+    // --- Gallery Carousel Logic ---
+    function renderGallery() {
+        galleryTrack.innerHTML = '';
+        galleryDots.innerHTML = '';
+        galleryThumbs.innerHTML = '';
+
+        // Slides
+        galleryImages.forEach((src, idx) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'gallery-img';
+            galleryTrack.appendChild(img);
+
+            // Dot
+            const dot = document.createElement('div');
+            dot.className = `gallery-dot ${idx === 0 ? 'active' : ''}`;
+            galleryDots.appendChild(dot);
+
+            // Thumb
+            if(galleryImages.length > 1) {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = `w-16 h-16 object-cover rounded-md border-2 cursor-pointer transition ${idx === 0 ? 'border-luna-gold opacity-100' : 'border-transparent opacity-60'}`;
+                thumb.onclick = () => updateGallery(idx);
+                galleryThumbs.appendChild(thumb);
+            }
+        });
+
+        if(galleryImages.length > 1) {
+            galleryPrev.classList.remove('hidden');
+            galleryNext.classList.remove('hidden');
+        } else {
+            galleryPrev.classList.add('hidden');
+            galleryNext.classList.add('hidden');
+        }
+        
+        updateGallery(0);
+    }
+
+    function updateGallery(index) {
+        if(index < 0) index = galleryImages.length - 1;
+        if(index >= galleryImages.length) index = 0;
+        
+        state.currentGalleryIndex = index;
+        
+        // Move Track
+        const percent = index * 100;
+        galleryTrack.style.transform = `translateX(${percent}%)`; // RTL: +% moves right image into view? No, in RTL translateX moves differently? 
+        // In standard CSS transform, translateX(-100%) moves left. 
+        // Let's test standard logic. Usually for RTL carousels we might need positive values or standard negative.
+        // Actually, just using standard flex-direction: row (which follows RTL) means 1st image is on right. 
+        // So to show 2nd image (on left of 1st), we need to move track to the Right (+100%).
+        galleryTrack.style.transform = `translateX(${percent}%)`;
+
+        // Update UI
+        Array.from(galleryDots.children).forEach((d, i) => d.classList.toggle('active', i === index));
+        if(galleryThumbs.children.length) {
+            Array.from(galleryThumbs.children).forEach((t, i) => {
+                t.className = `w-16 h-16 object-cover rounded-md border-2 cursor-pointer transition ${i === index ? 'border-luna-gold opacity-100' : 'border-transparent opacity-60'}`;
+            });
+        }
+    }
+
+    galleryPrev.onclick = () => updateGallery(state.currentGalleryIndex - 1);
+    galleryNext.onclick = () => updateGallery(state.currentGalleryIndex + 1);
+
+    // Swipe Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const galleryContainer = document.getElementById('productGallery');
+    
+    galleryContainer.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    galleryContainer.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+            // Swiped Left -> Next Image (in RTL visual flow, swipe left usually implies moving to content on right? No, standard logic: Swipe Left gesture means 'Next')
+            // In RTL, 'Next' item is to the Left. So swipe right-to-left.
+            updateGallery(state.currentGalleryIndex + 1);
+        }
+        if (touchEndX > touchStartX + threshold) {
+            // Swiped Right -> Prev Image
+            updateGallery(state.currentGalleryIndex - 1);
+        }
+    }
+
+    backToShopBtn.onclick = () => {
+        history.back(); // Use history to ensure state consistency
+    };
+
+    // --- Cart Logic ---
     function loadCartFromStorage() { try { state.cart = JSON.parse(localStorage.getItem('lunabelle_cart')) || []; } catch(e) { state.cart = []; } }
     function saveCart() { localStorage.setItem('lunabelle_cart', JSON.stringify(state.cart)); renderCart(); }
 
     function addToCart(product, size, price, shade) {
       const cartItemId = `${product.id}-${size}-${shade || 'none'}`;
       const existing = state.cart.find(i => i.cartItemId === cartItemId);
-      const mainImage = product.images && product.images.length > 0 ? product.images[0] : 'images/placeholder.jpg';
       if (existing) existing.quantity++;
-      else state.cart.push({ cartItemId, productId: product.id, name: product.name, size, shade, price, image: mainImage, quantity: 1 });
+      else state.cart.push({ cartItemId, productId: product.id, name: product.name, size, shade, price, image: product.images[0], quantity: 1 });
       saveCart();
-      openCartSidebar();
+      _openCartSidebar();
     }
 
     function renderCart() {
@@ -769,91 +1050,55 @@
       state.cart.forEach((item, idx) => {
         total += item.price * item.quantity; count += item.quantity;
         const div = document.createElement('div');
-        div.className = 'cart-item';
+        div.className = 'flex gap-4 p-3 bg-white rounded-lg border border-luna-100 shadow-sm';
         div.innerHTML = `
-          <div class="cart-item-img"><img src="${item.image}" /></div>
-          <div class="flex flex-col justify-center gap-1">
-            <div class="text-xs font-bold text-slate-800">${item.name}</div>
-            <div class="text-[10px] font-medium text-rose-700">حجم: ${item.size} ${item.shade ? '| ' + item.shade : ''}</div>
-            <div class="text-[10px] text-slate-500">${formatPrice(item.price)} x ${item.quantity}</div>
-            <button class="text-red-500 text-[10px] self-start hover:underline" data-idx="${idx}">حذف</button>
+          <div class="w-16 h-16 shrink-0 rounded-md overflow-hidden bg-luna-50"><img src="${item.image}" class="w-full h-full object-cover" /></div>
+          <div class="flex flex-col flex-1 justify-center gap-1">
+            <div class="text-sm font-bold text-slate-800">${item.name}</div>
+            <div class="text-xs text-slate-500">${item.size} ${item.shade ? '| ' + item.shade : ''}</div>
+            <div class="flex items-center justify-between mt-1">
+                <div class="text-xs font-bold text-luna-700">${formatPrice(item.price)}</div>
+                <div class="flex items-center gap-3">
+                   <span class="text-xs text-slate-400">x${item.quantity}</span>
+                   <button class="text-red-400 hover:text-red-600" data-del="${idx}"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+                </div>
+            </div>
           </div>`;
-        div.querySelector('button').addEventListener('click', () => { state.cart.splice(idx, 1); saveCart(); });
+        div.querySelector('[data-del]').addEventListener('click', () => { state.cart.splice(idx, 1); saveCart(); });
         cartItemsContainerEl.appendChild(div);
       });
       cartCountEl.textContent = count;
+      cartCountEl.style.transform = count > 0 ? 'scale(1)' : 'scale(0)';
       cartSubtotalEl.textContent = formatPrice(total);
-      document.getElementById('cartSidebarSubtitle').textContent = count === 0 ? 'سلتك فارغة' : `${count} منتجات`;
+      document.getElementById('cartSidebarSubtitle').textContent = count === 0 ? 'سلتك فارغة' : `${count} منتجات مميزة`;
     }
 
-    // Cart & Drawer Logic Wrappers
-    function openCartSidebar() { 
-        openDrawerWithHistory('cart');
-    }
-    
-    function _openCartSidebar() {
-        cartSidebarEl.style.transform = 'translateX(0)'; 
-        backdropEl.classList.add('is-visible');
-    }
-    
-    function _closeCartSidebar(animate = true) { 
-        cartSidebarEl.style.transform = 'translateX(100%)'; 
-        if(productDrawerEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible'); 
-    }
+    function _openCartSidebar() { cartSidebarEl.style.transform = 'translateX(0)'; backdropEl.classList.add('is-visible'); }
+    function _closeCartSidebar() { cartSidebarEl.style.transform = 'translateX(100%)'; backdropEl.classList.remove('is-visible'); }
 
-    function closeCartSidebar() { 
-        // If user clicks X, go back in history (which triggers popstate -> _closeCartSidebar)
-        if (history.state && history.state.drawer) {
-            history.back();
-        } else {
-            _closeCartSidebar(); // Fallback
-        }
-    }
-    
-    cartToggleEl?.addEventListener('click', openCartSidebar);
-    cartSidebarCloseEl?.addEventListener('click', closeCartSidebar);
-    
-    // Backdrop click handles multiple things
+    cartToggleEl?.addEventListener('click', _openCartSidebar);
+    cartSidebarCloseEl?.addEventListener('click', _closeCartSidebar);
     backdropEl?.addEventListener('click', () => { 
-        if(history.state && (history.state.drawer || history.state.modal)) {
-            history.back();
-        } else {
-            // Fallback closures
-             _closeCartSidebar(); 
-             closeDrawer(productDrawerEl, false);
-             _closeCheckout();
-        }
+        _closeCartSidebar(); 
+        _closeCheckout(); 
     });
 
-    // Checkout Modal Logic
+    // Checkout
     openCheckoutModalBtn?.addEventListener('click', () => {
         if(state.cart.length === 0) { alert('سلتك فارغة!'); return; }
-        openDrawerWithHistory('checkout');
+        _closeCartSidebar();
+        checkoutModal.classList.add('is-visible');
+        backdropEl.classList.add('is-visible'); // ensure backdrop stays
     });
     
-    function _openCheckoutModal() {
-        _closeCartSidebar(false); // Visually close cart
-        checkoutModal.classList.add('is-visible');
-    }
-
-    function closeCheckout() {
-        if (history.state && history.state.drawer === 'checkout') {
-            history.back();
-        } else {
-            _closeCheckout();
-        }
-    }
-    
-    function _closeCheckout(animate=true) {
+    function _closeCheckout() {
         checkoutModal.classList.remove('is-visible');
         successModal.classList.remove('is-visible');
-        if(animate && cartSidebarEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible');
+        backdropEl.classList.remove('is-visible');
     }
-    
-    closeCheckoutModal?.addEventListener('click', closeCheckout);
-    closeSuccessModal?.addEventListener('click', closeCheckout);
+    closeCheckoutModal.onclick = _closeCheckout;
+    closeSuccessModal.onclick = _closeCheckout;
 
-    // Submit Order
     checkoutForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('confirmOrderBtn');
@@ -874,7 +1119,7 @@
 
         const formData = new FormData();
         formData.append("message", messageBody);
-        formData.append("customer_name", name); // Helpful for Formspree filtering
+        formData.append("customer_name", name);
 
         try {
             const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -884,7 +1129,8 @@
                 state.cart = []; saveCart();
                 checkoutForm.reset();
                 checkoutModal.classList.remove('is-visible');
-                successModal.classList.add('is-visible'); // Show Success
+                successModal.classList.add('is-visible'); 
+                backdropEl.classList.add('is-visible');
             } else {
                 alert("حدث خطأ أثناء الإرسال.");
             }
@@ -892,71 +1138,17 @@
         finally { btn.textContent = originalText; btn.disabled = false; }
     });
 
-    // --- Product Drawer ---
-    function openProductDrawer(product) {
-        openDrawerWithHistory('product', product);
-    }
-
-    function _renderAndOpenProductDrawer(product) {
-      if(!product) return;
-      const sizeKeys = Object.keys(product.sizes);
-      let selectedSize = sizeKeys[0], selectedPrice = product.sizes[selectedSize];
-      let selectedShade = (product.shades && product.shades.length > 0) ? product.shades[0] : null;
-      const images = product.images || ['images/placeholder.jpg'];
-
-      const thumbs = images.length > 1 ? images.map((img, i) => `<div class="drawer-gallery-thumb ${i===0?'active':''}" data-src="${img}"><img src="${img}" /></div>`).join('') : '';
-      const galleryHtml = images.length > 1 ? `<div class="drawer-gallery-thumbs">${thumbs}</div>` : '';
-
-      const sizeButtonsHtml = sizeKeys.map(s => `<button class="variant-btn d-size ${s===selectedSize?'active':''}" data-val="${s}">${s}</button>`).join('');
-      const shadeSectionHtml = product.shades?.length ? `<div class="mb-4"><label class="text-xs font-bold text-slate-700 block mb-2">الدرجة:</label><div class="flex gap-2 flex-wrap">${product.shades.map(s => `<button class="variant-btn d-shade ${s===selectedShade?'active':''}" data-val="${s}">${s}</button>`).join('')}</div></div>` : '';
-
-      productDetailContentEl.innerHTML = `
-        <div class="mb-4"><img id="drawerMainImage" src="${images[0]}" class="w-full h-[300px] object-cover rounded-xl mb-2 shadow-sm" />${galleryHtml}</div>
-        <h2 class="text-lg font-bold mb-2">${product.name}</h2><p class="text-sm text-slate-600 mb-4">${product.description}</p>
-        <div class="mb-4"><label class="text-xs font-bold text-slate-700 block mb-2">الحجم:</label><div class="flex gap-2 flex-wrap">${sizeButtonsHtml}</div></div>
-        ${shadeSectionHtml}
-        <div class="flex items-center justify-between mb-4"><span class="text-xs text-slate-500">السعر</span><div id="drawerPriceDisplay" class="font-bold text-xl text-rose-700">${formatPrice(selectedPrice)}</div></div>
-        <button id="drawerAddToCart" class="primary-btn w-full justify-center py-3 text-sm">إضافة إلى السلة</button>`;
-
-      // Logic
-      const mainImg = document.getElementById('drawerMainImage');
-      const priceEl = document.getElementById('drawerPriceDisplay');
-      productDetailContentEl.querySelectorAll('.drawer-gallery-thumb').forEach(th => th.addEventListener('click', () => {
-          productDetailContentEl.querySelectorAll('.drawer-gallery-thumb').forEach(t => t.classList.remove('active'));
-          th.classList.add('active'); mainImg.src = th.getAttribute('data-src');
-      }));
-      productDetailContentEl.querySelectorAll('.d-size').forEach(btn => btn.addEventListener('click', () => {
-          productDetailContentEl.querySelectorAll('.d-size').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active'); selectedSize = btn.getAttribute('data-val'); selectedPrice = product.sizes[selectedSize]; priceEl.textContent = formatPrice(selectedPrice);
-      }));
-      productDetailContentEl.querySelectorAll('.d-shade').forEach(btn => btn.addEventListener('click', () => {
-          productDetailContentEl.querySelectorAll('.d-shade').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active'); selectedShade = btn.getAttribute('data-val');
-      }));
-      // Fix: Ensure drawer closes via history back to maintain state sync
-      document.getElementById('drawerAddToCart').addEventListener('click', () => { 
-          addToCart(product, selectedSize, selectedPrice, selectedShade); 
-          // After adding to cart, usually we open cart drawer, which pushes new state.
-          // So we don't need to explicitly close this one, but let's be clean.
-          // The 'openCartSidebar' call inside addToCart pushes a new state 'cart'.
-      });
-
-      productDrawerEl.style.transform = 'translateX(0)'; backdropEl.classList.add('is-visible');
-    }
-
-    function closeDrawer(el, animate=true) { 
-        if(el) el.style.transform = 'translateX(-100%)'; 
-        if(animate && cartSidebarEl.style.transform !== 'translateX(0px)') backdropEl.classList.remove('is-visible'); 
-    }
-    
-    // When clicking X, go back
-    productDrawerBackEl?.addEventListener('click', () => {
-        if(history.state && history.state.drawer) history.back();
-        else closeDrawer(productDrawerEl);
+    // --- Scroll To Top ---
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
     });
-    productDrawerCloseEl?.addEventListener('click', () => {
-        if(history.state && history.state.drawer) history.back();
-        else closeDrawer(productDrawerEl);
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Init
@@ -967,3 +1159,4 @@
   </script>
 </body>
 </html>
+
